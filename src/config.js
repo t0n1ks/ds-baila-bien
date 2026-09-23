@@ -46,9 +46,16 @@ export const PLACEHOLDERS = {
 /** True while any [[PLACEHOLDER]] is still unfilled — drives the ⚠️ notices. */
 export const hasPendingDetails = (value) => /\[\[[^\]]+\]\]/.test(String(value ?? ''));
 
-/** Prefix a path from content.json with the Vite base (Pages subpath safe). */
-export const asset = (path) =>
-  `${import.meta.env.BASE_URL}${String(path ?? '').replace(/^\/+/, '')}`;
+/**
+ * Prefix a path from content.json with the Vite base (Pages subpath safe).
+ * "/images/uploads/1.jpg" and "images/uploads/1.jpg" both become
+ * "/ds-baila-bien/images/uploads/1.jpg"; full URLs pass through untouched.
+ */
+export const asset = (path) => {
+  const value = String(path ?? '').trim();
+  if (!value || /^(https?:|data:|blob:)/i.test(value)) return value;
+  return `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${value.replace(/^\/+/, '')}`;
+};
 
 export const STORAGE_KEYS = {
   theme: 'bb-theme',

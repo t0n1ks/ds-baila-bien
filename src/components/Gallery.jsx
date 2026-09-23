@@ -5,6 +5,7 @@ import Carousel from './Carousel.jsx';
 import Reveal from './Reveal.jsx';
 
 const FRAME = 'aspect-[4/5] w-full object-cover sm:aspect-[16/10]';
+const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
 
 /**
  * A slide renders the owner's file from public/images/uploads/.
@@ -14,16 +15,17 @@ const FRAME = 'aspect-[4/5] w-full object-cover sm:aspect-[16/10]';
 function Slide({ item, placeholder }) {
   const [broken, setBroken] = useState(false);
   const src = asset(item.src);
+  const isVideo = item.type === 'video' || VIDEO_RE.test(src);
 
   return (
     <figure className="group relative overflow-hidden rounded-2xl border border-line bg-surface">
-      {broken ? (
+      {!src || broken ? (
         <div
           className={`${FRAME} grid place-items-center bg-[linear-gradient(135deg,rgb(var(--surface))_0%,rgb(var(--surface-2))_100%)]`}
         >
           <span className="font-display text-sm font-semibold text-muted">{placeholder}</span>
         </div>
-      ) : item.type === 'video' ? (
+      ) : isVideo ? (
         <video
           src={src}
           className={FRAME}

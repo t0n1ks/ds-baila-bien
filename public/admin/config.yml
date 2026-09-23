@@ -21,8 +21,29 @@ backend:
   branch: main
 
 site_url: https://t0n1ks.github.io/ds-baila-bien/
+# Uploads are committed straight into the repo (default GitHub storage — no
+# external media library). media_folder is the repo path the file lands in;
+# public_folder is the path written into content.json. The site prefixes it
+# with the Pages base (see asset() in src/config.js), so "/images/uploads/x.jpg"
+# is served from /ds-baila-bien/images/uploads/x.jpg.
 media_folder: public/images/uploads
 public_folder: /images/uploads
+
+# Sveltia sends the file base64-encoded inside one GitHub API request. Big
+# files (phone photos, long clips) make that request time out, and the browser
+# only reports "Failed to fetch". So: shrink photos in the browser before the
+# upload (WebP, max 2000 px) and refuse anything over 8 MB up front.
+media_libraries:
+  default:
+    config:
+      max_file_size: 8000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 2000
+          height: 2000
 
 collections:
   - name: content
@@ -57,8 +78,12 @@ collections:
                 fields:
                   - name: media
                     label: Bild oder Video
-                    hint: JPG, PNG, WEBP oder ein kurzes MP4/WEBM
+                    hint: >-
+                      JPG, PNG, WEBP oder ein kurzes MP4/WEBM-Video. Max. ca. 8 MB —
+                      Videos bitte kurz halten (ca. 5–15 Sekunden). Fotos werden
+                      automatisch verkleinert.
                     widget: file
+                    accept: 'image/jpeg,image/png,image/webp,video/mp4,video/webm'
                     required: false
                   - name: url
                     label: Link zum Beitrag
@@ -186,7 +211,7 @@ collections:
                     widget: list
                     fields:
                       - { name: type, label: Typ, widget: select, options: [image, video] }
-                      - { name: src, label: Datei, widget: image }
+                      - { name: src, label: Datei, widget: file, accept: 'image/jpeg,image/png,image/webp,video/mp4,video/webm', hint: 'Bild oder kurzes Video, max. ca. 8 MB' }
                       - { name: caption, label: Bildunterschrift, widget: string }
 
               - name: instagram
@@ -407,7 +432,7 @@ collections:
                     widget: list
                     fields:
                       - { name: type, label: Type, widget: select, options: [image, video] }
-                      - { name: src, label: File, widget: image }
+                      - { name: src, label: File, widget: file, accept: 'image/jpeg,image/png,image/webp,video/mp4,video/webm', hint: 'Image or short clip, max. ~8 MB' }
                       - { name: caption, label: Caption, widget: string }
 
               - name: instagram

@@ -14,10 +14,10 @@ function cleanUrl(url) {
     .split(/[?#]/)[0];
 }
 
-/** A card is only real once the owner has uploaded media and pasted a link. */
-function isReady(post) {
+/** The permalink, unless it is still the example value. */
+function postHref(post) {
   const url = cleanUrl(post?.url);
-  return Boolean(post?.media) && Boolean(url) && !/EXAMPLE/i.test(url);
+  return url && !/EXAMPLE/i.test(url) ? url : '';
 }
 
 const CARD = 'relative block h-[34rem] overflow-hidden rounded-2xl border border-line bg-surface sm:h-[40rem]';
@@ -44,9 +44,9 @@ function Post({ post, isActive, labels }) {
   const reducedMotion = usePrefersReducedMotion();
   const [broken, setBroken] = useState(false);
 
-  const src = post.media ? asset(post.media) : '';
-  const isVideo = VIDEO_RE.test(post.media ?? '');
-  const href = cleanUrl(post.url);
+  const src = asset(post.media);
+  const isVideo = VIDEO_RE.test(src);
+  const href = postHref(post);
 
   // Only the slide in view plays; everything else stays paused so a carousel
   // of clips does not decode five videos at once.
@@ -61,7 +61,9 @@ function Post({ post, isActive, labels }) {
     }
   }, [isActive, reducedMotion]);
 
-  if (!isReady(post) || broken) {
+  // "Coming soon" only while no media is set. A set-but-unloadable file still
+  // renders the card (plain surface + link) so a bad path is visible, not hidden.
+  if (!src) {
     return (
       <div className={`${CARD} flex flex-col items-start justify-center gap-4 p-7`}>
         <InstagramIcon />
@@ -70,15 +72,14 @@ function Post({ post, isActive, labels }) {
     );
   }
 
+  const Frame = href ? 'a' : 'div';
+  const frameProps = href
+    ? { href, target: '_blank', rel: 'noopener noreferrer', draggable: false }
+    : {};
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      draggable={false}
-      className={`${CARD} group`}
-    >
-      {isVideo ? (
+    <Frame {...frameProps} className={`${CARD} group`}>
+      {broken ? null : isVideo ? (
         <video
           ref={videoRef}
           src={src}
@@ -109,11 +110,13 @@ function Post({ post, isActive, labels }) {
         {post.caption && (
           <span className="font-display text-base font-semibold">{post.caption}</span>
         )}
-        <span className="font-display text-sm font-semibold opacity-90">
-          {labels.viewOnInstagram} ↗
-        </span>
+        {href && (
+          <span className="font-display text-sm font-semibold opacity-90">
+            {labels.viewOnInstagram} ↗
+          </span>
+        )}
       </span>
-    </a>
+    </Frame>
   );
 }
 
