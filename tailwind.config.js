@@ -42,18 +42,9 @@ export default {
           from: { transform: 'translate3d(0,0,0)' },
           to: { transform: 'translate3d(-50%,0,0)' },
         },
-        // Slow organic "breathing" of the events blob. Radii only: every
-        // shape still touches its box edges, so the blob stays aligned with
-        // the teaser text (left) and the flyer (bottom).
-        blob: {
-          '0%, 100%': { borderRadius: '58% 42% 55% 45% / 48% 58% 42% 52%' },
-          '33%': { borderRadius: '44% 56% 40% 60% / 58% 44% 56% 42%' },
-          '66%': { borderRadius: '52% 48% 62% 38% / 42% 54% 46% 58%' },
-        },
       },
       animation: {
         marquee: 'marquee 32s linear infinite',
-        blob: 'blob 16s ease-in-out infinite',
       },
     },
   },

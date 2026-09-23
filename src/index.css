@@ -156,31 +156,18 @@
     @apply absolute inset-0 h-full w-full object-contain object-center;
   }
 
-  /* Upcoming Events backdrop (EventVisual.jsx): a lighter orange where the
-     dancer's arms and face are (top left), deepening towards her trousers
-     (bottom right). Colours come from the theme tokens. The shape morphs via
-     the `blob` animation; this radius is the resting shape. The stage is a
-     size container so the blob can be the largest square that fits it. */
+  /* Upcoming Events backdrop (EventVisual.jsx): an SVG ink blot filled with
+     the theme's --blob-from/--blob-to. The stage is a size container so the
+     blob can be the largest 13:10 box that fits under the teaser text. */
   .event-stage {
     container-type: size;
+    /* Soft rim: a narrow feather right at the outline, the rest stays solid.
+       0px gives a hard edge. */
+    --blob-feather: 5px;
   }
 
   .event-blob {
-    border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
-    background: radial-gradient(
-      120% 120% at 30% 20%,
-      rgb(var(--blob-from)) 0%,
-      rgb(var(--blob-to)) 100%
-    );
-  }
-
-  /* Soft glow edge. Delete this one rule to get the hard-edged blob back.
-     Solid out to 72 % of the radius — the dancer's hands reach 69 %, so all
-     her skin stays on full colour — then fading out to the page background.
-     The small blur hides the shape's own outline inside that fade. */
-  .event-blob {
-    mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
-    filter: blur(calc(min(100cqw, 100cqh) * 0.03));
+    filter: blur(var(--blob-feather));
   }
 
   .prose-legal p {
