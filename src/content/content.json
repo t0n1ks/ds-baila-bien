@@ -167,32 +167,32 @@
       "items": [
         {
           "type": "image",
-          "src": "/images/uploads/g1.webp",
+          "src": "/images/uploads/g1-1.webp",
           "caption": "Salsa Night"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-2.jpg",
+          "src": "/images/uploads/g2.webp",
           "caption": "Beginner Kurs"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-3.jpg",
+          "src": "/images/uploads/g3.webp",
           "caption": "Práctica"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-4.jpg",
+          "src": "/images/uploads/g4.webp",
           "caption": "Improver Level"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-5.jpg",
+          "src": "/images/uploads/g5.webp",
           "caption": "Social Dancing"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-6.jpg",
+          "src": "/images/uploads/g6.webp",
           "caption": "Unsere Community"
         }
       ]
@@ -449,32 +449,32 @@
       "items": [
         {
           "type": "image",
-          "src": "images/uploads/placeholder-1.jpg",
+          "src": "/images/uploads/g1-1.webp",
           "caption": "Salsa Night"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-2.jpg",
+          "src": "/images/uploads/g2.webp",
           "caption": "Beginner class"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-3.jpg",
+          "src": "/images/uploads/g3.webp",
           "caption": "Práctica"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-4.jpg",
+          "src": "/images/uploads/g4.webp",
           "caption": "Improver level"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-5.jpg",
+          "src": "/images/uploads/g5.webp",
           "caption": "Social dancing"
         },
         {
           "type": "image",
-          "src": "images/uploads/placeholder-6.jpg",
+          "src": "/images/uploads/g6.webp",
           "caption": "Our community"
         }
       ]
