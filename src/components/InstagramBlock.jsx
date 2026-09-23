@@ -22,7 +22,6 @@ function Post({ url, labels }) {
         title={url}
         loading="lazy"
         scrolling="no"
-        allowtransparency="true"
         className="h-[34rem] w-full rounded-2xl border border-line bg-white sm:h-[40rem]"
       />
     );
