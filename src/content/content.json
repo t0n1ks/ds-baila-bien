@@ -34,9 +34,9 @@
       }
     ],
     "upcomingEvent": {
-      "media": "",
-      "url": "",
-      "caption": ""
+      "media": "/images/uploads/ue.webp",
+      "url": "https://www.instagram.com/baila_bien.mz",
+      "caption": "Kommende Veranstaltungen"
     },
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ROXY+Holzhofstra%C3%9Fe+7+Mainz",
     "defaultTheme": "system"
