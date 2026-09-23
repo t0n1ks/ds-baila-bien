@@ -4,6 +4,17 @@ const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
 export const isVideoSrc = (src) => VIDEO_RE.test(String(src ?? ''));
 
 /**
+ * The stored link without its ?query / #hash tail, or '' while it is empty
+ * or still the example value.
+ */
+export function cardHref(url) {
+  const clean = String(url ?? '')
+    .trim()
+    .split(/[?#]/)[0];
+  return clean && !/EXAMPLE/i.test(clean) ? clean : '';
+}
+
+/**
  * Slide widths for carousels of media frames. The frame is portrait (see
  * --media-aspect in index.css), so slides stay narrow enough that a card
  * never grows taller than the screen. Shared so both carousels match.

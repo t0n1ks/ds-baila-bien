@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useTheme } from '../theme/ThemeContext.jsx';
 import useAnchorNav, { useGoToTop } from './useAnchorNav.js';
@@ -77,10 +78,18 @@ export default function Navbar() {
           type="button"
           onClick={home}
           aria-label={t.nav.logoLabel}
-          className="mr-auto cursor-pointer whitespace-nowrap font-display text-lg font-extrabold leading-none tracking-tight text-ink md:mr-0 md:justify-self-start"
+          className="mr-auto shrink-0 cursor-pointer md:mr-0 md:justify-self-start"
         >
-          {settings.logoText}
-          <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
+          {/* Brown logo on the light theme, cream logo on the dark one. */}
+          <img
+            src={asset(resolved === 'dark' ? settings.logoDark : settings.logoLight)}
+            alt={settings.brandName}
+            width="251"
+            height="160"
+            decoding="async"
+            draggable={false}
+            className="block h-10 w-auto sm:h-11"
+          />
         </button>
 
         <nav aria-label={settings.brandName} className="hidden items-center justify-center gap-1 md:flex">

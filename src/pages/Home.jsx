@@ -6,6 +6,7 @@ import InstagramBlock from '../components/InstagramBlock.jsx';
 import Marquee from '../components/Marquee.jsx';
 import Prices from '../components/Prices.jsx';
 import TrialForm from '../components/TrialForm.jsx';
+import UpcomingEvent from '../components/UpcomingEvent.jsx';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <Classes />
       <Prices />
+      <UpcomingEvent />
       <Gallery />
       <InstagramBlock />
       <TrialForm />

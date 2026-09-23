@@ -10,7 +10,8 @@ export default function Classes() {
         <Reveal className="grid gap-8 md:grid-cols-[minmax(0,26rem)_1fr] md:gap-16">
           <div>
             <h2 className="font-display text-section font-bold text-ink">{t.classes.heading}</h2>
-            <p className="mt-4 max-w-measure leading-relaxed text-muted">{t.classes.intro}</p>
+            <p className="mt-4 max-w-measure text-lg leading-relaxed text-ink">{t.classes.intro}</p>
+            <p className="mt-3 max-w-measure leading-relaxed text-muted">{t.classes.drinkNote}</p>
           </div>
 
           <div className="self-start rounded-2xl border border-line bg-bg p-6 sm:p-7">
@@ -42,6 +43,15 @@ export default function Classes() {
               </li>
             ))}
           </ol>
+
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+            {t.classes.levelLegend.map((entry) => (
+              <li key={entry} className="flex items-center gap-2">
+                <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {entry}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

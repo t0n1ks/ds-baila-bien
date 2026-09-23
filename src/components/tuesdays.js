@@ -1,7 +1,7 @@
 /**
  * Class nights for the trial form's "preferred date" select. Classes only run
- * on Tuesdays, so the form offers the next few of those instead of a free
- * date picker — computed on every render, never maintained by hand.
+ * on Tuesdays, and trial classes are offered on the first two Tuesdays of a
+ * month, so the form lists those dates instead of a free date picker — computed on every render, never maintained by hand.
  */
 
 const TUESDAY = 2;
@@ -22,13 +22,27 @@ function todayInMainz(now = new Date()) {
   return new Date(Date.UTC(parts.year, parts.month - 1, parts.day));
 }
 
-/** ISO dates ("2026-10-06") of the next `count` Tuesdays, today included. */
-export function upcomingTuesdays(count = 8, now = new Date()) {
+/**
+ * ISO dates ("2026-10-06") of the first and second Tuesday of each month,
+ * today included, earlier ones dropped. Starts in the current month and rolls
+ * into the following ones until `count` dates are listed (6 ≈ three months).
+ */
+export function upcomingTuesdays(count = 6, now = new Date()) {
   const today = todayInMainz(now);
-  const first = today.getTime() + (((TUESDAY - today.getUTCDay() + 7) % 7) * DAY_MS);
-  return Array.from({ length: count }, (_, index) =>
-    new Date(first + index * 7 * DAY_MS).toISOString().slice(0, 10),
-  );
+  const dates = [];
+
+  for (let offset = 0; dates.length < count; offset += 1) {
+    const monthStart = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + offset, 1));
+    const firstTuesday = monthStart.getTime() + ((TUESDAY - monthStart.getUTCDay() + 7) % 7) * DAY_MS;
+
+    for (const time of [firstTuesday, firstTuesday + 7 * DAY_MS]) {
+      if (time >= today.getTime() && dates.length < count) {
+        dates.push(new Date(time).toISOString().slice(0, 10));
+      }
+    }
+  }
+
+  return dates;
 }
 
 const FORMATS = {

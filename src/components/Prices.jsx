@@ -52,6 +52,18 @@ export default function Prices() {
       <Reveal delay={140} className="mt-5 text-sm text-muted">
         {t.prices.footnote}
       </Reveal>
+
+      <Reveal delay={180} className="mt-10 max-w-measure rounded-2xl border border-line bg-surface p-6 sm:p-7">
+        <h3 className="font-display text-lg font-semibold text-ink">{t.prices.notesHeading}</h3>
+        <ul className="mt-3 flex flex-col gap-2 leading-relaxed text-muted">
+          {t.prices.notes.map((note) => (
+            <li key={note} className="flex gap-3">
+              <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+              {note}
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </section>
   );
 }

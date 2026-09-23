@@ -3,21 +3,8 @@ import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import Carousel from './Carousel.jsx';
 import MediaFrame from './MediaFrame.jsx';
-import { MEDIA_SLIDE, isVideoSrc } from './media.js';
+import { MEDIA_SLIDE, cardHref, isVideoSrc } from './media.js';
 import Reveal from './Reveal.jsx';
-
-/** Drop any ?query / #hash tail from the stored permalink. */
-function cleanUrl(url) {
-  return String(url ?? '')
-    .trim()
-    .split(/[?#]/)[0];
-}
-
-/** The permalink, unless it is still the example value. */
-function postHref(post) {
-  const url = cleanUrl(post?.url);
-  return url && !/EXAMPLE/i.test(url) ? url : '';
-}
 
 function InstagramIcon({ className = 'text-muted' }) {
   return (
@@ -38,7 +25,7 @@ function InstagramIcon({ className = 'text-muted' }) {
  */
 function Post({ post, isActive, labels }) {
   const src = asset(post.media);
-  const href = postHref(post);
+  const href = cardHref(post.url);
 
   // "Coming soon" only while no media is set. A set-but-unloadable file still
   // renders the card (plain surface + link) so a bad path is visible, not hidden.

@@ -72,8 +72,8 @@ export default function TrialForm() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-  // Classes are Tuesdays only: offer the next eight, recomputed each render.
-  const tuesdays = upcomingTuesdays(8);
+  // First two Tuesdays of each month, about three months ahead, recomputed each render.
+  const tuesdays = upcomingTuesdays(6);
 
   const set = (field) => (event) => {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;

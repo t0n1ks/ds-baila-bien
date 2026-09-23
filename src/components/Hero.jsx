@@ -27,12 +27,10 @@ export default function Hero() {
   const [first, second] = t.hero.wordmark;
 
   return (
-    <section className="relative isolate overflow-hidden pb-16 pt-10 sm:pb-24 sm:pt-16">
+    <section className="relative isolate overflow-hidden pb-16 pt-12 sm:pb-24 sm:pt-20">
       <HeroBackdrop />
 
       <div className="shell relative">
-        <p className="mb-8 font-display text-sm font-semibold text-muted sm:mb-12">{t.hero.eyebrow}</p>
-
         {/* The wordmark is the hero: type used as the image, not as a label. */}
         <h1 className="font-display font-extrabold text-mega text-ink">
           <span className="block">{first}</span>
@@ -45,7 +43,11 @@ export default function Hero() {
         <div className="mt-10 grid gap-8 border-t border-line pt-8 sm:mt-14 md:grid-cols-[1fr_auto] md:items-end md:gap-12">
           <div>
             <p className="font-display text-display font-semibold text-ink">{t.hero.title}</p>
-            <p className="mt-4 max-w-measure text-lg leading-relaxed text-muted">{t.hero.subtitle}</p>
+            <ul className="mt-5 flex flex-col gap-1.5 text-lg leading-snug text-muted">
+              {t.hero.subtitle.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">

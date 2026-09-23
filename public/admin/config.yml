@@ -62,7 +62,14 @@ collections:
             widget: object
             fields:
               - { name: brandName, label: Name, widget: string }
-              - { name: logoText, label: Logo-Schriftzug, widget: string }
+              - name: logoLight
+                label: Logo (helles Farbschema)
+                hint: Dunkles/braunes Logo, transparenter Hintergrund (PNG).
+                widget: image
+              - name: logoDark
+                label: Logo (dunkles Farbschema)
+                hint: Helles/cremefarbenes Logo, transparenter Hintergrund (PNG).
+                widget: image
               - { name: contactEmail, label: Kontakt-E-Mail, widget: string }
               - { name: instagramUrl, label: Instagram-Profil (URL), widget: string }
               - { name: instagramHandle, label: Instagram-Handle, widget: string }
@@ -89,6 +96,27 @@ collections:
                     label: Link zum Beitrag
                     hint: 'z. B. https://www.instagram.com/p/XXXXXXXXXXX/'
                     widget: string
+                  - name: caption
+                    label: Bildunterschrift
+                    widget: string
+                    required: false
+              - name: upcomingEvent
+                label: Kommendes Event
+                hint: >-
+                  Gilt für beide Sprachen. Eine Karte mit dem aktuellen Flyer.
+                  Ohne Bild/Video wird der ganze Abschnitt ausgeblendet.
+                widget: object
+                fields:
+                  - name: media
+                    label: Flyer (Bild oder Video)
+                    hint: JPG, PNG, WEBP oder ein kurzes MP4/WEBM-Video. Max. ca. 8 MB.
+                    widget: file
+                    accept: 'image/jpeg,image/png,image/webp,video/mp4,video/webm'
+                    required: false
+                  - name: url
+                    label: Link zum Event / Instagram-Beitrag
+                    widget: string
+                    required: false
                   - name: caption
                     label: Bildunterschrift
                     widget: string
@@ -135,10 +163,9 @@ collections:
                 label: Hero
                 widget: object
                 fields:
-                  - { name: eyebrow, label: Kleiner Text oben, widget: string }
                   - { name: wordmark, label: Großer Schriftzug (2 Wörter), widget: list, field: { name: word, label: Wort, widget: string } }
                   - { name: title, label: Überschrift, widget: string }
-                  - { name: subtitle, label: Untertitel, widget: text }
+                  - { name: subtitle, label: Untertitel (eine Zeile pro Eintrag), widget: list, field: { name: line, label: Zeile, widget: string } }
                   - { name: cta, label: Haupt-Button, widget: string }
                   - { name: secondaryCta, label: Zweiter Button, widget: string }
 
@@ -166,6 +193,7 @@ collections:
                 fields:
                   - { name: heading, label: Überschrift, widget: string }
                   - { name: intro, label: Einleitung, widget: text }
+                  - { name: drinkNote, label: Hinweis Bar, widget: string }
                   - { name: location, label: Ort, widget: string }
                   - { name: locationNote, label: Hinweis zum Ort, widget: string }
                   - { name: mapsLabel, label: Maps-Link-Text, widget: string }
@@ -177,6 +205,7 @@ collections:
                     fields:
                       - { name: time, label: Zeit, widget: string }
                       - { name: label, label: Programm, widget: string }
+                  - { name: levelLegend, label: Level-Legende, widget: list, field: { name: entry, label: Eintrag, widget: string } }
 
               - name: prices
                 label: Preise
@@ -195,6 +224,15 @@ collections:
                       - { name: level, label: Level, widget: string }
                       - { name: price, label: Preis, widget: string }
                       - { name: reduced, label: Ermäßigt, widget: string }
+                  - { name: notesHeading, label: 'Hinweise: Überschrift', widget: string }
+                  - { name: notes, label: Hinweise, widget: list, field: { name: note, label: Hinweis, widget: string } }
+
+              - name: events
+                label: Kommende Events
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: linkLabel, label: Link-Text auf der Karte, widget: string }
 
               - name: gallery
                 label: Galerie
@@ -357,10 +395,9 @@ collections:
                 label: Hero
                 widget: object
                 fields:
-                  - { name: eyebrow, label: Small text above, widget: string }
                   - { name: wordmark, label: Large wordmark (2 words), widget: list, field: { name: word, label: Word, widget: string } }
                   - { name: title, label: Headline, widget: string }
-                  - { name: subtitle, label: Subtitle, widget: text }
+                  - { name: subtitle, label: Subtitle (one line per entry), widget: list, field: { name: line, label: Line, widget: string } }
                   - { name: cta, label: Primary button, widget: string }
                   - { name: secondaryCta, label: Secondary button, widget: string }
 
@@ -388,6 +425,7 @@ collections:
                 fields:
                   - { name: heading, label: Heading, widget: string }
                   - { name: intro, label: Intro, widget: text }
+                  - { name: drinkNote, label: Bar note, widget: string }
                   - { name: location, label: Location, widget: string }
                   - { name: locationNote, label: Location note, widget: string }
                   - { name: mapsLabel, label: Maps link text, widget: string }
@@ -399,6 +437,7 @@ collections:
                     fields:
                       - { name: time, label: Time, widget: string }
                       - { name: label, label: Programme, widget: string }
+                  - { name: levelLegend, label: Level legend, widget: list, field: { name: entry, label: Entry, widget: string } }
 
               - name: prices
                 label: Prices
@@ -417,6 +456,15 @@ collections:
                       - { name: level, label: Level, widget: string }
                       - { name: price, label: Price, widget: string }
                       - { name: reduced, label: Reduced, widget: string }
+                  - { name: notesHeading, label: 'Notes: heading', widget: string }
+                  - { name: notes, label: Notes, widget: list, field: { name: note, label: Note, widget: string } }
+
+              - name: events
+                label: Upcoming events
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: linkLabel, label: Card link text, widget: string }
 
               - name: gallery
                 label: Gallery
