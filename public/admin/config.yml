@@ -66,7 +66,8 @@ collections:
                     fields:
                       - { name: id, label: Abschnitts-ID, widget: string }
                       - { name: label, label: Beschriftung, widget: string }
-                  - { name: cta, label: Button, widget: string }
+                  - { name: logoLabel, label: 'Aria: Logo', widget: string }
+                  - { name: backToTop, label: 'Aria: Nach oben', widget: string }
                   - { name: menuOpen, label: 'Aria: Menü öffnen', widget: string }
                   - { name: menuClose, label: 'Aria: Menü schließen', widget: string }
                   - { name: themeLabel, label: 'Aria: Farbschema', widget: string }
@@ -145,6 +146,9 @@ collections:
                   - { name: heading, label: Überschrift, widget: string }
                   - { name: intro, label: Einleitung, widget: string }
                   - { name: placeholder, label: Platzhalter-Text, widget: string }
+                  - { name: prev, label: 'Aria: vorheriges Bild', widget: string }
+                  - { name: next, label: 'Aria: nächstes Bild', widget: string }
+                  - { name: slideLabel, label: 'Aria: Bild (Punkte)', widget: string }
                   - name: items
                     label: Medien
                     widget: list
@@ -248,7 +252,8 @@ collections:
                     fields:
                       - { name: id, label: Section id, widget: string }
                       - { name: label, label: Label, widget: string }
-                  - { name: cta, label: Button, widget: string }
+                  - { name: logoLabel, label: 'Aria: logo', widget: string }
+                  - { name: backToTop, label: 'Aria: back to top', widget: string }
                   - { name: menuOpen, label: 'Aria: open menu', widget: string }
                   - { name: menuClose, label: 'Aria: close menu', widget: string }
                   - { name: themeLabel, label: 'Aria: theme', widget: string }
@@ -327,6 +332,9 @@ collections:
                   - { name: heading, label: Heading, widget: string }
                   - { name: intro, label: Intro, widget: string }
                   - { name: placeholder, label: Placeholder text, widget: string }
+                  - { name: prev, label: 'Aria: previous image', widget: string }
+                  - { name: next, label: 'Aria: next image', widget: string }
+                  - { name: slideLabel, label: 'Aria: image (dots)', widget: string }
                   - name: items
                     label: Media
                     widget: list

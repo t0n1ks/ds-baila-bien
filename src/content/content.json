@@ -14,9 +14,10 @@
         { "id": "kurse", "label": "Kurse" },
         { "id": "preise", "label": "Preise" },
         { "id": "galerie", "label": "Galerie" },
-        { "id": "anmelden", "label": "Anmelden" }
+        { "id": "anmelden", "label": "Probestunde" }
       ],
-      "cta": "Probestunde",
+      "logoLabel": "Baila Bien – Startseite",
+      "backToTop": "Nach oben",
       "menuOpen": "Menü öffnen",
       "menuClose": "Menü schließen",
       "themeLabel": "Farbschema wechseln",
@@ -87,6 +88,9 @@
       "heading": "Impressionen",
       "intro": "Dienstagabende im ROXY.",
       "placeholder": "Foto folgt",
+      "prev": "Vorheriges Bild",
+      "next": "Nächstes Bild",
+      "slideLabel": "Bild",
       "items": [
         { "type": "image", "src": "images/uploads/placeholder-1.jpg", "caption": "Salsa Night" },
         { "type": "image", "src": "images/uploads/placeholder-2.jpg", "caption": "Beginner Kurs" },
@@ -161,9 +165,10 @@
         { "id": "kurse", "label": "Classes" },
         { "id": "preise", "label": "Prices" },
         { "id": "galerie", "label": "Gallery" },
-        { "id": "anmelden", "label": "Sign up" }
+        { "id": "anmelden", "label": "Trial class" }
       ],
-      "cta": "Trial class",
+      "logoLabel": "Baila Bien – Home",
+      "backToTop": "Back to top",
       "menuOpen": "Open menu",
       "menuClose": "Close menu",
       "themeLabel": "Switch colour scheme",
@@ -234,6 +239,9 @@
       "heading": "Gallery",
       "intro": "Tuesday nights at ROXY.",
       "placeholder": "Photo coming",
+      "prev": "Previous image",
+      "next": "Next image",
+      "slideLabel": "Image",
       "items": [
         { "type": "image", "src": "images/uploads/placeholder-1.jpg", "caption": "Salsa Night" },
         { "type": "image", "src": "images/uploads/placeholder-2.jpg", "caption": "Beginner class" },

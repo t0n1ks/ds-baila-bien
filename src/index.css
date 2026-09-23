@@ -110,6 +110,17 @@
   }
 }
 
+/* Swipeable track: native momentum, no visible scrollbar */
+.no-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Scroll reveal — one restrained entrance per section */
 .reveal {
   opacity: 0;
@@ -125,8 +136,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  html,
+  .scroll-smooth {
+    scroll-behavior: auto !important;
   }
   .reveal {
     opacity: 1;

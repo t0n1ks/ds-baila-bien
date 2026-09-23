@@ -1,6 +1,7 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import Navbar from './components/Navbar.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import { LanguageProvider } from './i18n/LanguageContext.jsx';
 import Datenschutz from './pages/Datenschutz.jsx';
 import Home from './pages/Home.jsx';
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Footer />
+          <ScrollToTop />
         </HashRouter>
       </LanguageProvider>
     </ThemeProvider>

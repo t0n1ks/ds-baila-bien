@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useTheme } from '../theme/ThemeContext.jsx';
-import useAnchorNav from './useAnchorNav.js';
+import useAnchorNav, { useGoToTop } from './useAnchorNav.js';
 
 function SunIcon() {
   return (
@@ -25,6 +24,7 @@ export default function Navbar() {
   const { t, lang, settings, toggle: toggleLang } = useLanguage();
   const { resolved, toggle: toggleTheme } = useTheme();
   const goTo = useAnchorNav();
+  const goToTop = useGoToTop();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -46,6 +46,11 @@ export default function Navbar() {
     goTo(id);
   };
 
+  const home = () => {
+    setOpen(false);
+    goToTop();
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-colors duration-300 ${
@@ -63,17 +68,21 @@ export default function Navbar() {
         {t.nav.skipToContent}
       </a>
 
-      <div className="shell flex h-[4.5rem] items-center justify-between gap-4">
-        <Link
-          to="/"
-          onClick={() => setOpen(false)}
-          className="font-display text-lg font-extrabold leading-none tracking-tight text-ink"
+      {/* left = logo · centre = section anchors · right = language + theme */}
+      {/* 1fr/auto/1fr keeps the anchor row optically centred on the page,
+          whatever the logo and the toggles measure. */}
+      <div className="shell grid h-[4.5rem] grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <button
+          type="button"
+          onClick={home}
+          aria-label={t.nav.logoLabel}
+          className="cursor-pointer justify-self-start font-display text-lg font-extrabold leading-none tracking-tight text-ink"
         >
           Baila&nbsp;Bien
           <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
-        </Link>
+        </button>
 
-        <nav aria-label={settings.brandName} className="hidden items-center gap-1 md:flex">
+        <nav aria-label={settings.brandName} className="hidden items-center justify-center gap-1 md:flex">
           {t.nav.items.map((item) => (
             <button
               key={item.id}
@@ -86,7 +95,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 justify-self-end">
           <button
             type="button"
             onClick={toggleLang}
@@ -105,14 +114,6 @@ export default function Navbar() {
             className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink transition-colors hover:bg-surface"
           >
             {resolved === 'dark' ? <SunIcon /> : <MoonIcon />}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => jump('anmelden')}
-            className="hidden rounded-full bg-accent px-5 py-2.5 font-display text-sm font-semibold text-accent-ink sm:inline-flex"
-          >
-            {t.nav.cta}
           </button>
 
           <button
