@@ -4,13 +4,14 @@ import { FORM_ENDPOINT, FORM_MODE, WEB3FORMS_KEY, hasPendingDetails, PLACEHOLDER
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import PendingNotice from './PendingNotice.jsx';
 import Reveal from './Reveal.jsx';
+import { formatTuesday, upcomingTuesdays } from './tuesdays.js';
 
 const EMPTY = {
   name: '',
   email: '',
   phone: '',
   level: '',
-  date: '',
+  date: '', // ISO date of a class Tuesday, e.g. "2026-10-06"
   message: '',
   consent: false,
   website: '', // honeypot
@@ -66,10 +67,13 @@ function FieldError({ id, children }) {
 }
 
 export default function TrialForm() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  // Classes are Tuesdays only: offer the next eight, recomputed each render.
+  const tuesdays = upcomingTuesdays(8);
 
   const set = (field) => (event) => {
     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
@@ -99,7 +103,8 @@ export default function TrialForm() {
     setStatus('sending');
     try {
       const { website: _honeypot, ...payload } = values;
-      await deliver(payload);
+      // The ISO date is for machines; the label makes the email unambiguous.
+      await deliver({ ...payload, dateLabel: payload.date ? formatTuesday(payload.date, lang) : '' });
       setStatus('success');
     } catch (error) {
       console.error('[TrialForm]', error);
@@ -234,14 +239,23 @@ export default function TrialForm() {
                   {t.form.fields.date}
                   <span className="label-hint">{hint}</span>
                 </label>
-                <input
-                  id="date"
-                  name="date"
-                  type="date"
-                  className="field"
-                  value={values.date}
-                  onChange={set('date')}
-                />
+                <div className="relative">
+                  <select
+                    id="date"
+                    name="date"
+                    className="field"
+                    value={values.date}
+                    onChange={set('date')}
+                  >
+                    <option value="">{t.form.datePlaceholder}</option>
+                    {tuesdays.map((iso) => (
+                      <option key={iso} value={iso}>
+                        {formatTuesday(iso, lang)}
+                      </option>
+                    ))}
+                  </select>
+                  <SelectChevron />
+                </div>
               </div>
 
               <div className="md:col-span-2">

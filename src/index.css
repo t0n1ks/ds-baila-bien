@@ -24,8 +24,8 @@
   --accent-text: 168 60 16;
   --accent-ink: 36 24 18; /* text that sits on the orange fill: 5.0:1 */
   --cool: 180 214 228; /* #B4D6E4 */
-  /* Makes native widgets — the date picker and its icon, scrollbars —
-     follow the site theme instead of the OS default. */
+  /* Makes native widgets — select popups, scrollbars — follow the site
+     theme instead of the OS default. */
   color-scheme: light;
 }
 
@@ -112,23 +112,6 @@
     @apply pr-11;
     appearance: none;
     -webkit-appearance: none;
-  }
-
-  input[type='date'].field {
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  /* The picker icon itself follows `color-scheme` (set per theme on :root),
-     so it only needs affordance polish here — no colour inversion, which
-     would fight the browser and hand us a black icon on dark again. */
-  input[type='date'].field::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    opacity: 0.75;
-    transition: opacity 0.15s ease;
-  }
-  input[type='date'].field::-webkit-calendar-picker-indicator:hover {
-    opacity: 1;
   }
 
   .label {

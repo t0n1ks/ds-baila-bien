@@ -247,6 +247,7 @@ collections:
                       - { name: message, label: Nachricht, widget: string }
                   - { name: optional, label: Wort „optional“, widget: string }
                   - { name: levelPlaceholder, label: Auswahl-Platzhalter, widget: string }
+                  - { name: datePlaceholder, label: 'Wunschtermin: Platzhalter', widget: string }
                   - { name: levelOptions, label: Level-Optionen, widget: list, field: { name: option, label: Option, widget: string } }
                   - name: consent
                     label: Einwilligungstext
@@ -468,6 +469,7 @@ collections:
                       - { name: message, label: Message, widget: string }
                   - { name: optional, label: Word "optional", widget: string }
                   - { name: levelPlaceholder, label: Select placeholder, widget: string }
+                  - { name: datePlaceholder, label: 'Preferred date: placeholder', widget: string }
                   - { name: levelOptions, label: Level options, widget: list, field: { name: option, label: Option, widget: string } }
                   - name: consent
                     label: Consent text

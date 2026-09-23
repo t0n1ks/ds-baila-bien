@@ -220,6 +220,8 @@
       },
       "optional": "optional",
       "levelPlaceholder": "Bitte wählen",
+
+      "datePlaceholder": "Bitte wählen",
       "levelOptions": [
         "Beginner",
         "Foundation",
@@ -502,6 +504,8 @@
       },
       "optional": "optional",
       "levelPlaceholder": "Please choose",
+
+      "datePlaceholder": "Please choose",
       "levelOptions": [
         "Beginner",
         "Foundation",
