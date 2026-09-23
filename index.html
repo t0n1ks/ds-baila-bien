@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <title>Baila Bien Mainz — Salsa & Latin Dance</title>
+    <meta
+      name="description"
+      content="Salsa & Latin Dance in Mainz. Keine Vorkenntnisse, kein Partner nötig. Jeden Dienstag im ROXY."
+    />
+    <meta name="theme-color" content="#241812" />
+
+    <!-- Self-hosted fonts. No Google Fonts CDN: no third-party request,
+         no IP transfer, therefore no consent needed (see Datenschutz §4). -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="%BASE_URL%fonts/sora-latin-wght-normal.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="%BASE_URL%fonts/inter-latin-wght-normal.woff2"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: 'Sora';
+        src: url('%BASE_URL%fonts/sora-latin-wght-normal.woff2') format('woff2-variations');
+        font-weight: 100 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url('%BASE_URL%fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+
+    <!-- Resolve the theme before first paint so there is no flash.
+         Mirrors the logic in src/theme/ThemeContext.jsx. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('bb-theme');
+          var mode = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          var resolved =
+            mode === 'system'
+              ? window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+              : mode;
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

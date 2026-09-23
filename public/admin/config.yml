@@ -1,0 +1,444 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Sveltia CMS — the human-friendly layer on top of src/content/content.json.
+# Layer A1 (editing content.json straight in the GitHub web UI) keeps working
+# regardless of whether this admin is set up.
+#
+# Sign in at https://t0n1ks.github.io/ds-baila-bien/admin/
+#   - "Sign In with Token": paste a GitHub personal access token (fine-grained,
+#     repo ds-baila-bien, Contents: read & write). Works with zero extra setup.
+#   - Multi-user OAuth (optional, later): deploy sveltia/sveltia-cms-auth as a
+#     Cloudflare Worker, create a GitHub OAuth App, then add under `backend`:
+#       base_url: https://<your-worker>.workers.dev
+#
+# Every key that exists in content.json must be declared here, otherwise it is
+# stripped when the CMS saves. Rarely-touched UI strings are kept in collapsed
+# groups so the form stays readable.
+
+backend:
+  name: github
+  repo: t0n1ks/ds-baila-bien
+  branch: main
+
+site_url: https://t0n1ks.github.io/ds-baila-bien/
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: content
+    label: Website
+    files:
+      - name: content
+        label: Inhalte / Content
+        file: src/content/content.json
+        description: >-
+          Alle Texte und Bilder der Website. Nach dem Speichern baut GitHub die
+          Seite neu — die Änderung ist nach 1–2 Minuten live.
+        fields:
+          # ---------------------------------------------------------------
+          - name: settings
+            label: Einstellungen
+            widget: object
+            fields:
+              - { name: brandName, label: Name, widget: string }
+              - { name: contactEmail, label: Kontakt-E-Mail, widget: string }
+              - { name: instagramUrl, label: Instagram-Profil (URL), widget: string }
+              - { name: instagramHandle, label: Instagram-Handle, widget: string }
+              - { name: mapsUrl, label: Google-Maps-Link, widget: string }
+              - name: defaultTheme
+                label: Standard-Farbschema
+                widget: select
+                options: [system, light, dark]
+
+          # ---------------------------------------------------------------
+          - name: de
+            label: Deutsch
+            widget: object
+            fields:
+              - name: nav
+                label: Navigation
+                widget: object
+                collapsed: true
+                fields:
+                  - name: items
+                    label: Menüpunkte
+                    widget: list
+                    fields:
+                      - { name: id, label: Abschnitts-ID, widget: string }
+                      - { name: label, label: Beschriftung, widget: string }
+                  - { name: cta, label: Button, widget: string }
+                  - { name: menuOpen, label: 'Aria: Menü öffnen', widget: string }
+                  - { name: menuClose, label: 'Aria: Menü schließen', widget: string }
+                  - { name: themeLabel, label: 'Aria: Farbschema', widget: string }
+                  - { name: langLabel, label: 'Aria: Sprache', widget: string }
+                  - { name: skipToContent, label: Skip-Link, widget: string }
+
+              - name: hero
+                label: Hero
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Kleiner Text oben, widget: string }
+                  - { name: wordmark, label: Großer Schriftzug (2 Wörter), widget: list, field: { name: word, label: Wort, widget: string } }
+                  - { name: title, label: Überschrift, widget: string }
+                  - { name: subtitle, label: Untertitel, widget: text }
+                  - { name: cta, label: Haupt-Button, widget: string }
+                  - { name: secondaryCta, label: Zweiter Button, widget: string }
+
+              - name: marquee
+                label: Laufband
+                widget: list
+                field: { name: word, label: Begriff, widget: string }
+
+              - name: about
+                label: Über uns
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: text, label: Text, widget: text }
+                  - name: stats
+                    label: Große Zahlen
+                    widget: list
+                    fields:
+                      - { name: value, label: Wert, widget: string }
+                      - { name: label, label: Beschreibung, widget: string }
+
+              - name: classes
+                label: Kurse
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: intro, label: Einleitung, widget: text }
+                  - { name: location, label: Ort, widget: string }
+                  - { name: locationNote, label: Hinweis zum Ort, widget: string }
+                  - { name: mapsLabel, label: Maps-Link-Text, widget: string }
+                  - { name: day, label: Tag, widget: string }
+                  - { name: timeColumn, label: 'Spalte: Zeit', widget: string }
+                  - name: rows
+                    label: Ablauf
+                    widget: list
+                    fields:
+                      - { name: time, label: Zeit, widget: string }
+                      - { name: label, label: Programm, widget: string }
+
+              - name: prices
+                label: Preise
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: note, label: Zusatz, widget: string }
+                  - { name: footnote, label: Fußnote, widget: string }
+                  - { name: levelColumn, label: 'Spalte: Level', widget: string }
+                  - { name: priceColumn, label: 'Spalte: Preis', widget: string }
+                  - { name: reducedColumn, label: 'Spalte: Ermäßigt', widget: string }
+                  - name: rows
+                    label: Preistabelle
+                    widget: list
+                    fields:
+                      - { name: level, label: Level, widget: string }
+                      - { name: price, label: Preis, widget: string }
+                      - { name: reduced, label: Ermäßigt, widget: string }
+
+              - name: gallery
+                label: Galerie
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: intro, label: Einleitung, widget: string }
+                  - { name: placeholder, label: Platzhalter-Text, widget: string }
+                  - name: items
+                    label: Medien
+                    widget: list
+                    fields:
+                      - { name: type, label: Typ, widget: select, options: [image, video] }
+                      - { name: src, label: Datei, widget: image }
+                      - { name: caption, label: Bildunterschrift, widget: string }
+
+              - name: instagram
+                label: Instagram
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: intro, label: Einleitung, widget: text }
+                  - { name: loadButton, label: Button „Post laden“, widget: string }
+                  - { name: privacyNote, label: Datenschutz-Hinweis, widget: text }
+                  - { name: profileLink, label: Profil-Link-Text, widget: string }
+                  - name: posts
+                    label: Beitrags-URLs
+                    widget: list
+                    field: { name: url, label: URL, widget: string }
+
+              - name: form
+                label: Anmeldeformular
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - { name: intro, label: Einleitung, widget: text }
+                  - name: fields
+                    label: Feldbeschriftungen
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - { name: name, label: Name, widget: string }
+                      - { name: email, label: E-Mail, widget: string }
+                      - { name: phone, label: Telefon, widget: string }
+                      - { name: level, label: Level, widget: string }
+                      - { name: date, label: Wunschtermin, widget: string }
+                      - { name: message, label: Nachricht, widget: string }
+                  - { name: optional, label: Wort „optional“, widget: string }
+                  - { name: levelPlaceholder, label: Auswahl-Platzhalter, widget: string }
+                  - { name: levelOptions, label: Level-Optionen, widget: list, field: { name: option, label: Option, widget: string } }
+                  - name: consent
+                    label: Einwilligungstext
+                    widget: object
+                    fields:
+                      - { name: before, label: Text vor dem Link, widget: string }
+                      - { name: linkText, label: Linktext, widget: string }
+                      - { name: after, label: Text nach dem Link, widget: text }
+                  - { name: submit, label: Absenden-Button, widget: string }
+                  - { name: sending, label: Status „wird gesendet“, widget: string }
+                  - { name: success, label: Erfolgsmeldung, widget: string }
+                  - { name: successAgain, label: Button „noch eine Anmeldung“, widget: string }
+                  - { name: error, label: Fehlermeldung, widget: text }
+                  - name: errors
+                    label: Validierungsfehler
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - { name: name, label: Name fehlt, widget: string }
+                      - { name: email, label: E-Mail ungültig, widget: string }
+                      - { name: consent, label: Einwilligung fehlt, widget: string }
+
+              - name: footer
+                label: Footer
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: tagline, label: Slogan, widget: text }
+                  - { name: contactHeading, label: 'Titel: Kontakt', widget: string }
+                  - { name: followHeading, label: 'Titel: Folgen', widget: string }
+                  - { name: legalHeading, label: 'Titel: Rechtliches', widget: string }
+                  - { name: impressum, label: Link Impressum, widget: string }
+                  - { name: datenschutz, label: Link Datenschutz, widget: string }
+                  - { name: rights, label: Rechte-Hinweis, widget: string }
+
+              - name: legalUi
+                label: Rechtsseiten (Bedienelemente)
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: back, label: Zurück-Link, widget: string }
+                  - { name: pendingTitle, label: Warnung — Titel, widget: string }
+                  - { name: pendingText, label: Warnung — Text, widget: text }
+                  - { name: bindingNote, label: Hinweis zur Verbindlichkeit, widget: string }
+
+          # ---------------------------------------------------------------
+          - name: en
+            label: English
+            widget: object
+            fields:
+              - name: nav
+                label: Navigation
+                widget: object
+                collapsed: true
+                fields:
+                  - name: items
+                    label: Menu items
+                    widget: list
+                    fields:
+                      - { name: id, label: Section id, widget: string }
+                      - { name: label, label: Label, widget: string }
+                  - { name: cta, label: Button, widget: string }
+                  - { name: menuOpen, label: 'Aria: open menu', widget: string }
+                  - { name: menuClose, label: 'Aria: close menu', widget: string }
+                  - { name: themeLabel, label: 'Aria: theme', widget: string }
+                  - { name: langLabel, label: 'Aria: language', widget: string }
+                  - { name: skipToContent, label: Skip link, widget: string }
+
+              - name: hero
+                label: Hero
+                widget: object
+                fields:
+                  - { name: eyebrow, label: Small text above, widget: string }
+                  - { name: wordmark, label: Large wordmark (2 words), widget: list, field: { name: word, label: Word, widget: string } }
+                  - { name: title, label: Headline, widget: string }
+                  - { name: subtitle, label: Subtitle, widget: text }
+                  - { name: cta, label: Primary button, widget: string }
+                  - { name: secondaryCta, label: Secondary button, widget: string }
+
+              - name: marquee
+                label: Marquee
+                widget: list
+                field: { name: word, label: Term, widget: string }
+
+              - name: about
+                label: About
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: text, label: Text, widget: text }
+                  - name: stats
+                    label: Big numbers
+                    widget: list
+                    fields:
+                      - { name: value, label: Value, widget: string }
+                      - { name: label, label: Description, widget: string }
+
+              - name: classes
+                label: Classes
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: intro, label: Intro, widget: text }
+                  - { name: location, label: Location, widget: string }
+                  - { name: locationNote, label: Location note, widget: string }
+                  - { name: mapsLabel, label: Maps link text, widget: string }
+                  - { name: day, label: Day, widget: string }
+                  - { name: timeColumn, label: 'Column: time', widget: string }
+                  - name: rows
+                    label: Schedule
+                    widget: list
+                    fields:
+                      - { name: time, label: Time, widget: string }
+                      - { name: label, label: Programme, widget: string }
+
+              - name: prices
+                label: Prices
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: note, label: Note, widget: string }
+                  - { name: footnote, label: Footnote, widget: string }
+                  - { name: levelColumn, label: 'Column: level', widget: string }
+                  - { name: priceColumn, label: 'Column: price', widget: string }
+                  - { name: reducedColumn, label: 'Column: reduced', widget: string }
+                  - name: rows
+                    label: Price table
+                    widget: list
+                    fields:
+                      - { name: level, label: Level, widget: string }
+                      - { name: price, label: Price, widget: string }
+                      - { name: reduced, label: Reduced, widget: string }
+
+              - name: gallery
+                label: Gallery
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: intro, label: Intro, widget: string }
+                  - { name: placeholder, label: Placeholder text, widget: string }
+                  - name: items
+                    label: Media
+                    widget: list
+                    fields:
+                      - { name: type, label: Type, widget: select, options: [image, video] }
+                      - { name: src, label: File, widget: image }
+                      - { name: caption, label: Caption, widget: string }
+
+              - name: instagram
+                label: Instagram
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: intro, label: Intro, widget: text }
+                  - { name: loadButton, label: 'Button "load post"', widget: string }
+                  - { name: privacyNote, label: Privacy note, widget: text }
+                  - { name: profileLink, label: Profile link text, widget: string }
+                  - name: posts
+                    label: Post URLs
+                    widget: list
+                    field: { name: url, label: URL, widget: string }
+
+              - name: form
+                label: Sign-up form
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - { name: intro, label: Intro, widget: text }
+                  - name: fields
+                    label: Field labels
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - { name: name, label: Name, widget: string }
+                      - { name: email, label: Email, widget: string }
+                      - { name: phone, label: Phone, widget: string }
+                      - { name: level, label: Level, widget: string }
+                      - { name: date, label: Preferred date, widget: string }
+                      - { name: message, label: Message, widget: string }
+                  - { name: optional, label: Word "optional", widget: string }
+                  - { name: levelPlaceholder, label: Select placeholder, widget: string }
+                  - { name: levelOptions, label: Level options, widget: list, field: { name: option, label: Option, widget: string } }
+                  - name: consent
+                    label: Consent text
+                    widget: object
+                    fields:
+                      - { name: before, label: Text before link, widget: string }
+                      - { name: linkText, label: Link text, widget: string }
+                      - { name: after, label: Text after link, widget: text }
+                  - { name: submit, label: Submit button, widget: string }
+                  - { name: sending, label: Status "sending", widget: string }
+                  - { name: success, label: Success message, widget: string }
+                  - { name: successAgain, label: 'Button "send another"', widget: string }
+                  - { name: error, label: Error message, widget: text }
+                  - name: errors
+                    label: Validation errors
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - { name: name, label: Name missing, widget: string }
+                      - { name: email, label: Email invalid, widget: string }
+                      - { name: consent, label: Consent missing, widget: string }
+
+              - name: footer
+                label: Footer
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: tagline, label: Tagline, widget: text }
+                  - { name: contactHeading, label: 'Title: contact', widget: string }
+                  - { name: followHeading, label: 'Title: follow', widget: string }
+                  - { name: legalHeading, label: 'Title: legal', widget: string }
+                  - { name: impressum, label: Link Impressum, widget: string }
+                  - { name: datenschutz, label: Link privacy, widget: string }
+                  - { name: rights, label: Rights notice, widget: string }
+
+              - name: legalUi
+                label: Legal pages (UI)
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: back, label: Back link, widget: string }
+                  - { name: pendingTitle, label: Warning — title, widget: string }
+                  - { name: pendingText, label: Warning — text, widget: text }
+                  - { name: bindingNote, label: Binding-version note, widget: string }
+
+          # ---------------------------------------------------------------
+          - name: legal
+            label: Rechtstexte (nur Deutsch)
+            widget: object
+            collapsed: true
+            fields:
+              - name: impressum
+                label: Impressum
+                widget: object
+                fields:
+                  - { name: title, label: Titel, widget: string }
+                  - name: sections
+                    label: Abschnitte
+                    widget: list
+                    fields:
+                      - { name: heading, label: Überschrift, widget: string }
+                      - { name: body, label: Text, widget: text }
+              - name: datenschutz
+                label: Datenschutzerklärung
+                widget: object
+                fields:
+                  - { name: title, label: Titel, widget: string }
+                  - name: sections
+                    label: Abschnitte
+                    widget: list
+                    fields:
+                      - { name: heading, label: Überschrift, widget: string }
+                      - { name: body, label: Text, widget: text }

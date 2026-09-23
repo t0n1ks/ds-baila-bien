@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted @font-face lives in index.html so it can use %BASE_URL%
+   and stay correct if the Vite base ever changes (Pages -> Vercel). */
+
+/* ---------------------------------------------------------------
+   Theme tokens.
+   Values are raw "r g b" channels so Tailwind's /opacity modifiers
+   (bg-accent/10, text-muted/70, …) work on them.
+   --------------------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --bg: 239 230 213; /* #EFE6D5 cream */
+  --surface: 230 218 197;
+  --surface-2: 247 241 230;
+  --ink: 36 24 18; /* #241812 deep brown */
+  --muted: 106 83 71;
+  --line: 214 198 172;
+  --accent: 232 98 42; /* #E8622A orange */
+  /* Orange on cream is only 2.8:1 — too low for text, so text-weight
+     accent is darkened to 5.1:1. The fill colour stays brand orange. */
+  --accent-text: 168 60 16;
+  --accent-ink: 36 24 18; /* text that sits on the orange fill: 5.0:1 */
+  --cool: 180 214 228; /* #B4D6E4 */
+}
+
+[data-theme='dark'] {
+  --bg: 36 24 18; /* #241812 */
+  --surface: 58 42 34; /* #3A2A22 */
+  --surface-2: 46 31 24;
+  --ink: 239 230 213; /* #EFE6D5 */
+  --muted: 195 178 156;
+  --line: 78 58 48;
+  --accent: 232 98 42;
+  --accent-text: 232 98 42; /* 5.0:1 on the deep brown background */
+  --accent-ink: 36 24 18;
+  --cool: 180 214 228;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* sticky nav height + breathing room for anchor jumps */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-bg font-body text-ink antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background: rgb(var(--accent));
+    color: rgb(var(--accent-ink));
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+  }
+
+  /* One bright CTA, used sparingly */
+  .btn-accent {
+    @apply inline-flex items-center justify-center rounded-full bg-accent px-7 py-3.5
+           font-display text-base font-semibold text-accent-ink
+           transition-transform duration-150 hover:scale-[1.02] active:scale-[0.99]
+           disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  .btn-quiet {
+    @apply inline-flex items-center justify-center rounded-full border border-line
+           bg-transparent px-6 py-3 font-display text-sm font-semibold text-ink
+           transition-colors duration-150 hover:bg-surface;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-bg px-4 py-3 text-ink
+           placeholder:text-muted/70 focus:border-accent focus:outline-none;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-muted;
+  }
+
+  .link-accent {
+    @apply font-display text-sm font-semibold text-accent-text underline decoration-2 underline-offset-4;
+  }
+
+  .prose-legal p {
+    @apply mb-4 max-w-measure leading-relaxed text-muted;
+  }
+  .prose-legal h2 {
+    @apply mb-3 mt-10 font-display text-xl font-semibold text-ink;
+  }
+}
+
+/* Scroll reveal — one restrained entrance per section */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
