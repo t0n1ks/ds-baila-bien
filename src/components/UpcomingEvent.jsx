@@ -23,9 +23,10 @@ export default function UpcomingEvent() {
 
   return (
     <section id="events" className="scroll-mt-24 border-y border-line bg-surface-2 py-20 sm:py-28">
-      {/* Capped narrower than the other sections on desktop, so flyer and
-          dancer block don't drift apart on very wide screens. */}
-      <div className="shell lg:max-w-[76rem]">
+      {/* Same shell as every other section, so the heading and the flyer sit
+          on the page's shared left edge; the dancer block ends on its right
+          edge. */}
+      <div className="shell">
         <Reveal>
           <h2 className="font-display text-section font-bold text-ink">{t.events.heading}</h2>
         </Reveal>

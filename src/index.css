@@ -168,8 +168,8 @@
 
   /* Desktop: the block is as wide as the blob will be (11:10 on the height
      left under the text) and pushed to the right edge of its cell. If the
-     text wraps taller, the blob just comes out a bit smaller — its left
-     edge still lines up with the text. */
+     text wraps taller, the blob just comes out a bit smaller and stays
+     centred under it. */
   @media (min-width: theme('screens.lg')) {
     .event-block {
       margin-left: auto;
