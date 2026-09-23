@@ -30,7 +30,7 @@ export default function UpcomingEvent() {
 
         {/* Phones: the card alone, as before. md+: flyer left, decorative
             dancer visual filling the space on the right. */}
-        <div className="mt-10 grid items-center gap-10 md:grid-cols-2 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] xl:grid-cols-[minmax(0,17fr)_minmax(0,33fr)]">
+        <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-x-14 lg:gap-x-20 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] xl:grid-cols-[minmax(0,17fr)_minmax(0,33fr)]">
           <Reveal delay={90} className="w-full min-[480px]:w-[72%] sm:w-[60%] md:w-full">
             <MediaFrame
               {...linkProps}
@@ -53,7 +53,7 @@ export default function UpcomingEvent() {
             </MediaFrame>
           </Reveal>
 
-          <Reveal delay={140} className="hidden w-full max-w-[36rem] md:block">
+          <Reveal delay={140} className="relative hidden md:block">
             <EventVisual wordmark={t.hero.wordmark} teaser={t.events.teaser} />
           </Reveal>
         </div>

@@ -150,7 +150,12 @@
 
   /* Upcoming Events backdrop (EventVisual.jsx): brand orange fading into the
      theme surface, so it follows light/dark on its own. The shape morphs via
-     the `blob` animation; this radius is the resting shape. */
+     the `blob` animation; this radius is the resting shape. The stage is a
+     size container so the blob can be the largest square that fits it. */
+  .event-stage {
+    container-type: size;
+  }
+
   .event-blob {
     border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
     background: radial-gradient(

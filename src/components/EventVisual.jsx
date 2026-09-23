@@ -48,29 +48,36 @@ export default function EventVisual({ wordmark, teaser }) {
     };
   }, []);
 
+  // Positioned over the whole grid cell, so the flyer alone sets the row
+  // height: text starts at the flyer's top edge, the blob ends at its bottom.
   return (
-    <div ref={ref} className="hidden md:block">
-      <h3 className="font-display text-2xl font-bold text-ink lg:text-3xl">{teaser.title}</h3>
+    <div ref={ref} className="absolute inset-0 flex flex-col">
+      <h3 className="font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{teaser.title}</h3>
       <p className="mt-2 text-lg font-light leading-relaxed text-muted">{teaser.text}</p>
 
-      {/* Blob and dancer sit low in the square, leaving air under the text.
-          The dancer keeps its size (72 % of the box); the blob is a little
-          smaller than it used to be, so the dancer reads larger against it. */}
-      <div aria-hidden="true" className="relative mt-6 aspect-square w-full">
-        <div className="event-blob absolute inset-x-[15%] bottom-[8%] top-[22%] animate-blob" />
+      {/* The stage takes the height left under the text; the blob is the
+          largest square that fits, pinned bottom-left so its left edge lines
+          up with the text and its bottom with the flyer. */}
+      <div aria-hidden="true" className="event-stage relative mt-6 min-h-0 flex-1">
+        <div className="absolute bottom-0 left-0 aspect-square w-[min(100cqw,100cqh)]">
+          <div className="event-blob absolute inset-0 animate-blob" />
 
-        <p className="pointer-events-none absolute inset-x-0 bottom-0 top-[14%] flex select-none flex-col items-center justify-center font-display text-[clamp(4rem,11vw,9.5rem)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
-          {wordmark.map((word) => (
-            <span key={word}>{word}</span>
-          ))}
-        </p>
+          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(100cqw,100cqh)*0.28)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
+            {wordmark.map((word) => (
+              <span key={word}>{word}</span>
+            ))}
+          </p>
 
-        <div className="absolute inset-x-[14%] bottom-[4%] top-[24%]">
-          {ready && (
-            <Suspense fallback={null}>
-              <Dancer still={still} />
-            </Suspense>
-          )}
+          {/* The Lottie canvas (612 × 736) at 66 % of the blob's width: every
+              frame of the loop stays inside every blob shape with room to
+              spare. */}
+          <div className="absolute left-[17%] top-[10.3%] h-[79.4%] w-[66%]">
+            {ready && (
+              <Suspense fallback={null}>
+                <Dancer still={still} />
+              </Suspense>
+            )}
+          </div>
         </div>
       </div>
     </div>
