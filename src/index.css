@@ -24,6 +24,11 @@
   --accent-text: 168 60 16;
   --accent-ink: 36 24 18; /* text that sits on the orange fill: 5.0:1 */
   --cool: 180 214 228; /* #B4D6E4 */
+  /* Events blob: opaque, deeper than the brand orange so the Lottie
+     dancer's skin tone (#FF9D76) never blends in — 1.9:1 at the light top,
+     2.7:1 at the deep bottom (it was ~1.1:1 with translucent orange). */
+  --blob-from: 216 88 36;
+  --blob-to: 181 68 21;
   /* Makes native widgets — select popups, scrollbars — follow the site
      theme instead of the OS default. */
   color-scheme: light;
@@ -40,6 +45,9 @@
   --accent-text: 232 98 42; /* 5.0:1 on the deep brown background */
   --accent-ink: 36 24 18;
   --cool: 180 214 228;
+  /* Orange at 70 % → 45 % over --surface-2: skin 2.6–3.9:1. */
+  --blob-from: 176 78 37;
+  --blob-to: 130 61 32;
   color-scheme: dark;
 }
 
@@ -148,8 +156,9 @@
     @apply absolute inset-0 h-full w-full object-contain object-center;
   }
 
-  /* Upcoming Events backdrop (EventVisual.jsx): brand orange fading into the
-     theme surface, so it follows light/dark on its own. The shape morphs via
+  /* Upcoming Events backdrop (EventVisual.jsx): a lighter orange where the
+     dancer's arms and face are (top left), deepening towards her trousers
+     (bottom right). Colours come from the theme tokens. The shape morphs via
      the `blob` animation; this radius is the resting shape. The stage is a
      size container so the blob can be the largest square that fits it. */
   .event-stage {
@@ -159,10 +168,9 @@
   .event-blob {
     border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
     background: radial-gradient(
-      120% 120% at 30% 25%,
-      rgb(var(--accent) / 0.6) 0%,
-      rgb(var(--accent) / 0.3) 45%,
-      rgb(var(--surface) / 0.9) 100%
+      120% 120% at 30% 20%,
+      rgb(var(--blob-from)) 0%,
+      rgb(var(--blob-to)) 100%
     );
   }
 
