@@ -270,12 +270,15 @@ export default function TrialForm() {
                     className="mt-1 h-5 w-5 shrink-0 accent-accent"
                     {...invalid('consent')}
                   />
+                  {/* Spacing is added here, not carried inside the strings:
+                      the CMS trims leading/trailing whitespace on save, which
+                      would otherwise glue the sentence to the link. */}
                   <span className="text-sm leading-relaxed text-muted">
-                    {t.form.consent.before}
+                    {t.form.consent.before.trim()}{' '}
                     <Link to="/datenschutz" className="text-accent-text underline underline-offset-2">
-                      {t.form.consent.linkText}
-                    </Link>
-                    {t.form.consent.after} *
+                      {t.form.consent.linkText.trim()}
+                    </Link>{' '}
+                    {t.form.consent.after.trim()} *
                   </span>
                 </label>
                 {errors.consent && <FieldError id="consent-error">{errors.consent}</FieldError>}
