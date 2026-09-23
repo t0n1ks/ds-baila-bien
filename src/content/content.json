@@ -15,19 +15,29 @@
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ROXY+Holzhofstra%C3%9Fe+7+Mainz",
     "defaultTheme": "system"
   },
-
   "de": {
     "meta": {
       "title": "Baila Bien Mainz — Salsa & Latin Dance",
       "description": "Salsa & Latin Dance in Mainz. Keine Vorkenntnisse, kein Partner nötig. Jeden Dienstag im ROXY."
     },
-
     "nav": {
       "items": [
-        { "id": "kurse", "label": "Kurse" },
-        { "id": "preise", "label": "Preise" },
-        { "id": "galerie", "label": "Galerie" },
-        { "id": "anmelden", "label": "Probestunde" }
+        {
+          "id": "kurse",
+          "label": "Kurse"
+        },
+        {
+          "id": "preise",
+          "label": "Preise"
+        },
+        {
+          "id": "galerie",
+          "label": "Galerie"
+        },
+        {
+          "id": "anmelden",
+          "label": "Probestunde"
+        }
       ],
       "logoLabel": "Baila Bien – Startseite",
       "backToTop": "Nach oben",
@@ -37,16 +47,17 @@
       "langLabel": "Sprache wechseln",
       "skipToContent": "Zum Inhalt springen"
     },
-
     "hero": {
       "eyebrow": "Baila Bien Mainz",
-      "wordmark": ["Baila", "Bien"],
+      "wordmark": [
+        "Baila",
+        "Bien"
+      ],
       "title": "Salsa & Latin Dance in Mainz",
       "subtitle": "Keine Vorkenntnisse. Kein Partner nötig. Jeden Dienstag im ROXY.",
       "cta": "Zur Probestunde anmelden",
       "secondaryCta": "Kurse & Zeiten ansehen"
     },
-
     "marquee": [
       "Salsa",
       "Jeden Dienstag",
@@ -56,33 +67,51 @@
       "Bachata",
       "Community"
     ],
-
     "about": {
       "heading": "Über uns",
       "text": "Bei Baila Bien teilen wir unsere Liebe zum lateinamerikanischen Tanz. In lockerer, herzlicher Atmosphäre lernst du Salsa von Grund auf – ganz ohne Vorkenntnisse und ohne festen Tanzpartner. Komm vorbei, tanz mit uns und werde Teil unserer Community.",
       "stats": [
-        { "value": "3", "label": "Level – von Beginner bis Improver" },
-        { "value": "Di", "label": "Jeden Dienstag im ROXY" },
-        { "value": "0", "label": "Verträge, keine Mindestlaufzeit" }
+        {
+          "value": "3",
+          "label": "Level – von Beginner bis Improver"
+        },
+        {
+          "value": "Di",
+          "label": "Jeden Dienstag im ROXY"
+        },
+        {
+          "value": "0",
+          "label": "Verträge, keine Mindestlaufzeit"
+        }
       ]
     },
-
     "classes": {
       "heading": "Kurse",
       "intro": "Ein Abend, drei Level, ein fließender Ablauf. Du steigst dort ein, wo du stehst.",
-      "location": "ROXY · Holzhofstraße 7 · [[PLZ]] Mainz",
+      "location": "ROXY · Holzhofstraße 7 · 55116 Mainz",
       "locationNote": "Adresse des Veranstaltungsortes, nicht des Anbieters.",
       "mapsLabel": "In Google Maps öffnen",
       "day": "Jeden Dienstag",
       "timeColumn": "Zeit",
       "rows": [
-        { "time": "18:50–19:00", "label": "Welcome & Warmup" },
-        { "time": "19:00–20:10", "label": "Beginner / Foundation" },
-        { "time": "20:20–21:30", "label": "Improver" },
-        { "time": "21:30–22:00", "label": "Práctica & Mingle" }
+        {
+          "time": "18:50–19:00",
+          "label": "Welcome & Warmup"
+        },
+        {
+          "time": "19:00–20:10",
+          "label": "Beginner / Foundation"
+        },
+        {
+          "time": "20:20–21:30",
+          "label": "Improver"
+        },
+        {
+          "time": "21:30–22:00",
+          "label": "Práctica & Mingle"
+        }
       ]
     },
-
     "prices": {
       "heading": "Preise",
       "note": "Monatskurs · keine Verträge",
@@ -91,12 +120,23 @@
       "priceColumn": "Preis",
       "reducedColumn": "Ermäßigt*",
       "rows": [
-        { "level": "Beginner", "price": "35 €", "reduced": "30 €" },
-        { "level": "Foundation", "price": "40 €", "reduced": "35 €" },
-        { "level": "Improver", "price": "45 €", "reduced": "40 €" }
+        {
+          "level": "Beginner",
+          "price": "35 €",
+          "reduced": "30 €"
+        },
+        {
+          "level": "Foundation",
+          "price": "40 €",
+          "reduced": "35 €"
+        },
+        {
+          "level": "Improver",
+          "price": "45 €",
+          "reduced": "40 €"
+        }
       ]
     },
-
     "gallery": {
       "heading": "Impressionen",
       "intro": "Dienstagabende im ROXY.",
@@ -105,15 +145,38 @@
       "next": "Nächstes Bild",
       "slideLabel": "Bild",
       "items": [
-        { "type": "image", "src": "images/uploads/placeholder-1.jpg", "caption": "Salsa Night" },
-        { "type": "image", "src": "images/uploads/placeholder-2.jpg", "caption": "Beginner Kurs" },
-        { "type": "image", "src": "images/uploads/placeholder-3.jpg", "caption": "Práctica" },
-        { "type": "image", "src": "images/uploads/placeholder-4.jpg", "caption": "Improver Level" },
-        { "type": "image", "src": "images/uploads/placeholder-5.jpg", "caption": "Social Dancing" },
-        { "type": "image", "src": "images/uploads/placeholder-6.jpg", "caption": "Unsere Community" }
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-1.jpg",
+          "caption": "Salsa Night"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-2.jpg",
+          "caption": "Beginner Kurs"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-3.jpg",
+          "caption": "Práctica"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-4.jpg",
+          "caption": "Improver Level"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-5.jpg",
+          "caption": "Social Dancing"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-6.jpg",
+          "caption": "Unsere Community"
+        }
       ]
     },
-
     "instagram": {
       "heading": "Wir sind auf Instagram",
       "intro": "Aktuelle Termine, Videos und Eindrücke findest du in unserem Feed.",
@@ -126,7 +189,6 @@
       "next": "Nächster Beitrag",
       "slideLabel": "Beitrag"
     },
-
     "form": {
       "heading": "Zur Probestunde anmelden",
       "intro": "Schreib uns kurz, wann du vorbeikommen möchtest. Wir melden uns mit allen Details.",
@@ -140,11 +202,15 @@
       },
       "optional": "optional",
       "levelPlaceholder": "Bitte wählen",
-      "levelOptions": ["Beginner", "Foundation", "Improver"],
+      "levelOptions": [
+        "Beginner",
+        "Foundation",
+        "Improver"
+      ],
       "consent": {
-        "before": "Ich habe die ",
+        "before": "Ich habe die",
         "linkText": "Datenschutzerklärung",
-        "after": " gelesen und willige in die Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage ein."
+        "after": "gelesen und willige in die Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage ein."
       },
       "submit": "Anmelden",
       "sending": "Wird gesendet …",
@@ -157,7 +223,6 @@
         "consent": "Ohne deine Einwilligung können wir die Anfrage nicht bearbeiten."
       }
     },
-
     "footer": {
       "tagline": "Salsa & Latin Dance in Mainz. Jeden Dienstag im ROXY.",
       "contactHeading": "Kontakt",
@@ -167,14 +232,12 @@
       "datenschutz": "Datenschutz",
       "rights": "Alle Rechte vorbehalten."
     },
-
     "legalUi": {
       "back": "Zurück zur Startseite",
       "pendingTitle": "Angaben ausstehend",
       "pendingText": "Diese Seite enthält noch Platzhalter. Vor dem Produktivbetrieb müssen alle mit [[…]] markierten Angaben ergänzt und die Texte rechtlich geprüft werden.",
       "bindingNote": "Maßgeblich ist diese deutsche Fassung."
     },
-
     "legal": {
       "impressum": {
         "title": "Impressum",
@@ -197,7 +260,6 @@
           }
         ]
       },
-
       "datenschutz": {
         "title": "Datenschutzerklärung",
         "sections": [
@@ -237,19 +299,29 @@
       }
     }
   },
-
   "en": {
     "meta": {
       "title": "Baila Bien Mainz — Salsa & Latin Dance",
       "description": "Salsa & Latin dance in Mainz. No experience, no partner needed. Every Tuesday at ROXY."
     },
-
     "nav": {
       "items": [
-        { "id": "kurse", "label": "Classes" },
-        { "id": "preise", "label": "Prices" },
-        { "id": "galerie", "label": "Gallery" },
-        { "id": "anmelden", "label": "Trial class" }
+        {
+          "id": "kurse",
+          "label": "Classes"
+        },
+        {
+          "id": "preise",
+          "label": "Prices"
+        },
+        {
+          "id": "galerie",
+          "label": "Gallery"
+        },
+        {
+          "id": "anmelden",
+          "label": "Trial class"
+        }
       ],
       "logoLabel": "Baila Bien – Home",
       "backToTop": "Back to top",
@@ -259,16 +331,17 @@
       "langLabel": "Switch language",
       "skipToContent": "Skip to content"
     },
-
     "hero": {
       "eyebrow": "Baila Bien Mainz",
-      "wordmark": ["Baila", "Bien"],
+      "wordmark": [
+        "Baila",
+        "Bien"
+      ],
       "title": "Salsa & Latin Dance in Mainz",
       "subtitle": "No experience. No partner needed. Every Tuesday at ROXY.",
       "cta": "Book a trial class",
       "secondaryCta": "See classes & times"
     },
-
     "marquee": [
       "Salsa",
       "Every Tuesday",
@@ -278,33 +351,51 @@
       "Bachata",
       "Community"
     ],
-
     "about": {
       "heading": "About us",
       "text": "At Baila Bien we share our love of Latin dance. Learn salsa from scratch in a relaxed, welcoming atmosphere – no experience and no dance partner required. Come by, dance with us and become part of our community.",
       "stats": [
-        { "value": "3", "label": "levels – from beginner to improver" },
-        { "value": "Tue", "label": "every Tuesday at ROXY" },
-        { "value": "0", "label": "contracts, no minimum term" }
+        {
+          "value": "3",
+          "label": "levels – from beginner to improver"
+        },
+        {
+          "value": "Tue",
+          "label": "every Tuesday at ROXY"
+        },
+        {
+          "value": "0",
+          "label": "contracts, no minimum term"
+        }
       ]
     },
-
     "classes": {
       "heading": "Classes",
       "intro": "One evening, three levels, one continuous flow. Join at whatever level you are.",
-      "location": "ROXY · Holzhofstraße 7 · [[PLZ]] Mainz",
+      "location": "ROXY · Holzhofstraße 7 · 55116 Mainz",
       "locationNote": "Address of the venue, not of the provider.",
       "mapsLabel": "Open in Google Maps",
       "day": "Every Tuesday",
       "timeColumn": "Time",
       "rows": [
-        { "time": "18:50–19:00", "label": "Welcome & Warmup" },
-        { "time": "19:00–20:10", "label": "Beginner / Foundation" },
-        { "time": "20:20–21:30", "label": "Improver" },
-        { "time": "21:30–22:00", "label": "Práctica & Mingle" }
+        {
+          "time": "18:50–19:00",
+          "label": "Welcome & Warmup"
+        },
+        {
+          "time": "19:00–20:10",
+          "label": "Beginner / Foundation"
+        },
+        {
+          "time": "20:20–21:30",
+          "label": "Improver"
+        },
+        {
+          "time": "21:30–22:00",
+          "label": "Práctica & Mingle"
+        }
       ]
     },
-
     "prices": {
       "heading": "Prices",
       "note": "Monthly course · no contracts",
@@ -313,12 +404,23 @@
       "priceColumn": "Price",
       "reducedColumn": "Reduced*",
       "rows": [
-        { "level": "Beginner", "price": "35 €", "reduced": "30 €" },
-        { "level": "Foundation", "price": "40 €", "reduced": "35 €" },
-        { "level": "Improver", "price": "45 €", "reduced": "40 €" }
+        {
+          "level": "Beginner",
+          "price": "35 €",
+          "reduced": "30 €"
+        },
+        {
+          "level": "Foundation",
+          "price": "40 €",
+          "reduced": "35 €"
+        },
+        {
+          "level": "Improver",
+          "price": "45 €",
+          "reduced": "40 €"
+        }
       ]
     },
-
     "gallery": {
       "heading": "Gallery",
       "intro": "Tuesday nights at ROXY.",
@@ -327,15 +429,38 @@
       "next": "Next image",
       "slideLabel": "Image",
       "items": [
-        { "type": "image", "src": "images/uploads/placeholder-1.jpg", "caption": "Salsa Night" },
-        { "type": "image", "src": "images/uploads/placeholder-2.jpg", "caption": "Beginner class" },
-        { "type": "image", "src": "images/uploads/placeholder-3.jpg", "caption": "Práctica" },
-        { "type": "image", "src": "images/uploads/placeholder-4.jpg", "caption": "Improver level" },
-        { "type": "image", "src": "images/uploads/placeholder-5.jpg", "caption": "Social dancing" },
-        { "type": "image", "src": "images/uploads/placeholder-6.jpg", "caption": "Our community" }
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-1.jpg",
+          "caption": "Salsa Night"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-2.jpg",
+          "caption": "Beginner class"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-3.jpg",
+          "caption": "Práctica"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-4.jpg",
+          "caption": "Improver level"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-5.jpg",
+          "caption": "Social dancing"
+        },
+        {
+          "type": "image",
+          "src": "images/uploads/placeholder-6.jpg",
+          "caption": "Our community"
+        }
       ]
     },
-
     "instagram": {
       "heading": "We're on Instagram",
       "intro": "Upcoming dates, videos and impressions live in our feed.",
@@ -348,7 +473,6 @@
       "next": "Next post",
       "slideLabel": "Post"
     },
-
     "form": {
       "heading": "Book a trial class",
       "intro": "Tell us when you'd like to drop by and we'll come back to you with the details.",
@@ -362,11 +486,15 @@
       },
       "optional": "optional",
       "levelPlaceholder": "Please choose",
-      "levelOptions": ["Beginner", "Foundation", "Improver"],
+      "levelOptions": [
+        "Beginner",
+        "Foundation",
+        "Improver"
+      ],
       "consent": {
-        "before": "I have read the ",
+        "before": "I have read the",
         "linkText": "privacy policy",
-        "after": " and consent to the processing of my data to handle my request."
+        "after": "and consent to the processing of my data to handle my request."
       },
       "submit": "Send",
       "sending": "Sending …",
@@ -379,7 +507,6 @@
         "consent": "We can't process your request without your consent."
       }
     },
-
     "footer": {
       "tagline": "Salsa & Latin dance in Mainz. Every Tuesday at ROXY.",
       "contactHeading": "Contact",
@@ -389,14 +516,12 @@
       "datenschutz": "Privacy",
       "rights": "All rights reserved."
     },
-
     "legalUi": {
       "back": "Back to home",
       "pendingTitle": "Details pending",
       "pendingText": "This page still contains placeholders. Before going live, every value marked [[…]] must be filled in and the texts reviewed by a lawyer.",
       "bindingNote": "The legally binding version of this notice is the German one."
     },
-
     "legal": {
       "impressum": {
         "title": "Legal notice (Impressum)",
@@ -419,7 +544,6 @@
           }
         ]
       },
-
       "datenschutz": {
         "title": "Privacy policy",
         "sections": [
