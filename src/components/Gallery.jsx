@@ -2,56 +2,39 @@ import { useState } from 'react';
 import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import Carousel from './Carousel.jsx';
+import MediaFrame from './MediaFrame.jsx';
+import { MEDIA_SLIDE, isVideoSrc } from './media.js';
 import Reveal from './Reveal.jsx';
 
-const FRAME = 'aspect-[4/5] w-full object-cover sm:aspect-[16/10]';
-const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
-
 /**
- * A slide renders the owner's file from public/images/uploads/.
- * Until a real file is uploaded the src 404s — we catch that and fall back
- * to a styled placeholder instead of a broken image.
+ * A slide renders the owner's file from public/images/uploads/ in the shared
+ * MediaFrame. An empty or unloadable file falls back to a styled placeholder
+ * instead of a broken image.
  */
-function Slide({ item, placeholder }) {
-  const [broken, setBroken] = useState(false);
+function Slide({ item, placeholder, isActive }) {
   const src = asset(item.src);
-  const isVideo = item.type === 'video' || VIDEO_RE.test(src);
+  const empty = (
+    <div className="absolute inset-0 grid place-items-center bg-[linear-gradient(135deg,rgb(var(--surface))_0%,rgb(var(--surface-2))_100%)]">
+      <span className="font-display text-sm font-semibold text-muted">{placeholder}</span>
+    </div>
+  );
 
   return (
-    <figure className="group relative overflow-hidden rounded-2xl border border-line bg-surface">
-      {!src || broken ? (
-        <div
-          className={`${FRAME} grid place-items-center bg-[linear-gradient(135deg,rgb(var(--surface))_0%,rgb(var(--surface-2))_100%)]`}
-        >
-          <span className="font-display text-sm font-semibold text-muted">{placeholder}</span>
-        </div>
-      ) : isVideo ? (
-        <video
-          src={src}
-          className={FRAME}
-          muted
-          loop
-          playsInline
-          autoPlay
-          onError={() => setBroken(true)}
-        />
-      ) : (
-        <img
-          src={src}
-          alt={item.caption}
-          loading="lazy"
-          decoding="async"
-          className={`${FRAME} block transition-transform duration-500 group-hover:scale-[1.03]`}
-          onError={() => setBroken(true)}
-        />
-      )}
-
+    <MediaFrame
+      as="figure"
+      src={src}
+      video={item.type === 'video' || isVideoSrc(src)}
+      alt={item.caption}
+      active={isActive}
+      fallback={empty}
+    >
+      {!src && empty}
       {item.caption && (
-        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent p-5 font-display text-base font-semibold text-brand-cream opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/40 to-transparent p-5 pt-12 font-display text-base font-semibold text-brand-cream opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
           {item.caption}
         </figcaption>
       )}
-    </figure>
+    </MediaFrame>
   );
 }
 
@@ -77,6 +60,7 @@ function mergeItems(active = [], fallback = []) {
 export default function Gallery() {
   const { t, fallback } = useLanguage();
   const items = mergeItems(t.gallery.items, fallback.gallery.items);
+  const [active, setActive] = useState(0);
 
   // Nothing to show -> no section at all.
   if (items.length === 0) return null;
@@ -92,10 +76,16 @@ export default function Gallery() {
         <Carousel
           labels={t.gallery}
           ariaLabel={t.gallery.heading}
-          slideClass="flex-[0_0_100%] sm:flex-[0_0_85%] lg:flex-[0_0_70%]"
+          onActiveChange={setActive}
+          slideClass={MEDIA_SLIDE}
         >
           {items.map((item, index) => (
-            <Slide key={`${item.src}-${index}`} item={item} placeholder={t.gallery.placeholder} />
+            <Slide
+              key={`${item.src}-${index}`}
+              item={item}
+              placeholder={t.gallery.placeholder}
+              isActive={index === active}
+            />
           ))}
         </Carousel>
       </Reveal>

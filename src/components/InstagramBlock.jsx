@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import Carousel from './Carousel.jsx';
+import MediaFrame from './MediaFrame.jsx';
+import { MEDIA_SLIDE, isVideoSrc } from './media.js';
 import Reveal from './Reveal.jsx';
-import usePrefersReducedMotion from './usePrefersReducedMotion.js';
-
-const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
 
 /** Drop any ?query / #hash tail from the stored permalink. */
 function cleanUrl(url) {
@@ -19,8 +18,6 @@ function postHref(post) {
   const url = cleanUrl(post?.url);
   return url && !/EXAMPLE/i.test(url) ? url : '';
 }
-
-const CARD = 'relative block h-[34rem] overflow-hidden rounded-2xl border border-line bg-surface sm:h-[40rem]';
 
 function InstagramIcon({ className = 'text-muted' }) {
   return (
@@ -37,76 +34,40 @@ function InstagramIcon({ className = 'text-muted' }) {
  *
  * No iframe and no Instagram script: the old embed both leaked data to Meta
  * and swallowed touch events, which killed the carousel swipe. The media is
- * served from our own public/images/uploads/.
+ * served from our own public/images/uploads/ and framed by MediaFrame.
  */
 function Post({ post, isActive, labels }) {
-  const videoRef = useRef(null);
-  const reducedMotion = usePrefersReducedMotion();
-  const [broken, setBroken] = useState(false);
-
   const src = asset(post.media);
-  const isVideo = VIDEO_RE.test(src);
   const href = postHref(post);
-
-  // Only the slide in view plays; everything else stays paused so a carousel
-  // of clips does not decode five videos at once.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (isActive && !reducedMotion) {
-      const attempt = video.play();
-      if (attempt?.catch) attempt.catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isActive, reducedMotion]);
 
   // "Coming soon" only while no media is set. A set-but-unloadable file still
   // renders the card (plain surface + link) so a bad path is visible, not hidden.
   if (!src) {
     return (
-      <div className={`${CARD} flex flex-col items-start justify-center gap-4 p-7`}>
+      <MediaFrame className="flex flex-col items-start justify-center gap-4 p-7">
         <InstagramIcon />
         <p className="font-display text-lg font-semibold text-muted">{labels.placeholder}</p>
-      </div>
+      </MediaFrame>
     );
   }
 
-  const Frame = href ? 'a' : 'div';
-  const frameProps = href
-    ? { href, target: '_blank', rel: 'noopener noreferrer', draggable: false }
+  const linkProps = href
+    ? { as: 'a', href, target: '_blank', rel: 'noopener noreferrer', draggable: false }
     : {};
 
   return (
-    <Frame {...frameProps} className={`${CARD} group`}>
-      {broken ? null : isVideo ? (
-        <video
-          ref={videoRef}
-          src={src}
-          className="h-full w-full object-cover"
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onError={() => setBroken(true)}
-        />
-      ) : (
-        <img
-          src={src}
-          alt={post.caption || labels.heading}
-          loading="lazy"
-          decoding="async"
-          draggable={false}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          onError={() => setBroken(true)}
-        />
-      )}
-
+    <MediaFrame
+      {...linkProps}
+      src={src}
+      video={isVideoSrc(src)}
+      alt={post.caption || labels.heading}
+      active={isActive}
+    >
       <span className="pointer-events-none absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-black/45 text-brand-cream backdrop-blur-sm">
         <InstagramIcon className="" />
       </span>
 
-      <span className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 text-brand-cream">
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 pt-12 text-brand-cream">
         {post.caption && (
           <span className="font-display text-base font-semibold">{post.caption}</span>
         )}
@@ -116,7 +77,7 @@ function Post({ post, isActive, labels }) {
           </span>
         )}
       </span>
-    </Frame>
+    </MediaFrame>
   );
 }
 
@@ -150,7 +111,7 @@ export default function InstagramBlock() {
             labels={t.instagram}
             ariaLabel={t.instagram.heading}
             onActiveChange={setActive}
-            slideClass="flex-[0_0_100%] sm:flex-[0_0_60%] lg:flex-[0_0_42%]"
+            slideClass={MEDIA_SLIDE}
           >
             {posts.map((post, index) => (
               <Post

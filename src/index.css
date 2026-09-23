@@ -143,6 +143,28 @@
     @apply font-display text-sm font-semibold text-accent-text underline decoration-2 underline-offset-4;
   }
 
+  /* Gallery + Instagram cards (MediaFrame.jsx). One aspect ratio on every
+     screen; the media is contained, never cropped, and a blurred copy of it
+     fills the rest. Square instead of portrait: --media-aspect: 1 / 1. */
+  .media-frame {
+    --media-aspect: 4 / 5;
+    @apply relative block w-full overflow-hidden rounded-2xl border border-line bg-surface;
+    aspect-ratio: var(--media-aspect);
+    /* keeps the blur inside the rounded corners in Safari */
+    isolation: isolate;
+  }
+
+  .media-frame__fill {
+    @apply absolute inset-0 h-full w-full object-cover;
+    z-index: -1;
+    filter: blur(22px) brightness(0.65);
+    transform: scale(1.1);
+  }
+
+  .media-frame__media {
+    @apply absolute inset-0 h-full w-full object-contain object-center;
+  }
+
   .prose-legal p {
     @apply mb-4 max-w-measure leading-relaxed text-muted;
   }
