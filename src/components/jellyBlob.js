@@ -3,61 +3,97 @@ import { useEffect } from 'react';
 /**
  * Springy outline for the Upcoming Events blob.
  *
- * At rest the blob is the #15 ink-blot shape. Its outline is a ring of
- * points, each on a spring back to its rest position. A mouse or finger near
- * the edge pushes the nearest points away from it; neighbours pull on each
- * other so the dent spreads, and on release everything springs back with a
- * short wobble.
+ * At rest the blob is a soft rounded square, like a bar of soap. Its outline
+ * is a ring of points, each on a spring back to its rest position. A mouse
+ * or finger near the edge pushes the nearest points inward, so the edge
+ * backs away from it; neighbours pull on each other so the dent spreads,
+ * and on release everything springs back with a short wobble.
  */
 
 /**
- * Feel of the jelly — tune here. Distances are in viewBox units: the blob
- * is 130 × 100, so 10 is a tenth of its height.
+ * Resting shape. The viewBox is width × height; `roundness` is the
+ * superellipse exponent (2 = ellipse, higher = squarer corners); `wobble`
+ * adds a slight organic unevenness so the jelly still reads as soft.
+ */
+export const SHAPE = {
+  width: 110,
+  height: 100,
+  roundness: 3.4,
+  wobble: [
+    [3, 0.012, 0.8], // [waves around the outline, depth, phase]
+    [5, 0.008, 2.1],
+  ],
+};
+
+/**
+ * Feel of the jelly — tune here. Distances are in viewBox units (the blob is
+ * 110 × 100, so 10 is a tenth of its height).
  */
 export const JELLY = {
   radius: 32, // reaction radius: how close the pointer must come to the edge
-  push: 12, // how far the edge right next to the pointer is pushed away
+  push: 12, // how far the edge right next to the pointer is pushed in
   // Hard cap on any point's displacement, wobble included. The dancer is at
-  // least 15.8 from the rest outline; minus the feathered rim that leaves 9.
+  // least 16.9 from the rest outline; minus the feathered rim that leaves 9.
   maxDent: 9,
   stiffness: 0.1, // spring back to rest, per 60 fps frame (higher = snappier)
   damping: 0.9, // share of velocity kept per frame (lower = wobble dies sooner)
   coupling: 0.08, // pull between neighbouring points: spreads a dent like jelly
 };
 
-const VIEW_WIDTH = 130;
-
-/** Anchors of the resting outline (#15), clockwise from the right edge. */
-const ANCHORS = [
-  [129.9, 51.6], [124.1, 75.3], [106.1, 95.3], [76.3, 99.7], [49.1, 99.2],
-  [18.6, 95.9], [3.2, 74.6], [3.6, 51.6], [0.7, 27.7], [18.3, 7.2],
-  [48.0, 0.3], [76.6, 2.5], [101.0, 13.1], [120.5, 29.3],
-];
-
-/** Springs per anchor segment: 14 × 4 = 56 points around the outline. */
-const STEPS = 4;
-
-/** Point `t` of the closed Catmull-Rom segment between p1 and p2. */
-function catmullRom(p0, p1, p2, p3, t) {
-  const t2 = t * t;
-  const t3 = t2 * t;
-  return [0, 1].map(
-    (k) =>
-      0.5 *
-      (2 * p1[k] +
-        (p2[k] - p0[k]) * t +
-        (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t2 +
-        (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * t3),
-  );
-}
+/** Springs around the outline. */
+const POINTS = 56;
 
 const at = (points, index) => points[(index + points.length) % points.length];
 
-const REST = ANCHORS.flatMap((_, i) =>
-  Array.from({ length: STEPS }, (__, s) =>
-    catmullRom(at(ANCHORS, i - 1), ANCHORS[i], at(ANCHORS, i + 1), at(ANCHORS, i + 2), s / STEPS),
-  ),
-);
+/**
+ * The rest outline: a superellipse with the wobble, scaled to fill the
+ * viewBox exactly (so it touches the left and bottom edges for alignment),
+ * then resampled so the points are evenly spaced along it.
+ */
+function restOutline() {
+  const { width, height, roundness, wobble } = SHAPE;
+  const dense = Array.from({ length: 2000 }, (_, i) => {
+    const t = (2 * Math.PI * i) / 2000;
+    const c = Math.cos(t);
+    const s = Math.sin(t);
+    const r =
+      (Math.abs(c) ** roundness + Math.abs(s) ** roundness) ** (-1 / roundness) *
+      (1 + wobble.reduce((sum, [k, depth, phase]) => sum + depth * Math.sin(k * t + phase), 0));
+    return [r * c, r * s];
+  });
+
+  const xs = dense.map((p) => p[0]);
+  const ys = dense.map((p) => p[1]);
+  const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
+  const fitted = dense.map(([x, y]) => [((x - x0) / (x1 - x0)) * width, ((y - y0) / (y1 - y0)) * height]);
+
+  const lengths = [0];
+  for (let i = 1; i <= fitted.length; i += 1) {
+    const [a, b] = [fitted[i - 1], at(fitted, i)];
+    lengths.push(lengths[i - 1] + Math.hypot(b[0] - a[0], b[1] - a[1]));
+  }
+  const total = lengths[lengths.length - 1];
+  let j = 0;
+  return Array.from({ length: POINTS }, (_, i) => {
+    const target = (total * i) / POINTS;
+    while (lengths[j + 1] < target) j += 1;
+    return fitted[j];
+  });
+}
+
+const REST = restOutline();
+
+/**
+ * Unit vector pointing into the shape at each rest point (perpendicular to
+ * the outline). The outline runs clockwise on screen (y down), so rotating
+ * the tangent by +90° points inwards.
+ */
+const INWARD = REST.map((_, i) => {
+  const [a, b] = [at(REST, i - 1), at(REST, i + 1)];
+  const [tx, ty] = [b[0] - a[0], b[1] - a[1]];
+  const len = Math.hypot(tx, ty);
+  return [-ty / len, tx / len];
+});
 
 /** Smooth closed path through the points (Catmull-Rom as cubic Béziers). */
 function toPath(points) {
@@ -93,7 +129,7 @@ export function attachJelly({ path, box, area }) {
 
   const toView = (clientX, clientY) => {
     const rect = box.getBoundingClientRect();
-    const scale = VIEW_WIDTH / rect.width;
+    const scale = SHAPE.width / rect.width;
     return [(clientX - rect.left) * scale, (clientY - rect.top) * scale];
   };
 
@@ -106,17 +142,16 @@ export function attachJelly({ path, box, area }) {
     let active = false;
 
     for (let i = 0; i < REST.length; i += 1) {
-      // Where the pointer wants this point: pushed straight away from it.
+      // Where the pointer wants this point: pushed into the shape, so the
+      // edge backs away from the pointer whichever side it comes from.
       let tx = 0;
       let ty = 0;
       if (pointer) {
-        const ax = REST[i][0] - pointer[0];
-        const ay = REST[i][1] - pointer[1];
-        const dist = Math.hypot(ax, ay);
-        if (dist < JELLY.radius && dist > 0.001) {
+        const dist = Math.hypot(REST[i][0] - pointer[0], REST[i][1] - pointer[1]);
+        if (dist < JELLY.radius) {
           const strength = JELLY.push * (1 - dist / JELLY.radius) ** 2;
-          tx = (ax / dist) * strength;
-          ty = (ay / dist) * strength;
+          tx = INWARD[i][0] * strength;
+          ty = INWARD[i][1] * strength;
           active = true;
         }
       }

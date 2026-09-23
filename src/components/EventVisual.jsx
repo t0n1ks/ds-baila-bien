@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useId, useRef, useState } from 'react';
-import { REST_PATH, useJelly } from './jellyBlob.js';
+import { REST_PATH, SHAPE, useJelly } from './jellyBlob.js';
 import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 const Dancer = lazy(() => import('./Dancer.jsx'));
@@ -8,10 +8,11 @@ const WIDE = '(min-width: 768px)';
 
 /**
  * Right column beside the event flyer (md+ only): a short teaser, then the
- * decorative group — a springy ink-blot blob that dents away from the
- * pointer, a faint "Baila Bien" projected on the wall behind, and the Lottie
- * dancer on top. The dancer's chunk is fetched only on wide screens and once
- * the section comes near the viewport, so phones never download it.
+ * decorative group — a springy rounded-square blob whose edge backs away
+ * from the pointer, a faint "Baila Bien" projected on the wall behind, and
+ * the Lottie dancer on top. The dancer's chunk is fetched only on wide
+ * screens and once the section comes near the viewport, so phones never
+ * download it.
  */
 export default function EventVisual({ wordmark, teaser }) {
   const ref = useRef(null);
@@ -65,12 +66,12 @@ export default function EventVisual({ wordmark, teaser }) {
       <p className="mt-2 text-lg font-light leading-relaxed text-muted">{teaser.text}</p>
 
       {/* The stage takes the height left under the text; the blob is the
-          largest 13:10 box that fits, pinned bottom-left so its left edge
+          largest 11:10 box that fits, pinned bottom-left so its left edge
           lines up with the text and its bottom with the flyer. */}
       <div aria-hidden="true" className="event-stage relative mt-6 min-h-0 flex-1">
-        <div ref={boxRef} className="absolute bottom-0 left-0 aspect-[13/10] w-[min(100cqw,130cqh)]">
+        <div ref={boxRef} className="absolute bottom-0 left-0 aspect-[11/10] w-[min(100cqw,110cqh)]">
           <svg
-            viewBox="0 0 130 100"
+            viewBox={`0 0 ${SHAPE.width} ${SHAPE.height}`}
             preserveAspectRatio="none"
             className="event-blob absolute inset-0 h-full w-full overflow-visible"
           >
@@ -84,7 +85,7 @@ export default function EventVisual({ wordmark, teaser }) {
           </svg>
 
           {/* 0.24 × the blob's height: both words sit on the solid part. */}
-          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(76.923cqw,100cqh)*0.24)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
+          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(90.909cqw,100cqh)*0.24)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
             {wordmark.map((word) => (
               <span key={word}>{word}</span>
             ))}
@@ -92,7 +93,7 @@ export default function EventVisual({ wordmark, teaser }) {
 
           {/* The Lottie canvas (612 × 736): 79.4 % of the blob's height,
               centred — the same size relative to the blob's height as before. */}
-          <div className="absolute left-[24.62%] top-[10.3%] h-[79.4%] w-[50.77%]">
+          <div className="absolute left-[20%] top-[10.3%] h-[79.4%] w-[60%]">
             {ready && (
               <Suspense fallback={null}>
                 <Dancer still={still} />
