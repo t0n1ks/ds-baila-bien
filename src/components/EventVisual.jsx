@@ -62,7 +62,9 @@ export default function EventVisual({ wordmark, teaser }) {
         <div className="absolute bottom-0 left-0 aspect-square w-[min(100cqw,100cqh)]">
           <div className="event-blob absolute inset-0 animate-blob" />
 
-          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(100cqw,100cqh)*0.28)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
+          {/* At 0.22 × the blob, both words sit inside its solid core, clear
+              of the soft fading edge. */}
+          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(100cqw,100cqh)*0.22)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
             {wordmark.map((word) => (
               <span key={word}>{word}</span>
             ))}
