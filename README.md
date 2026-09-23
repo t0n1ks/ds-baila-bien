@@ -28,6 +28,14 @@ live in 1–2 minutes.
 
 > If you add a new key to `content.json`, also declare it in
 > `public/admin/config.yml` — the CMS strips keys it does not know about.
+> `npm run check:content` verifies exactly that, plus DE/EN key parity and
+> that the two gallery lists still line up.
+
+The `de` and `en` blocks hold all translated copy, including the Impressum and
+the Datenschutzerklärung. **The German version is the legally binding one** —
+the English pages are a courtesy translation and say so at the top. Values that
+are the same in both languages (brand name, links, Instagram post URLs) live in
+`settings`, so they cannot drift apart.
 
 ## Still to fill in
 
@@ -59,6 +67,8 @@ goes live needs a DPA and must be named in Datenschutz §3.
   language choice, which is functionally necessary → **no cookie banner needed**.
 - Instagram posts use click-to-load: nothing is requested from Meta until the
   visitor presses the button.
+- The gallery and Instagram carousels run on Embla, installed from npm and
+  bundled with the site — no carousel script is fetched from a CDN.
 
 ## Development
 

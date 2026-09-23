@@ -17,10 +17,20 @@ function readStored() {
 }
 
 export function LanguageProvider({ children }) {
+  // Initialised straight from localStorage, so a reload or a direct hit on
+  // /impressum comes up in the language that was chosen last.
   const [lang, setLang] = useState(readStored);
 
   useEffect(() => {
     document.documentElement.setAttribute('lang', lang);
+
+    // The <title> and meta description live outside React — keep them in sync
+    // so the tab and share previews are not stuck in German.
+    const meta = content[lang].meta;
+    document.title = meta.title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', meta.description);
+
     try {
       localStorage.setItem(STORAGE_KEYS.lang, lang);
     } catch {
@@ -37,11 +47,12 @@ export function LanguageProvider({ children }) {
       lang,
       setLang,
       toggle,
-      /** All copy for the active language. */
+      /** All copy for the active language, legal pages included. */
       t: content[lang],
-      /** Language-independent content: settings + legal texts. */
+      /** The German copy, used as the fallback when a translation is missing. */
+      fallback: content[DEFAULT_LANG],
+      /** Language-independent content: brand, links, Instagram posts. */
       settings: content.settings,
-      legal: content.legal,
     }),
     [lang, toggle],
   );

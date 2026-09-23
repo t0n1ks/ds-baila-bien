@@ -1,14 +1,25 @@
 {
   "settings": {
     "brandName": "Baila Bien Mainz",
+    "logoText": "Baila Bien",
     "contactEmail": "[[CORPORATE_EMAIL]]",
     "instagramUrl": "https://www.instagram.com/baila_bien.mz",
     "instagramHandle": "@baila_bien.mz",
+    "instagramPosts": [
+      "https://www.instagram.com/p/EXAMPLE1/",
+      "https://www.instagram.com/p/EXAMPLE2/",
+      "https://www.instagram.com/p/EXAMPLE3/"
+    ],
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ROXY+Holzhofstra%C3%9Fe+7+Mainz",
     "defaultTheme": "system"
   },
 
   "de": {
+    "meta": {
+      "title": "Baila Bien Mainz — Salsa & Latin Dance",
+      "description": "Salsa & Latin Dance in Mainz. Keine Vorkenntnisse, kein Partner nötig. Jeden Dienstag im ROXY."
+    },
+
     "nav": {
       "items": [
         { "id": "kurse", "label": "Kurse" },
@@ -106,8 +117,12 @@
       "intro": "Aktuelle Termine, Videos und Eindrücke findest du in unserem Feed.",
       "loadButton": "Post laden",
       "privacyNote": "Der Beitrag wird erst nach deinem Klick von Instagram (Meta) geladen. Dabei werden Daten an Meta übertragen.",
+      "placeholder": "Beitrag folgt",
+      "embedTitle": "Instagram-Beitrag",
       "profileLink": "Profil auf Instagram öffnen",
-      "posts": ["https://www.instagram.com/p/EXAMPLE1/", "https://www.instagram.com/p/EXAMPLE2/"]
+      "prev": "Vorheriger Beitrag",
+      "next": "Nächster Beitrag",
+      "slideLabel": "Beitrag"
     },
 
     "form": {
@@ -155,11 +170,78 @@
       "back": "Zurück zur Startseite",
       "pendingTitle": "Angaben ausstehend",
       "pendingText": "Diese Seite enthält noch Platzhalter. Vor dem Produktivbetrieb müssen alle mit [[…]] markierten Angaben ergänzt und die Texte rechtlich geprüft werden.",
-      "bindingNote": "Rechtlich verbindlich ist die deutsche Fassung."
+      "bindingNote": "Maßgeblich ist diese deutsche Fassung."
+    },
+
+    "legal": {
+      "impressum": {
+        "title": "Impressum",
+        "sections": [
+          {
+            "heading": "Angaben gemäß § 5 DDG",
+            "body": "[[LEGAL_NAME]] (z. B. Baila Bien Mainz – [[LEGAL_FORM]])\n[[STREET]]\n[[ZIP_CITY]]\nDeutschland\n\nVertreten durch: [[VERTRETUNGSBERECHTIGTE_PERSON]]"
+          },
+          {
+            "heading": "Kontakt",
+            "body": "Telefon: [[PHONE]]\nE-Mail: [[IMPRESSUM_EMAIL]]"
+          },
+          {
+            "heading": "Umsatzsteuer und Register",
+            "body": "[optional, wenn vorhanden]\nUmsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [[VAT_ID]]\nRegistereintrag: Handelsregister [[HRB]], Amtsgericht [[AMTSGERICHT]]\n\n[optional, falls Kleinunternehmer]\nGemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen."
+          },
+          {
+            "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+            "body": "[[VERTRETUNGSBERECHTIGTE_PERSON]], Anschrift wie oben."
+          }
+        ]
+      },
+
+      "datenschutz": {
+        "title": "Datenschutzerklärung",
+        "sections": [
+          {
+            "heading": "1. Verantwortlicher",
+            "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n[[LEGAL_NAME]], [[STREET]], [[ZIP_CITY]], E-Mail: [[IMPRESSUM_EMAIL]]."
+          },
+          {
+            "heading": "2. Hosting",
+            "body": "Diese Website wird bei [[HOSTER: GitHub Pages / Vercel Inc.]] gehostet. Beim Aufruf werden technisch notwendige Daten (u. a. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource) in Server-Logs verarbeitet. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren, stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO).\n\nHinweis: Der Anbieter kann Daten in die USA übermitteln; Grundlage sind die Standardvertragsklauseln bzw. eine Zertifizierung nach dem EU-US Data Privacy Framework. [Für den Produktivbetrieb EU-Hosting oder DPF-zertifizierten Anbieter prüfen und hier konkret benennen.]"
+          },
+          {
+            "heading": "3. Kontakt- und Anmeldeformular",
+            "body": "Wenn du dich über das Formular zu einer Probestunde anmeldest, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail, ggf. Telefon, Level, Wunschtermin, Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie die Anbahnung/Erfüllung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO). Zur Zustellung nutzen wir [[FORM/MAIL-DIENSTLEISTER, z. B. Brevo (Sendinblue), Frankreich]] als Auftragsverarbeiter auf Grundlage eines Auftragsverarbeitungsvertrags (Art. 28 DSGVO). Wir speichern die Daten nur so lange, wie es zur Bearbeitung erforderlich ist, und löschen sie anschließend, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen."
+          },
+          {
+            "heading": "4. Schriftarten",
+            "body": "Schriftarten werden lokal von unserem Server ausgeliefert (kein Google Fonts CDN). Es findet dabei keine Übermittlung an Dritte statt."
+          },
+          {
+            "heading": "5. Cookies / Tracking",
+            "body": "Diese Website setzt keine nicht notwendigen Cookies und verwendet keine Analyse- oder Tracking-Dienste. Deine Einstellungen zu Sprache und Farbschema werden ausschließlich lokal in deinem Browser (localStorage) gespeichert und nicht an uns übertragen.\n\nInstagram-Beiträge werden nicht automatisch geladen. Erst wenn du einen Beitrag ausdrücklich per Klick lädst, wird eine Verbindung zu Instagram (Meta Platforms Ireland Ltd.) hergestellt und deine IP-Adresse dorthin übertragen."
+          },
+          {
+            "heading": "6. Deine Rechte",
+            "body": "Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu an [[IMPRESSUM_EMAIL]]."
+          },
+          {
+            "heading": "7. Beschwerderecht",
+            "body": "Du hast das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Zuständig ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."
+          },
+          {
+            "heading": "8. SSL/TLS-Verschlüsselung",
+            "body": "Diese Seite nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung."
+          }
+        ]
+      }
     }
   },
 
   "en": {
+    "meta": {
+      "title": "Baila Bien Mainz — Salsa & Latin Dance",
+      "description": "Salsa & Latin dance in Mainz. No experience, no partner needed. Every Tuesday at ROXY."
+    },
+
     "nav": {
       "items": [
         { "id": "kurse", "label": "Classes" },
@@ -238,7 +320,7 @@
     "gallery": {
       "heading": "Gallery",
       "intro": "Tuesday nights at ROXY.",
-      "placeholder": "Photo coming",
+      "placeholder": "Photo coming soon",
       "prev": "Previous image",
       "next": "Next image",
       "slideLabel": "Image",
@@ -257,8 +339,12 @@
       "intro": "Upcoming dates, videos and impressions live in our feed.",
       "loadButton": "Load post",
       "privacyNote": "The post is only loaded from Instagram (Meta) after you click. Data is transferred to Meta in the process.",
+      "placeholder": "Post coming soon",
+      "embedTitle": "Instagram post",
       "profileLink": "Open profile on Instagram",
-      "posts": ["https://www.instagram.com/p/EXAMPLE1/", "https://www.instagram.com/p/EXAMPLE2/"]
+      "prev": "Previous post",
+      "next": "Next post",
+      "slideLabel": "Post"
     },
 
     "form": {
@@ -297,7 +383,7 @@
       "contactHeading": "Contact",
       "followHeading": "Follow",
       "legalHeading": "Legal",
-      "impressum": "Impressum",
+      "impressum": "Legal notice",
       "datenschutz": "Privacy",
       "rights": "All rights reserved."
     },
@@ -306,69 +392,69 @@
       "back": "Back to home",
       "pendingTitle": "Details pending",
       "pendingText": "This page still contains placeholders. Before going live, every value marked [[…]] must be filled in and the texts reviewed by a lawyer.",
-      "bindingNote": "The German version is the legally binding one."
-    }
-  },
-
-  "legal": {
-    "impressum": {
-      "title": "Impressum",
-      "sections": [
-        {
-          "heading": "Angaben gemäß § 5 DDG",
-          "body": "[[LEGAL_NAME]] (z. B. Baila Bien Mainz – [[LEGAL_FORM]])\n[[STREET]]\n[[ZIP_CITY]]\nDeutschland\n\nVertreten durch: [[VERTRETUNGSBERECHTIGTE_PERSON]]"
-        },
-        {
-          "heading": "Kontakt",
-          "body": "Telefon: [[PHONE]]\nE-Mail: [[IMPRESSUM_EMAIL]]"
-        },
-        {
-          "heading": "Umsatzsteuer und Register",
-          "body": "[optional, wenn vorhanden]\nUmsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [[VAT_ID]]\nRegistereintrag: Handelsregister [[HRB]], Amtsgericht [[AMTSGERICHT]]\n\n[optional, falls Kleinunternehmer]\nGemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen."
-        },
-        {
-          "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
-          "body": "[[VERTRETUNGSBERECHTIGTE_PERSON]], Anschrift wie oben."
-        }
-      ]
+      "bindingNote": "The legally binding version of this notice is the German one."
     },
 
-    "datenschutz": {
-      "title": "Datenschutzerklärung",
-      "sections": [
-        {
-          "heading": "1. Verantwortlicher",
-          "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n[[LEGAL_NAME]], [[STREET]], [[ZIP_CITY]], E-Mail: [[IMPRESSUM_EMAIL]]."
-        },
-        {
-          "heading": "2. Hosting",
-          "body": "Diese Website wird bei [[HOSTER: GitHub Pages / Vercel Inc.]] gehostet. Beim Aufruf werden technisch notwendige Daten (u. a. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource) in Server-Logs verarbeitet. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren, stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO).\n\nHinweis: Der Anbieter kann Daten in die USA übermitteln; Grundlage sind die Standardvertragsklauseln bzw. eine Zertifizierung nach dem EU-US Data Privacy Framework. [Für den Produktivbetrieb EU-Hosting oder DPF-zertifizierten Anbieter prüfen und hier konkret benennen.]"
-        },
-        {
-          "heading": "3. Kontakt- und Anmeldeformular",
-          "body": "Wenn du dich über das Formular zu einer Probestunde anmeldest, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail, ggf. Telefon, Level, Wunschtermin, Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie die Anbahnung/Erfüllung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO). Zur Zustellung nutzen wir [[FORM/MAIL-DIENSTLEISTER, z. B. Brevo (Sendinblue), Frankreich]] als Auftragsverarbeiter auf Grundlage eines Auftragsverarbeitungsvertrags (Art. 28 DSGVO). Wir speichern die Daten nur so lange, wie es zur Bearbeitung erforderlich ist, und löschen sie anschließend, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen."
-        },
-        {
-          "heading": "4. Schriftarten",
-          "body": "Schriftarten werden lokal von unserem Server ausgeliefert (kein Google Fonts CDN). Es findet dabei keine Übermittlung an Dritte statt."
-        },
-        {
-          "heading": "5. Cookies / Tracking",
-          "body": "Diese Website setzt keine nicht notwendigen Cookies und verwendet keine Analyse- oder Tracking-Dienste. Deine Einstellungen zu Sprache und Farbschema werden ausschließlich lokal in deinem Browser (localStorage) gespeichert und nicht an uns übertragen.\n\nInstagram-Beiträge werden nicht automatisch geladen. Erst wenn du einen Beitrag ausdrücklich per Klick lädst, wird eine Verbindung zu Instagram (Meta Platforms Ireland Ltd.) hergestellt und deine IP-Adresse dorthin übertragen."
-        },
-        {
-          "heading": "6. Deine Rechte",
-          "body": "Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu an [[IMPRESSUM_EMAIL]]."
-        },
-        {
-          "heading": "7. Beschwerderecht",
-          "body": "Du hast das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Zuständig ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."
-        },
-        {
-          "heading": "8. SSL/TLS-Verschlüsselung",
-          "body": "Diese Seite nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung."
-        }
-      ]
+    "legal": {
+      "impressum": {
+        "title": "Legal notice (Impressum)",
+        "sections": [
+          {
+            "heading": "Information pursuant to § 5 DDG",
+            "body": "[[LEGAL_NAME]] (e.g. Baila Bien Mainz – [[LEGAL_FORM]])\n[[STREET]]\n[[ZIP_CITY]]\nGermany\n\nRepresented by: [[VERTRETUNGSBERECHTIGTE_PERSON]]"
+          },
+          {
+            "heading": "Contact",
+            "body": "Phone: [[PHONE]]\nEmail: [[IMPRESSUM_EMAIL]]"
+          },
+          {
+            "heading": "VAT and commercial register",
+            "body": "[optional, if applicable]\nVAT identification number pursuant to § 27a UStG: [[VAT_ID]]\nRegister entry: commercial register [[HRB]], local court [[AMTSGERICHT]]\n\n[optional, if small-business scheme applies]\nPursuant to § 19 UStG no VAT is charged or shown."
+          },
+          {
+            "heading": "Responsible for the content pursuant to § 18 (2) MStV",
+            "body": "[[VERTRETUNGSBERECHTIGTE_PERSON]], address as above."
+          }
+        ]
+      },
+
+      "datenschutz": {
+        "title": "Privacy policy",
+        "sections": [
+          {
+            "heading": "1. Controller",
+            "body": "The controller for the data processing on this website is:\n[[LEGAL_NAME]], [[STREET]], [[ZIP_CITY]], email: [[IMPRESSUM_EMAIL]]."
+          },
+          {
+            "heading": "2. Hosting",
+            "body": "This website is hosted by [[HOSTER: GitHub Pages / Vercel Inc.]]. When the site is accessed, technically necessary data (including IP address, date and time, requested resource) is processed in server logs. The legal basis is our legitimate interest in secure, stable operation (Art. 6 (1) (f) GDPR).\n\nPlease note: the provider may transfer data to the USA; this is based on the standard contractual clauses or on a certification under the EU-US Data Privacy Framework. [Before going live, review EU hosting or a DPF-certified provider and name it explicitly here.]"
+          },
+          {
+            "heading": "3. Contact and sign-up form",
+            "body": "When you sign up for a trial class through the form, we process the data you provide (name, email, phone if given, level, preferred date, message) in order to handle your request. The legal basis is your consent (Art. 6 (1) (a) GDPR) as well as steps taken prior to entering into a contract and the performance of that contract (Art. 6 (1) (b) GDPR). For delivery we use [[FORM/MAIL-DIENSTLEISTER, z. B. Brevo (Sendinblue), Frankreich]] as a processor on the basis of a data processing agreement (Art. 28 GDPR). We store the data only for as long as is necessary to handle your request and delete it afterwards, unless statutory retention obligations apply. You can withdraw your consent at any time with effect for the future."
+          },
+          {
+            "heading": "4. Fonts",
+            "body": "Fonts are served locally from our own server (no Google Fonts CDN). No data is transmitted to third parties in the process."
+          },
+          {
+            "heading": "5. Cookies / tracking",
+            "body": "This website sets no non-essential cookies and uses no analytics or tracking services. Your language and colour scheme preferences are stored solely in your browser (localStorage) and are not transmitted to us.\n\nInstagram posts are not loaded automatically. Only when you explicitly load a post by clicking is a connection to Instagram (Meta Platforms Ireland Ltd.) established and your IP address transferred there."
+          },
+          {
+            "heading": "6. Your rights",
+            "body": "You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and objection (Art. 21 GDPR). To exercise them, contact [[IMPRESSUM_EMAIL]]."
+          },
+          {
+            "heading": "7. Right to lodge a complaint",
+            "body": "You have the right to lodge a complaint with a supervisory authority. The competent authority is: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."
+          },
+          {
+            "heading": "8. SSL/TLS encryption",
+            "body": "For security reasons this site uses TLS encryption."
+          }
+        ]
+      }
     }
   }
 }

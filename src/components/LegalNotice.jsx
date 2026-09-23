@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import PendingNotice from './PendingNotice.jsx';
 
@@ -26,10 +26,13 @@ function withPlaceholders(text) {
 /** Shared frame for Impressum and Datenschutzerklärung. */
 export default function LegalNotice({ doc }) {
   const { t } = useLanguage();
+  const { pathname } = useLocation();
 
+  // Land at the top when the route changes — but not when the visitor merely
+  // switches language while reading.
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [doc.title]);
+  }, [pathname]);
 
   return (
     <main id="main" className="shell py-16 sm:py-24">

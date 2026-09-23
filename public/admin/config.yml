@@ -41,9 +41,15 @@ collections:
             widget: object
             fields:
               - { name: brandName, label: Name, widget: string }
+              - { name: logoText, label: Logo-Schriftzug, widget: string }
               - { name: contactEmail, label: Kontakt-E-Mail, widget: string }
               - { name: instagramUrl, label: Instagram-Profil (URL), widget: string }
               - { name: instagramHandle, label: Instagram-Handle, widget: string }
+              - name: instagramPosts
+                label: Instagram-Beiträge (URLs)
+                hint: 'Gilt für beide Sprachen. Format: https://www.instagram.com/p/XXXXXXXXXXX/'
+                widget: list
+                field: { name: url, label: URL, widget: string }
               - { name: mapsUrl, label: Google-Maps-Link, widget: string }
               - name: defaultTheme
                 label: Standard-Farbschema
@@ -55,6 +61,14 @@ collections:
             label: Deutsch
             widget: object
             fields:
+              - name: meta
+                label: Seitentitel & SEO
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: title, label: Browser-Titel, widget: string }
+                  - { name: description, label: Beschreibung, widget: text }
+
               - name: nav
                 label: Navigation
                 widget: object
@@ -165,11 +179,12 @@ collections:
                   - { name: intro, label: Einleitung, widget: text }
                   - { name: loadButton, label: Button „Post laden“, widget: string }
                   - { name: privacyNote, label: Datenschutz-Hinweis, widget: text }
+                  - { name: placeholder, label: Platzhalter-Text, widget: string }
+                  - { name: embedTitle, label: 'Aria: eingebetteter Beitrag', widget: string }
                   - { name: profileLink, label: Profil-Link-Text, widget: string }
-                  - name: posts
-                    label: Beitrags-URLs
-                    widget: list
-                    field: { name: url, label: URL, widget: string }
+                  - { name: prev, label: 'Aria: vorheriger Beitrag', widget: string }
+                  - { name: next, label: 'Aria: nächster Beitrag', widget: string }
+                  - { name: slideLabel, label: 'Aria: Beitrag (Punkte)', widget: string }
 
               - name: form
                 label: Anmeldeformular
@@ -236,11 +251,47 @@ collections:
                   - { name: pendingText, label: Warnung — Text, widget: text }
                   - { name: bindingNote, label: Hinweis zur Verbindlichkeit, widget: string }
 
+              - name: legal
+                label: Rechtstexte (maßgebliche Fassung)
+                widget: object
+                collapsed: true
+                fields:
+                  - name: impressum
+                    label: Impressum
+                    widget: object
+                    fields:
+                      - { name: title, label: Titel, widget: string }
+                      - name: sections
+                        label: Abschnitte
+                        widget: list
+                        fields:
+                          - { name: heading, label: Überschrift, widget: string }
+                          - { name: body, label: Text, widget: text }
+                  - name: datenschutz
+                    label: Datenschutzerklärung
+                    widget: object
+                    fields:
+                      - { name: title, label: Titel, widget: string }
+                      - name: sections
+                        label: Abschnitte
+                        widget: list
+                        fields:
+                          - { name: heading, label: Überschrift, widget: string }
+                          - { name: body, label: Text, widget: text }
+
           # ---------------------------------------------------------------
           - name: en
             label: English
             widget: object
             fields:
+              - name: meta
+                label: Page title & SEO
+                widget: object
+                collapsed: true
+                fields:
+                  - { name: title, label: Browser title, widget: string }
+                  - { name: description, label: Description, widget: text }
+
               - name: nav
                 label: Navigation
                 widget: object
@@ -351,11 +402,12 @@ collections:
                   - { name: intro, label: Intro, widget: text }
                   - { name: loadButton, label: 'Button "load post"', widget: string }
                   - { name: privacyNote, label: Privacy note, widget: text }
+                  - { name: placeholder, label: Placeholder text, widget: string }
+                  - { name: embedTitle, label: 'Aria: embedded post', widget: string }
                   - { name: profileLink, label: Profile link text, widget: string }
-                  - name: posts
-                    label: Post URLs
-                    widget: list
-                    field: { name: url, label: URL, widget: string }
+                  - { name: prev, label: 'Aria: previous post', widget: string }
+                  - { name: next, label: 'Aria: next post', widget: string }
+                  - { name: slideLabel, label: 'Aria: post (dots)', widget: string }
 
               - name: form
                 label: Sign-up form
@@ -422,31 +474,30 @@ collections:
                   - { name: pendingText, label: Warning — text, widget: text }
                   - { name: bindingNote, label: Binding-version note, widget: string }
 
-          # ---------------------------------------------------------------
-          - name: legal
-            label: Rechtstexte (nur Deutsch)
-            widget: object
-            collapsed: true
-            fields:
-              - name: impressum
-                label: Impressum
+              - name: legal
+                label: Legal pages (courtesy translation)
                 widget: object
+                collapsed: true
                 fields:
-                  - { name: title, label: Titel, widget: string }
-                  - name: sections
-                    label: Abschnitte
-                    widget: list
+                  - name: impressum
+                    label: Legal notice
+                    widget: object
                     fields:
-                      - { name: heading, label: Überschrift, widget: string }
-                      - { name: body, label: Text, widget: text }
-              - name: datenschutz
-                label: Datenschutzerklärung
-                widget: object
-                fields:
-                  - { name: title, label: Titel, widget: string }
-                  - name: sections
-                    label: Abschnitte
-                    widget: list
+                      - { name: title, label: Title, widget: string }
+                      - name: sections
+                        label: Sections
+                        widget: list
+                        fields:
+                          - { name: heading, label: Heading, widget: string }
+                          - { name: body, label: Text, widget: text }
+                  - name: datenschutz
+                    label: Privacy policy
+                    widget: object
                     fields:
-                      - { name: heading, label: Überschrift, widget: string }
-                      - { name: body, label: Text, widget: text }
+                      - { name: title, label: Title, widget: string }
+                      - name: sections
+                        label: Sections
+                        widget: list
+                        fields:
+                          - { name: heading, label: Heading, widget: string }
+                          - { name: body, label: Text, widget: text }

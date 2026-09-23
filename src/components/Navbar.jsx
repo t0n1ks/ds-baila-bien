@@ -69,16 +69,17 @@ export default function Navbar() {
       </a>
 
       {/* left = logo · centre = section anchors · right = language + theme */}
-      {/* 1fr/auto/1fr keeps the anchor row optically centred on the page,
-          whatever the logo and the toggles measure. */}
-      <div className="shell grid h-[4.5rem] grid-cols-[1fr_auto_1fr] items-center gap-4">
+      {/* Mobile: logo hard left, controls hard right (space-between).
+          Desktop: 1fr/auto/1fr so the anchor row stays optically centred on
+          the page, whatever the logo and the toggles measure. */}
+      <div className="shell flex h-[4.5rem] items-center justify-between gap-4 md:grid md:grid-cols-[1fr_auto_1fr]">
         <button
           type="button"
           onClick={home}
           aria-label={t.nav.logoLabel}
-          className="cursor-pointer justify-self-start font-display text-lg font-extrabold leading-none tracking-tight text-ink"
+          className="mr-auto cursor-pointer whitespace-nowrap font-display text-lg font-extrabold leading-none tracking-tight text-ink md:mr-0 md:justify-self-start"
         >
-          Baila&nbsp;Bien
+          {settings.logoText}
           <span className="ml-1.5 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
         </button>
 
@@ -95,7 +96,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1.5 justify-self-end">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 md:ml-0 md:justify-self-end">
           <button
             type="button"
             onClick={toggleLang}
