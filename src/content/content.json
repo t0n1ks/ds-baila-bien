@@ -183,7 +183,11 @@
     },
     "events": {
       "heading": "Kommende Events",
-      "linkLabel": "Mehr erfahren"
+      "linkLabel": "Mehr erfahren",
+      "teaser": {
+        "title": "Verpass kein Event.",
+        "text": "Alle kommenden Termine findest du im Flyer."
+      }
     },
     "gallery": {
       "heading": "Impressionen",
@@ -489,7 +493,11 @@
     },
     "events": {
       "heading": "Upcoming Events",
-      "linkLabel": "Learn more"
+      "linkLabel": "Learn more",
+      "teaser": {
+        "title": "Don't miss an event.",
+        "text": "All upcoming dates are in the flyer."
+      }
     },
     "gallery": {
       "heading": "Gallery",

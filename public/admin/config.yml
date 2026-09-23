@@ -233,6 +233,12 @@ collections:
                 fields:
                   - { name: heading, label: Überschrift, widget: string }
                   - { name: linkLabel, label: Link-Text auf der Karte, widget: string }
+                  - name: teaser
+                    label: Text neben dem Flyer (Tablet/Desktop)
+                    widget: object
+                    fields:
+                      - { name: title, label: Fette Zeile, widget: string }
+                      - { name: text, label: Zweite Zeile, widget: string }
 
               - name: gallery
                 label: Galerie
@@ -466,6 +472,12 @@ collections:
                 fields:
                   - { name: heading, label: Heading, widget: string }
                   - { name: linkLabel, label: Card link text, widget: string }
+                  - name: teaser
+                    label: Text beside the flyer (tablet/desktop)
+                    widget: object
+                    fields:
+                      - { name: title, label: Bold line, widget: string }
+                      - { name: text, label: Second line, widget: string }
 
               - name: gallery
                 label: Gallery

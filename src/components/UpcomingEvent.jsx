@@ -53,8 +53,8 @@ export default function UpcomingEvent() {
             </MediaFrame>
           </Reveal>
 
-          <Reveal delay={140} className="mx-auto hidden w-full max-w-[36rem] md:block">
-            <EventVisual wordmark={t.hero.wordmark} />
+          <Reveal delay={140} className="hidden w-full max-w-[36rem] md:block">
+            <EventVisual wordmark={t.hero.wordmark} teaser={t.events.teaser} />
           </Reveal>
         </div>
       </div>
