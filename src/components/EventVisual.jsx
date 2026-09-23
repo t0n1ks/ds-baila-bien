@@ -60,45 +60,49 @@ export default function EventVisual({ wordmark, teaser }) {
 
   // Positioned over the whole grid cell, so the flyer alone sets the row
   // height: text starts at the flyer's top edge, the blob ends at its bottom.
+  // On desktop the block (text + blob) is only as wide as the blob and sits
+  // at the right of the cell, so spare room ends up between the columns.
   return (
-    <div ref={ref} className="absolute inset-0 flex flex-col">
-      <h3 className="font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{teaser.title}</h3>
-      <p className="mt-2 text-lg font-light leading-relaxed text-muted">{teaser.text}</p>
+    <div ref={ref} className="event-column absolute inset-0">
+      <div className="event-block flex h-full flex-col">
+        <h3 className="font-display text-2xl font-bold leading-tight text-ink lg:text-3xl">{teaser.title}</h3>
+        <p className="mt-2 text-lg font-light leading-relaxed text-muted">{teaser.text}</p>
 
-      {/* The stage takes the height left under the text; the blob is the
-          largest 11:10 box that fits, pinned bottom-left so its left edge
-          lines up with the text and its bottom with the flyer. */}
-      <div aria-hidden="true" className="event-stage relative mt-6 min-h-0 flex-1">
-        <div ref={boxRef} className="absolute bottom-0 left-0 aspect-[11/10] w-[min(100cqw,110cqh)]">
-          <svg
-            viewBox={`0 0 ${SHAPE.width} ${SHAPE.height}`}
-            preserveAspectRatio="none"
-            className="event-blob absolute inset-0 h-full w-full overflow-visible"
-          >
-            <defs>
-              <radialGradient id={gradientId} cx="0.3" cy="0.2" r="1.2">
-                <stop offset="0" style={{ stopColor: 'rgb(var(--blob-from))' }} />
-                <stop offset="1" style={{ stopColor: 'rgb(var(--blob-to))' }} />
-              </radialGradient>
-            </defs>
-            <path ref={pathRef} d={REST_PATH} fill={`url(#${gradientId})`} />
-          </svg>
+        {/* The stage takes the height left under the text; the blob is the
+            largest 11:10 box that fits, pinned bottom-left so its left edge
+            lines up with the text and its bottom with the flyer. */}
+        <div aria-hidden="true" className="event-stage relative mt-6 min-h-0 flex-1">
+          <div ref={boxRef} className="absolute bottom-0 left-0 aspect-[11/10] w-[min(100cqw,110cqh)]">
+            <svg
+              viewBox={`0 0 ${SHAPE.width} ${SHAPE.height}`}
+              preserveAspectRatio="none"
+              className="event-blob absolute inset-0 h-full w-full overflow-visible"
+            >
+              <defs>
+                <radialGradient id={gradientId} cx="0.3" cy="0.2" r="1.2">
+                  <stop offset="0" style={{ stopColor: 'rgb(var(--blob-from))' }} />
+                  <stop offset="1" style={{ stopColor: 'rgb(var(--blob-to))' }} />
+                </radialGradient>
+              </defs>
+              <path ref={pathRef} d={REST_PATH} fill={`url(#${gradientId})`} />
+            </svg>
 
-          {/* 0.24 × the blob's height: both words sit on the solid part. */}
-          <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(90.909cqw,100cqh)*0.24)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
-            {wordmark.map((word) => (
-              <span key={word}>{word}</span>
-            ))}
-          </p>
+            {/* 0.24 × the blob's height: both words sit on the solid part. */}
+            <p className="pointer-events-none absolute inset-0 flex select-none flex-col items-center justify-center font-display text-[calc(min(90.909cqw,100cqh)*0.24)] font-extrabold leading-[0.85] tracking-tight text-ink/[0.07]">
+              {wordmark.map((word) => (
+                <span key={word}>{word}</span>
+              ))}
+            </p>
 
-          {/* The Lottie canvas (612 × 736): 79.4 % of the blob's height,
-              centred — the same size relative to the blob's height as before. */}
-          <div className="absolute left-[20%] top-[10.3%] h-[79.4%] w-[60%]">
-            {ready && (
-              <Suspense fallback={null}>
-                <Dancer still={still} />
-              </Suspense>
-            )}
+            {/* The Lottie canvas (612 × 736): 79.4 % of the blob's height,
+                centred — the same size relative to the blob's height as before. */}
+            <div className="absolute left-[20%] top-[10.3%] h-[79.4%] w-[60%]">
+              {ready && (
+                <Suspense fallback={null}>
+                  <Dancer still={still} />
+                </Suspense>
+              )}
+            </div>
           </div>
         </div>
       </div>

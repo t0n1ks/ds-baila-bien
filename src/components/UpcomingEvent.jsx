@@ -23,14 +23,16 @@ export default function UpcomingEvent() {
 
   return (
     <section id="events" className="scroll-mt-24 border-y border-line bg-surface-2 py-20 sm:py-28">
-      <div className="shell">
+      {/* Capped narrower than the other sections on desktop, so flyer and
+          dancer block don't drift apart on very wide screens. */}
+      <div className="shell lg:max-w-[76rem]">
         <Reveal>
           <h2 className="font-display text-section font-bold text-ink">{t.events.heading}</h2>
         </Reveal>
 
         {/* Phones: the card alone, as before. md+: flyer left, decorative
-            dancer visual filling the space on the right. */}
-        <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-x-14 lg:gap-x-20 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] xl:grid-cols-[minmax(0,17fr)_minmax(0,33fr)]">
+            dancer visual on the right (pushed to the far right on desktop). */}
+        <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-x-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-x-20">
           <Reveal delay={90} className="w-full min-[480px]:w-[72%] sm:w-[60%] md:w-full">
             <MediaFrame
               {...linkProps}

@@ -158,7 +158,25 @@
 
   /* Upcoming Events backdrop (EventVisual.jsx): an SVG ink blot filled with
      the theme's --blob-from/--blob-to. The stage is a size container so the
-     blob can be the largest 13:10 box that fits under the teaser text. */
+     blob can be the largest 11:10 box that fits under the teaser text. */
+  .event-column {
+    container-type: size;
+    /* Room the teaser text takes above the stage on desktop: the title on
+       one line, two lines of subtitle and the gap below (~128px). */
+    --teaser-height: 8rem;
+  }
+
+  /* Desktop: the block is as wide as the blob will be (11:10 on the height
+     left under the text) and pushed to the right edge of its cell. If the
+     text wraps taller, the blob just comes out a bit smaller — its left
+     edge still lines up with the text. */
+  @media (min-width: theme('screens.lg')) {
+    .event-block {
+      margin-left: auto;
+      width: min(100cqw, calc((100cqh - var(--teaser-height)) * 1.1));
+    }
+  }
+
   .event-stage {
     container-type: size;
     /* Soft rim: a narrow feather right at the outline, the rest stays solid.
