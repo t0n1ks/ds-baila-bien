@@ -1,5 +1,6 @@
 import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import EventVisual from './EventVisual.jsx';
 import MediaFrame from './MediaFrame.jsx';
 import { cardHref, isVideoSrc } from './media.js';
 import Reveal from './Reveal.jsx';
@@ -27,27 +28,35 @@ export default function UpcomingEvent() {
           <h2 className="font-display text-section font-bold text-ink">{t.events.heading}</h2>
         </Reveal>
 
-        <Reveal delay={90} className="mt-10 w-full min-[480px]:w-[72%] sm:w-[60%] lg:w-[40%] xl:w-[34%]">
-          <MediaFrame
-            {...linkProps}
-            src={src}
-            video={isVideoSrc(src)}
-            alt={event.caption || t.events.heading}
-          >
-            {(event.caption || href) && (
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 pt-12 text-brand-cream">
-                {event.caption && (
-                  <span className="font-display text-base font-semibold">{event.caption}</span>
-                )}
-                {href && (
-                  <span className="font-display text-sm font-semibold opacity-90">
-                    {t.events.linkLabel} ↗
-                  </span>
-                )}
-              </span>
-            )}
-          </MediaFrame>
-        </Reveal>
+        {/* Phones: the card alone, as before. md+: flyer left, decorative
+            dancer visual filling the space on the right. */}
+        <div className="mt-10 grid items-center gap-10 md:grid-cols-2 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] xl:grid-cols-[minmax(0,17fr)_minmax(0,33fr)]">
+          <Reveal delay={90} className="w-full min-[480px]:w-[72%] sm:w-[60%] md:w-full">
+            <MediaFrame
+              {...linkProps}
+              src={src}
+              video={isVideoSrc(src)}
+              alt={event.caption || t.events.heading}
+            >
+              {(event.caption || href) && (
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 pt-12 text-brand-cream">
+                  {event.caption && (
+                    <span className="font-display text-base font-semibold">{event.caption}</span>
+                  )}
+                  {href && (
+                    <span className="font-display text-sm font-semibold opacity-90">
+                      {t.events.linkLabel} ↗
+                    </span>
+                  )}
+                </span>
+              )}
+            </MediaFrame>
+          </Reveal>
+
+          <Reveal delay={140} className="mx-auto hidden w-full max-w-[36rem] md:block">
+            <EventVisual wordmark={t.hero.wordmark} />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

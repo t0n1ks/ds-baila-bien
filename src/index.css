@@ -148,6 +148,19 @@
     @apply absolute inset-0 h-full w-full object-contain object-center;
   }
 
+  /* Upcoming Events backdrop (EventVisual.jsx): brand orange fading into the
+     theme surface, so it follows light/dark on its own. The shape morphs via
+     the `blob` animation; this radius is the resting shape. */
+  .event-blob {
+    border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
+    background: radial-gradient(
+      120% 120% at 30% 25%,
+      rgb(var(--accent) / 0.6) 0%,
+      rgb(var(--accent) / 0.3) 45%,
+      rgb(var(--surface) / 0.9) 100%
+    );
+  }
+
   .prose-legal p {
     @apply mb-4 max-w-measure leading-relaxed text-muted;
   }

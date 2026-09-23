@@ -277,7 +277,8 @@
       "legalHeading": "Rechtliches",
       "impressum": "Impressum",
       "datenschutz": "Datenschutz",
-      "rights": "Alle Rechte vorbehalten."
+      "rights": "Alle Rechte vorbehalten.",
+      "animationCredit": "Animation: Abdul Latif (LottieFiles, Lottie Simple License)"
     },
     "legalUi": {
       "back": "Zurück zur Startseite",
@@ -582,7 +583,8 @@
       "legalHeading": "Legal",
       "impressum": "Legal notice",
       "datenschutz": "Privacy",
-      "rights": "All rights reserved."
+      "rights": "All rights reserved.",
+      "animationCredit": "Animation: Abdul Latif (LottieFiles, Lottie Simple License)"
     },
     "legalUi": {
       "back": "Back to home",

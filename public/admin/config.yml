@@ -320,6 +320,7 @@ collections:
                   - { name: impressum, label: Link Impressum, widget: string }
                   - { name: datenschutz, label: Link Datenschutz, widget: string }
                   - { name: rights, label: Rechte-Hinweis, widget: string }
+                  - { name: animationCredit, label: 'Lizenzhinweis Animation (Pflicht, nicht löschen)', widget: string }
 
               - name: legalUi
                 label: Rechtsseiten (Bedienelemente)
@@ -552,6 +553,7 @@ collections:
                   - { name: impressum, label: Link Impressum, widget: string }
                   - { name: datenschutz, label: Link privacy, widget: string }
                   - { name: rights, label: Rights notice, widget: string }
+                  - { name: animationCredit, label: 'Animation credit (required by licence, keep)', widget: string }
 
               - name: legalUi
                 label: Legal pages (UI)

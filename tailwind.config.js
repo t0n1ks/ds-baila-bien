@@ -42,9 +42,16 @@ export default {
           from: { transform: 'translate3d(0,0,0)' },
           to: { transform: 'translate3d(-50%,0,0)' },
         },
+        // Slow organic "breathing" of the events blob.
+        blob: {
+          '0%, 100%': { borderRadius: '58% 42% 55% 45% / 48% 58% 42% 52%', transform: 'rotate(0deg) scale(1)' },
+          '33%': { borderRadius: '44% 56% 40% 60% / 58% 44% 56% 42%', transform: 'rotate(4deg) scale(1.03)' },
+          '66%': { borderRadius: '52% 48% 62% 38% / 42% 54% 46% 58%', transform: 'rotate(-3deg) scale(0.98)' },
+        },
       },
       animation: {
         marquee: 'marquee 32s linear infinite',
+        blob: 'blob 16s ease-in-out infinite',
       },
     },
   },

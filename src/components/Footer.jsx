@@ -53,8 +53,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="shell border-t border-line py-6 text-sm text-muted">
-        © {new Date().getFullYear()} {settings.brandName}. {t.footer.rights}
+      <div className="shell flex flex-col gap-2 border-t border-line py-6 text-sm text-muted sm:flex-row sm:justify-between sm:gap-6">
+        <p>
+          © {new Date().getFullYear()} {settings.brandName}. {t.footer.rights}
+        </p>
+        <p className="text-xs text-muted/80">{t.footer.animationCredit}</p>
       </div>
     </footer>
   );
