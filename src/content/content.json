@@ -6,11 +6,11 @@
     "instagramUrl": "https://www.instagram.com/baila_bien.mz",
     "instagramHandle": "@baila_bien.mz",
     "instagramPosts": [
-      "https://www.instagram.com/p/EXAMPLE1/",
-      "https://www.instagram.com/p/EXAMPLE2/",
-      "https://www.instagram.com/p/EXAMPLE3/",
-      "https://www.instagram.com/p/EXAMPLE4/",
-      "https://www.instagram.com/p/EXAMPLE5/"
+      { "media": "", "url": "https://www.instagram.com/p/EXAMPLE1/", "caption": "" },
+      { "media": "", "url": "https://www.instagram.com/p/EXAMPLE2/", "caption": "" },
+      { "media": "", "url": "https://www.instagram.com/p/EXAMPLE3/", "caption": "" },
+      { "media": "", "url": "https://www.instagram.com/p/EXAMPLE4/", "caption": "" },
+      { "media": "", "url": "https://www.instagram.com/p/EXAMPLE5/", "caption": "" }
     ],
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ROXY+Holzhofstra%C3%9Fe+7+Mainz",
     "defaultTheme": "system"
@@ -117,10 +117,8 @@
     "instagram": {
       "heading": "Wir sind auf Instagram",
       "intro": "Aktuelle Termine, Videos und Eindrücke findest du in unserem Feed.",
-      "loadButton": "Post laden",
-      "privacyNote": "Der Beitrag wird erst nach deinem Klick von Instagram (Meta) geladen. Dabei werden Daten an Meta übertragen.",
+      "viewOnInstagram": "Auf Instagram ansehen",
       "placeholder": "Beitrag folgt",
-      "embedTitle": "Instagram-Beitrag",
       "profileLink": "Profil auf Instagram öffnen",
       "prev": "Vorheriger Beitrag",
       "next": "Nächster Beitrag",
@@ -219,7 +217,7 @@
           },
           {
             "heading": "5. Cookies / Tracking",
-            "body": "Diese Website setzt keine nicht notwendigen Cookies und verwendet keine Analyse- oder Tracking-Dienste. Deine Einstellungen zu Sprache und Farbschema werden ausschließlich lokal in deinem Browser (localStorage) gespeichert und nicht an uns übertragen.\n\nInstagram-Beiträge werden nicht automatisch geladen. Erst wenn du einen Beitrag ausdrücklich per Klick lädst, wird eine Verbindung zu Instagram (Meta Platforms Ireland Ltd.) hergestellt und deine IP-Adresse dorthin übertragen."
+            "body": "Diese Website setzt keine nicht notwendigen Cookies und verwendet keine Analyse- oder Tracking-Dienste. Deine Einstellungen zu Sprache und Farbschema werden ausschließlich lokal in deinem Browser (localStorage) gespeichert und nicht an uns übertragen.\n\nWir binden keine Instagram-Inhalte ein. Die Vorschaubilder und Videos im Instagram-Bereich liegen auf unserem eigenen Server; die Karten verlinken lediglich auf Instagram. Beim Aufruf dieser Seite werden deshalb keine Daten an Meta übertragen. Erst wenn du einen dieser Links anklickst und Instagram öffnest, gelten die Datenschutzbestimmungen von Meta Platforms Ireland Ltd."
           },
           {
             "heading": "6. Deine Rechte",
@@ -339,10 +337,8 @@
     "instagram": {
       "heading": "We're on Instagram",
       "intro": "Upcoming dates, videos and impressions live in our feed.",
-      "loadButton": "Load post",
-      "privacyNote": "The post is only loaded from Instagram (Meta) after you click. Data is transferred to Meta in the process.",
+      "viewOnInstagram": "View on Instagram",
       "placeholder": "Post coming soon",
-      "embedTitle": "Instagram post",
       "profileLink": "Open profile on Instagram",
       "prev": "Previous post",
       "next": "Next post",
@@ -441,7 +437,7 @@
           },
           {
             "heading": "5. Cookies / tracking",
-            "body": "This website sets no non-essential cookies and uses no analytics or tracking services. Your language and colour scheme preferences are stored solely in your browser (localStorage) and are not transmitted to us.\n\nInstagram posts are not loaded automatically. Only when you explicitly load a post by clicking is a connection to Instagram (Meta Platforms Ireland Ltd.) established and your IP address transferred there."
+            "body": "This website sets no non-essential cookies and uses no analytics or tracking services. Your language and colour scheme preferences are stored solely in your browser (localStorage) and are not transmitted to us.\n\nWe do not embed any Instagram content. The preview images and videos in the Instagram section are served from our own server; the cards merely link to Instagram. Opening this page therefore transfers no data to Meta. Only once you follow one of those links and open Instagram do the privacy terms of Meta Platforms Ireland Ltd. apply."
           },
           {
             "heading": "6. Your rights",

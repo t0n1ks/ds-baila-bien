@@ -65,8 +65,9 @@ goes live needs a DPA and must be named in Datenschutz §3.
 - Fonts are self-hosted from `public/fonts/` — no Google Fonts CDN.
 - No analytics, no tracking, no map embed. Only `localStorage` for the theme and
   language choice, which is functionally necessary → **no cookie banner needed**.
-- Instagram posts use click-to-load: nothing is requested from Meta until the
-  visitor presses the button.
+- Instagram content is not embedded at all. The cards show an image or short
+  video uploaded to `public/images/uploads/` and link out to the post, so the
+  page never talks to Meta.
 - The gallery and Instagram carousels run on Embla, installed from npm and
   bundled with the site — no carousel script is fetched from a CDN.
 

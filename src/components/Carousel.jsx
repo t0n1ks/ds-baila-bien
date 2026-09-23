@@ -1,5 +1,5 @@
 import useEmblaCarousel from 'embla-carousel-react';
-import { Children, useCallback, useEffect, useMemo, useState } from 'react';
+import { Children, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 function Arrow({ direction, label, onClick }) {
@@ -28,8 +28,10 @@ function Arrow({ direction, label, onClick }) {
  *
  * @param labels  { prev, next, slideLabel } — all bilingual, from content.json
  * @param slideClass  per-section slide widths (Embla drives layout via flex-basis)
+ * @param onActiveChange  fired with the selected index, so a section can react
+ *   to it — the Instagram cards use it to play only the visible video.
  */
-export default function Carousel({ labels, ariaLabel, slideClass, children }) {
+export default function Carousel({ labels, ariaLabel, slideClass, onActiveChange, children }) {
   const reducedMotion = usePrefersReducedMotion();
   const slides = Children.toArray(children);
 
@@ -48,11 +50,18 @@ export default function Carousel({ labels, ariaLabel, slideClass, children }) {
   const [active, setActive] = useState(0);
   const [snaps, setSnaps] = useState([]);
 
+  // Held in a ref so the subscription below does not have to re-run whenever
+  // the caller passes a fresh inline callback.
+  const notify = useRef(onActiveChange);
+  notify.current = onActiveChange;
+
   useEffect(() => {
     if (!emblaApi) return undefined;
     const sync = () => {
-      setActive(emblaApi.selectedScrollSnap());
+      const index = emblaApi.selectedScrollSnap();
+      setActive(index);
       setSnaps(emblaApi.scrollSnapList());
+      notify.current?.(index);
     };
     sync();
     emblaApi.on('select', sync).on('reInit', sync);

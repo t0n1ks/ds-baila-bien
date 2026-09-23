@@ -46,11 +46,28 @@ collections:
               - { name: instagramUrl, label: Instagram-Profil (URL), widget: string }
               - { name: instagramHandle, label: Instagram-Handle, widget: string }
               - name: instagramPosts
-                label: Instagram-Beiträge (URLs)
-                hint: 'Gilt für beide Sprachen. Format: https://www.instagram.com/p/XXXXXXXXXXX/ — zurzeit fünf Karten, weitere können ergänzt werden.'
+                label: Instagram-Karten
+                hint: >-
+                  Gilt für beide Sprachen. Pro Karte ein eigenes Bild oder kurzes
+                  Video hochladen und die Adresse des Beitrags einfügen. Die
+                  Beiträge werden nicht eingebettet — die Karte verlinkt nur.
                 widget: list
                 allow_add: true
-                field: { name: url, label: URL, widget: string }
+                summary: '{{fields.url}}'
+                fields:
+                  - name: media
+                    label: Bild oder Video
+                    hint: JPG, PNG, WEBP oder ein kurzes MP4/WEBM
+                    widget: file
+                    required: false
+                  - name: url
+                    label: Link zum Beitrag
+                    hint: 'z. B. https://www.instagram.com/p/XXXXXXXXXXX/'
+                    widget: string
+                  - name: caption
+                    label: Bildunterschrift
+                    widget: string
+                    required: false
               - { name: mapsUrl, label: Google-Maps-Link, widget: string }
               - name: defaultTheme
                 label: Standard-Farbschema
@@ -178,10 +195,8 @@ collections:
                 fields:
                   - { name: heading, label: Überschrift, widget: string }
                   - { name: intro, label: Einleitung, widget: text }
-                  - { name: loadButton, label: Button „Post laden“, widget: string }
-                  - { name: privacyNote, label: Datenschutz-Hinweis, widget: text }
+                  - { name: viewOnInstagram, label: Hinweis auf der Karte, widget: string }
                   - { name: placeholder, label: Platzhalter-Text, widget: string }
-                  - { name: embedTitle, label: 'Aria: eingebetteter Beitrag', widget: string }
                   - { name: profileLink, label: Profil-Link-Text, widget: string }
                   - { name: prev, label: 'Aria: vorheriger Beitrag', widget: string }
                   - { name: next, label: 'Aria: nächster Beitrag', widget: string }
@@ -401,10 +416,8 @@ collections:
                 fields:
                   - { name: heading, label: Heading, widget: string }
                   - { name: intro, label: Intro, widget: text }
-                  - { name: loadButton, label: 'Button "load post"', widget: string }
-                  - { name: privacyNote, label: Privacy note, widget: text }
+                  - { name: viewOnInstagram, label: Card affordance, widget: string }
                   - { name: placeholder, label: Placeholder text, widget: string }
-                  - { name: embedTitle, label: 'Aria: embedded post', widget: string }
                   - { name: profileLink, label: Profile link text, widget: string }
                   - { name: prev, label: 'Aria: previous post', widget: string }
                   - { name: next, label: 'Aria: next post', widget: string }

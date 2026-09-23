@@ -1,26 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { asset } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import Carousel from './Carousel.jsx';
 import Reveal from './Reveal.jsx';
+import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
-const POST_RE = /^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)\/?/i;
+const VIDEO_RE = /\.(mp4|webm|mov|m4v)(\?.*)?$/i;
 
-/** A real permalink, as opposed to the [[EXAMPLE]] stand-ins in content.json. */
-function isRealPost(url) {
-  const match = POST_RE.exec(String(url ?? '').trim());
-  return Boolean(match) && !/^EXAMPLE/i.test(match[1]);
+/** Drop any ?query / #hash tail from the stored permalink. */
+function cleanUrl(url) {
+  return String(url ?? '')
+    .trim()
+    .split(/[?#]/)[0];
 }
 
-/** https://www.instagram.com/p/ABC/ -> https://www.instagram.com/p/ABC/embed */
-function toEmbedUrl(url) {
-  return `${String(url).replace(/\/+$/, '')}/embed`;
+/** A card is only real once the owner has uploaded media and pasted a link. */
+function isReady(post) {
+  const url = cleanUrl(post?.url);
+  return Boolean(post?.media) && Boolean(url) && !/EXAMPLE/i.test(url);
 }
 
-const CARD = 'flex h-[34rem] flex-col rounded-2xl border border-line bg-surface p-7 sm:h-[40rem]';
+const CARD = 'relative block h-[34rem] overflow-hidden rounded-2xl border border-line bg-surface sm:h-[40rem]';
 
-function InstagramIcon() {
+function InstagramIcon({ className = 'text-muted' }) {
   return (
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" className="text-muted" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" className={className} aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="5.5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -29,49 +33,94 @@ function InstagramIcon() {
 }
 
 /**
- * Click-to-load (Zwei-Klick-Lösung): nothing is requested from Meta until
- * the visitor presses the button, so simply opening the page transfers no
- * data to Instagram. See Datenschutz §5.
+ * A self-hosted preview that links out to the post.
+ *
+ * No iframe and no Instagram script: the old embed both leaked data to Meta
+ * and swallowed touch events, which killed the carousel swipe. The media is
+ * served from our own public/images/uploads/.
  */
-function Post({ url, labels }) {
-  const [loaded, setLoaded] = useState(false);
+function Post({ post, isActive, labels }) {
+  const videoRef = useRef(null);
+  const reducedMotion = usePrefersReducedMotion();
+  const [broken, setBroken] = useState(false);
 
-  // No real permalink yet — show a neutral card rather than a dead embed.
-  if (!isRealPost(url)) {
+  const src = post.media ? asset(post.media) : '';
+  const isVideo = VIDEO_RE.test(post.media ?? '');
+  const href = cleanUrl(post.url);
+
+  // Only the slide in view plays; everything else stays paused so a carousel
+  // of clips does not decode five videos at once.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isActive && !reducedMotion) {
+      const attempt = video.play();
+      if (attempt?.catch) attempt.catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isActive, reducedMotion]);
+
+  if (!isReady(post) || broken) {
     return (
-      <div className={`${CARD} items-start justify-center gap-4`}>
+      <div className={`${CARD} flex flex-col items-start justify-center gap-4 p-7`}>
         <InstagramIcon />
         <p className="font-display text-lg font-semibold text-muted">{labels.placeholder}</p>
       </div>
     );
   }
 
-  if (loaded) {
-    return (
-      <iframe
-        src={toEmbedUrl(url)}
-        title={labels.embedTitle}
-        loading="lazy"
-        scrolling="no"
-        className="h-[34rem] w-full rounded-2xl border border-line bg-white sm:h-[40rem]"
-      />
-    );
-  }
-
   return (
-    <div className={`${CARD} items-start justify-end gap-4`}>
-      <InstagramIcon />
-      <p className="mt-auto max-w-[36ch] text-sm leading-relaxed text-muted">{labels.privacyNote}</p>
-      <button type="button" className="btn-accent" onClick={() => setLoaded(true)}>
-        {labels.loadButton}
-      </button>
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      draggable={false}
+      className={`${CARD} group`}
+    >
+      {isVideo ? (
+        <video
+          ref={videoRef}
+          src={src}
+          className="h-full w-full object-cover"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onError={() => setBroken(true)}
+        />
+      ) : (
+        <img
+          src={src}
+          alt={post.caption || labels.heading}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          onError={() => setBroken(true)}
+        />
+      )}
+
+      <span className="pointer-events-none absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-black/45 text-brand-cream backdrop-blur-sm">
+        <InstagramIcon className="" />
+      </span>
+
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5 text-brand-cream">
+        {post.caption && (
+          <span className="font-display text-base font-semibold">{post.caption}</span>
+        )}
+        <span className="font-display text-sm font-semibold opacity-90">
+          {labels.viewOnInstagram} ↗
+        </span>
+      </span>
+    </a>
   );
 }
 
 export default function InstagramBlock() {
   const { t, settings } = useLanguage();
   const posts = settings.instagramPosts ?? [];
+  const [active, setActive] = useState(0);
 
   if (posts.length === 0) return null;
 
@@ -97,10 +146,16 @@ export default function InstagramBlock() {
           <Carousel
             labels={t.instagram}
             ariaLabel={t.instagram.heading}
+            onActiveChange={setActive}
             slideClass="flex-[0_0_100%] sm:flex-[0_0_60%] lg:flex-[0_0_42%]"
           >
-            {posts.map((url, index) => (
-              <Post key={`${url}-${index}`} url={url} labels={t.instagram} />
+            {posts.map((post, index) => (
+              <Post
+                key={`${post.url}-${index}`}
+                post={post}
+                isActive={index === active}
+                labels={t.instagram}
+              />
             ))}
           </Carousel>
         </Reveal>
