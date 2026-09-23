@@ -8,7 +8,9 @@
     "instagramPosts": [
       "https://www.instagram.com/p/EXAMPLE1/",
       "https://www.instagram.com/p/EXAMPLE2/",
-      "https://www.instagram.com/p/EXAMPLE3/"
+      "https://www.instagram.com/p/EXAMPLE3/",
+      "https://www.instagram.com/p/EXAMPLE4/",
+      "https://www.instagram.com/p/EXAMPLE5/"
     ],
     "mapsUrl": "https://www.google.com/maps/search/?api=1&query=ROXY+Holzhofstra%C3%9Fe+7+Mainz",
     "defaultTheme": "system"

@@ -47,8 +47,9 @@ collections:
               - { name: instagramHandle, label: Instagram-Handle, widget: string }
               - name: instagramPosts
                 label: Instagram-Beiträge (URLs)
-                hint: 'Gilt für beide Sprachen. Format: https://www.instagram.com/p/XXXXXXXXXXX/'
+                hint: 'Gilt für beide Sprachen. Format: https://www.instagram.com/p/XXXXXXXXXXX/ — zurzeit fünf Karten, weitere können ergänzt werden.'
                 widget: list
+                allow_add: true
                 field: { name: url, label: URL, widget: string }
               - { name: mapsUrl, label: Google-Maps-Link, widget: string }
               - name: defaultTheme

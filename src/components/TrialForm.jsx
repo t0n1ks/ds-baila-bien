@@ -37,6 +37,34 @@ async function deliver(values) {
   if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 }
 
+/** Drawn rather than native, so the select matches the other controls. */
+function SelectChevron() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+function FieldError({ id, children }) {
+  return (
+    <p id={id} className="mt-1.5 text-sm text-accent-text">
+      {children}
+    </p>
+  );
+}
+
 export default function TrialForm() {
   const { t } = useLanguage();
   const [values, setValues] = useState(EMPTY);
@@ -82,6 +110,8 @@ export default function TrialForm() {
   const invalid = (field) =>
     errors[field] ? { 'aria-invalid': true, 'aria-describedby': `${field}-error` } : {};
 
+  const hint = ` (${t.form.optional})`;
+
   return (
     <section id="anmelden" className="shell scroll-mt-24 py-20 sm:py-28">
       <Reveal className="grid gap-10 md:grid-cols-[minmax(0,24rem)_1fr] md:gap-16">
@@ -109,7 +139,8 @@ export default function TrialForm() {
               </button>
             </div>
           ) : (
-            <form noValidate onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
+            // One column on phones, two from md for the short paired fields.
+            <form noValidate onSubmit={onSubmit} className="grid gap-5 md:grid-cols-2">
               {/* Honeypot: hidden from humans, irresistible to bots. */}
               <div className="hidden" aria-hidden="true">
                 <label htmlFor="website">Website</label>
@@ -124,7 +155,7 @@ export default function TrialForm() {
                 />
               </div>
 
-              <div className="sm:col-span-1">
+              <div>
                 <label className="label" htmlFor="name">
                   {t.form.fields.name} *
                 </label>
@@ -138,14 +169,10 @@ export default function TrialForm() {
                   onChange={set('name')}
                   {...invalid('name')}
                 />
-                {errors.name && (
-                  <p id="name-error" className="mt-1.5 text-sm text-accent-text">
-                    {errors.name}
-                  </p>
-                )}
+                {errors.name && <FieldError id="name-error">{errors.name}</FieldError>}
               </div>
 
-              <div className="sm:col-span-1">
+              <div>
                 <label className="label" htmlFor="email">
                   {t.form.fields.email} *
                 </label>
@@ -159,16 +186,13 @@ export default function TrialForm() {
                   onChange={set('email')}
                   {...invalid('email')}
                 />
-                {errors.email && (
-                  <p id="email-error" className="mt-1.5 text-sm text-accent-text">
-                    {errors.email}
-                  </p>
-                )}
+                {errors.email && <FieldError id="email-error">{errors.email}</FieldError>}
               </div>
 
               <div>
                 <label className="label" htmlFor="phone">
-                  {t.form.fields.phone} <span className="text-muted/70">({t.form.optional})</span>
+                  {t.form.fields.phone}
+                  <span className="label-hint">{hint}</span>
                 </label>
                 <input
                   id="phone"
@@ -183,27 +207,32 @@ export default function TrialForm() {
 
               <div>
                 <label className="label" htmlFor="level">
-                  {t.form.fields.level} <span className="text-muted/70">({t.form.optional})</span>
+                  {t.form.fields.level}
+                  <span className="label-hint">{hint}</span>
                 </label>
-                <select
-                  id="level"
-                  name="level"
-                  className="field"
-                  value={values.level}
-                  onChange={set('level')}
-                >
-                  <option value="">{t.form.levelPlaceholder}</option>
-                  {t.form.levelOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <select
+                    id="level"
+                    name="level"
+                    className="field"
+                    value={values.level}
+                    onChange={set('level')}
+                  >
+                    <option value="">{t.form.levelPlaceholder}</option>
+                    {t.form.levelOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  <SelectChevron />
+                </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="md:col-span-2">
                 <label className="label" htmlFor="date">
-                  {t.form.fields.date} <span className="text-muted/70">({t.form.optional})</span>
+                  {t.form.fields.date}
+                  <span className="label-hint">{hint}</span>
                 </label>
                 <input
                   id="date"
@@ -215,9 +244,10 @@ export default function TrialForm() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="md:col-span-2">
                 <label className="label" htmlFor="message">
-                  {t.form.fields.message} <span className="text-muted/70">({t.form.optional})</span>
+                  {t.form.fields.message}
+                  <span className="label-hint">{hint}</span>
                 </label>
                 <textarea
                   id="message"
@@ -229,7 +259,7 @@ export default function TrialForm() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="md:col-span-2">
                 <label htmlFor="consent" className="flex cursor-pointer items-start gap-3">
                   <input
                     id="consent"
@@ -242,28 +272,25 @@ export default function TrialForm() {
                   />
                   <span className="text-sm leading-relaxed text-muted">
                     {t.form.consent.before}
-                    <Link
-                      to="/datenschutz"
-                      className="text-accent-text underline underline-offset-2"
-                    >
+                    <Link to="/datenschutz" className="text-accent-text underline underline-offset-2">
                       {t.form.consent.linkText}
                     </Link>
                     {t.form.consent.after} *
                   </span>
                 </label>
-                {errors.consent && (
-                  <p id="consent-error" className="mt-1.5 text-sm text-accent-text">
-                    {errors.consent}
-                  </p>
-                )}
+                {errors.consent && <FieldError id="consent-error">{errors.consent}</FieldError>}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-                <button type="submit" className="btn-accent" disabled={status === 'sending'}>
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="btn-accent w-full py-4 text-lg"
+                  disabled={status === 'sending'}
+                >
                   {status === 'sending' ? t.form.sending : t.form.submit}
                 </button>
                 {status === 'error' && (
-                  <p role="alert" className="text-sm text-accent-text">
+                  <p role="alert" className="mt-3 text-sm text-accent-text">
                     {t.form.error}
                   </p>
                 )}
