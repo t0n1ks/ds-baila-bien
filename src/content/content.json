@@ -101,7 +101,7 @@
       "stats": [
         {
           "value": "3",
-          "label": "Level — von Beginner bis Improver"
+          "label": "Niveaus — von Anfänger bis Fortgeschritten"
         },
         {
           "value": "Di",
@@ -129,11 +129,11 @@
         },
         {
           "time": "19:00–20:10",
-          "label": "Beginner / Foundation"
+          "label": "Anfänger / Grundlagen"
         },
         {
           "time": "20:20–21:30",
-          "label": "Improver"
+          "label": "Fortgeschrittene"
         },
         {
           "time": "21:30–22:00",
@@ -141,36 +141,36 @@
         }
       ],
       "levelLegend": [
-        "Level 1 — Beginner",
-        "Level 2 — Foundation",
-        "Level 3 — Improver"
+        "Niveau 1 — für Anfänger",
+        "Niveau 2 — Grundlagen",
+        "Niveau 3 — für Fortgeschrittene"
       ]
     },
     "prices": {
       "heading": "Preise",
       "note": "Monatskurs · keine Verträge",
       "footnote": "*Studierendenpreis für unter 28 mit gültigem Ausweis.",
-      "levelColumn": "Level",
+      "levelColumn": "Niveau",
       "priceColumn": "Preis",
       "reducedColumn": "Ermäßigt*",
       "rows": [
         {
-          "level": "Level 1",
+          "level": "Niveau 1",
           "price": "35 €",
           "reduced": "30 €"
         },
         {
-          "level": "Level 2",
+          "level": "Niveau 2",
           "price": "40 €",
           "reduced": "35 €"
         },
         {
-          "level": "Level 3",
+          "level": "Niveau 3",
           "price": "45 €",
           "reduced": "40 €"
         },
         {
-          "level": "Level 2 & 3",
+          "level": "Niveau 2 & 3",
           "price": "60 €",
           "reduced": "55 €"
         }
@@ -246,7 +246,7 @@
         "name": "Name",
         "email": "E-Mail",
         "phone": "Telefon",
-        "level": "Level",
+        "level": "Niveau",
         "date": "Wunschtermin",
         "message": "Nachricht"
       },
@@ -254,9 +254,9 @@
       "levelPlaceholder": "Bitte wählen",
       "datePlaceholder": "Bitte wählen",
       "levelOptions": [
-        "Beginner",
-        "Foundation",
-        "Improver"
+        "Anfänger",
+        "Grundlagen",
+        "Fortgeschrittene"
       ],
       "consent": {
         "before": "Ich habe die",
@@ -288,6 +288,8 @@
       "back": "Zurück zur Startseite",
       "pendingTitle": "Angaben ausstehend",
       "pendingText": "Diese Seite enthält noch Platzhalter. Vor dem Produktivbetrieb müssen alle mit [[…]] markierten Angaben ergänzt und die Texte rechtlich geprüft werden.",
+      "pendingToggle": "Hinweis zu ausstehenden Angaben anzeigen",
+      "pendingClose": "Hinweis schließen",
       "bindingNote": "Maßgeblich ist diese deutsche Fassung."
     },
     "legal": {
@@ -598,6 +600,8 @@
       "back": "Back to home",
       "pendingTitle": "Details pending",
       "pendingText": "This page still contains placeholders. Before going live, every value marked [[…]] must be filled in and the texts reviewed by a lawyer.",
+      "pendingToggle": "Show note about pending details",
+      "pendingClose": "Close note",
       "bindingNote": "The legally binding version of this notice is the German one."
     },
     "legal": {

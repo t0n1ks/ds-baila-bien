@@ -179,12 +179,18 @@
 
   .event-stage {
     container-type: size;
+  }
+
+  /* The blob + dancer box (DancerBlob.jsx), shared with the trial form on
+     phones. It is its own size container, so the wordmark scales with it. */
+  .dancer-blob {
+    container-type: size;
     /* Soft rim: a narrow feather right at the outline, the rest stays solid.
        0px gives a hard edge. */
     --blob-feather: 5px;
   }
 
-  .event-blob {
+  .dancer-blob__shape {
     filter: blur(var(--blob-feather));
   }
 

@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FORM_ENDPOINT, FORM_MODE, WEB3FORMS_KEY, hasPendingDetails, PLACEHOLDERS } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import DancerBlob from './DancerBlob.jsx';
 import PendingNotice from './PendingNotice.jsx';
+import PendingPopover from './PendingPopover.jsx';
 import Reveal from './Reveal.jsx';
 import { formatTuesday, upcomingTuesdays } from './tuesdays.js';
 
@@ -116,14 +118,26 @@ export default function TrialForm() {
     errors[field] ? { 'aria-invalid': true, 'aria-describedby': `${field}-error` } : {};
 
   const hint = ` (${t.form.optional})`;
+  const pending = hasPendingDetails(PLACEHOLDERS.CORPORATE_EMAIL);
 
   return (
     <section id="anmelden" className="shell scroll-mt-24 py-20 sm:py-28">
       <Reveal className="grid gap-10 md:grid-cols-[minmax(0,24rem)_1fr] md:gap-16">
         <div>
-          <h2 className="font-display text-section font-bold text-ink">{t.form.heading}</h2>
+          <div className="relative flex items-center justify-between gap-3">
+            <h2 className="font-display text-section font-bold text-ink">{t.form.heading}</h2>
+            {/* Temporary: phones get the pending notice as a ⚠️ popover. */}
+            {pending && <PendingPopover className="md:hidden" />}
+          </div>
           <p className="mt-4 max-w-measure leading-relaxed text-muted">{t.form.intro}</p>
-          {hasPendingDetails(PLACEHOLDERS.CORPORATE_EMAIL) && <PendingNotice className="mt-8" />}
+          {/* Temporary: tablet and desktop keep the full notice box. */}
+          {pending && <PendingNotice className="mt-8 hidden md:block" />}
+          {/* Phones only (permanent): the Upcoming Events blob + dancer. */}
+          <DancerBlob
+            wordmark={t.hero.wordmark}
+            media="(max-width: 767.98px)"
+            className="relative mx-auto mt-10 w-[min(100%,17rem)] md:hidden"
+          />
         </div>
 
         <div className="rounded-3xl border border-line bg-surface-2 p-6 sm:p-9">

@@ -336,6 +336,8 @@ collections:
                   - { name: back, label: Zurück-Link, widget: string }
                   - { name: pendingTitle, label: Warnung — Titel, widget: string }
                   - { name: pendingText, label: Warnung — Text, widget: text }
+                  - { name: pendingToggle, label: Warnung — Symbol-Beschriftung (Screenreader), widget: string }
+                  - { name: pendingClose, label: Warnung — Schließen-Beschriftung (Screenreader), widget: string }
                   - { name: bindingNote, label: Hinweis zur Verbindlichkeit, widget: string }
 
               - name: legal
@@ -575,6 +577,8 @@ collections:
                   - { name: back, label: Back link, widget: string }
                   - { name: pendingTitle, label: Warning — title, widget: string }
                   - { name: pendingText, label: Warning — text, widget: text }
+                  - { name: pendingToggle, label: Warning — icon label (screen readers), widget: string }
+                  - { name: pendingClose, label: Warning — close label (screen readers), widget: string }
                   - { name: bindingNote, label: Binding-version note, widget: string }
 
               - name: legal
