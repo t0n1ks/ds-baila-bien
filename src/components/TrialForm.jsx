@@ -132,12 +132,13 @@ export default function TrialForm() {
           <p className="mt-4 max-w-measure leading-relaxed text-muted">{t.form.intro}</p>
           {/* Temporary: tablet and desktop keep the full notice box. */}
           {pending && <PendingNotice className="mt-8 hidden md:block" />}
-          {/* Phones only (permanent): the Upcoming Events blob + dancer. */}
+          {/* Below md (permanent): the dancer blob as a flat bar, as wide as the
+              form card below it. */}
           <DancerBlob
             wordmark={t.hero.wordmark}
             media="(max-width: 767.98px)"
             flat
-            className="relative mx-auto mt-8 w-[min(100%,21rem)] md:hidden"
+            className="relative mt-8 h-[11.5rem] w-full md:hidden"
           />
         </div>
 

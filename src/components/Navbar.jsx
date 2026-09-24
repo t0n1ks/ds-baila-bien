@@ -29,6 +29,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // The Events section only renders with a flyer set; its link goes with it.
+  const items = t.nav.items.filter((item) => item.id !== 'events' || asset(settings.upcomingEvent?.media));
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -93,7 +96,7 @@ export default function Navbar() {
         </button>
 
         <nav aria-label={settings.brandName} className="hidden items-center justify-center gap-1 md:flex">
-          {t.nav.items.map((item) => (
+          {items.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -148,7 +151,7 @@ export default function Navbar() {
       {open && (
         <nav id="mobile-nav" className="shell border-t border-line pb-5 pt-3 md:hidden">
           <ul className="flex flex-col">
-            {t.nav.items.map((item) => (
+            {items.map((item) => (
               <li key={item.id}>
                 <button
                   type="button"

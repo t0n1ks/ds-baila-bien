@@ -57,6 +57,10 @@
           "label": "Preise"
         },
         {
+          "id": "events",
+          "label": "Events"
+        },
+        {
           "id": "galerie",
           "label": "Galerie"
         },
@@ -367,6 +371,10 @@
         {
           "id": "preise",
           "label": "Prices"
+        },
+        {
+          "id": "events",
+          "label": "Events"
         },
         {
           "id": "galerie",

@@ -1,19 +1,23 @@
 import { useEffect } from 'react';
 
 /**
- * Springy outline for the Upcoming Events blob.
+ * Springy outlines for the dancer blobs.
  *
- * At rest the blob is a soft rounded square, like a bar of soap. Its outline
+ * At rest a blob is a soft rounded shape, like a bar of soap. Its outline
  * is a ring of points, each on a spring back to its rest position. A mouse
  * or finger near the edge pushes the nearest points inward, so the edge
  * backs away from it; neighbours pull on each other so the dent spreads,
  * and on release everything springs back with a short wobble.
+ *
+ * Two outlines: the Upcoming Events blob (a fixed 110 × 100 viewBox,
+ * stretched to its box) and the flat trial-form bar, a rounded rectangle
+ * built in real pixels for whatever size its box has (see roundedRect).
  */
 
 /**
- * Resting shape. The viewBox is width × height; `roundness` is the
- * superellipse exponent (2 = ellipse, higher = squarer corners); `wobble`
- * adds a slight organic unevenness so the jelly still reads as soft.
+ * Upcoming Events resting shape. The viewBox is width × height; `roundness`
+ * is the superellipse exponent (2 = ellipse, higher = squarer corners);
+ * `wobble` adds a slight organic unevenness so the jelly still reads as soft.
  */
 export const SHAPE = {
   width: 110,
@@ -26,8 +30,8 @@ export const SHAPE = {
 };
 
 /**
- * Feel of the jelly — tune here. Distances are in viewBox units (the blob is
- * 110 × 100, so 10 is a tenth of its height).
+ * Feel of the Upcoming Events jelly — tune here. Distances are in viewBox
+ * units (the blob is 110 × 100, so 10 is a tenth of its height).
  */
 export const JELLY = {
   radius: 32, // reaction radius: how close the pointer must come to the edge
@@ -40,17 +44,40 @@ export const JELLY = {
   coupling: 0.08, // pull between neighbouring points: spreads a dent like jelly
 };
 
-/** Springs around the outline. */
-const POINTS = 56;
+/**
+ * Feel of the flat trial-form bar, in pixels. Its dancer keeps a fifth of
+ * the bar's height (~37 px) clear above and below; the cap stays under that
+ * minus the feathered rim.
+ */
+export const JELLY_FLAT = { ...JELLY, radius: 80, push: 28, maxDent: 22 };
+
+/** Corner radius of the flat bar, in px — the form card's rounded-3xl. */
+export const FLAT_CORNER = 24;
 
 const at = (points, index) => points[(index + points.length) % points.length];
 
+/** `count` points evenly spaced along a dense closed polyline. */
+function resample(dense, count) {
+  const lengths = [0];
+  for (let i = 1; i <= dense.length; i += 1) {
+    const [a, b] = [dense[i - 1], at(dense, i)];
+    lengths.push(lengths[i - 1] + Math.hypot(b[0] - a[0], b[1] - a[1]));
+  }
+  const total = lengths[lengths.length - 1];
+  let j = 0;
+  return Array.from({ length: count }, (_, i) => {
+    const target = (total * i) / count;
+    while (lengths[j + 1] < target) j += 1;
+    return dense[j];
+  });
+}
+
 /**
- * The rest outline: a superellipse with the wobble, scaled to fill the
- * viewBox exactly (so it touches the left and bottom edges for alignment),
- * then resampled so the points are evenly spaced along it.
+ * The Upcoming Events rest outline: a superellipse with the wobble, scaled
+ * to fill the viewBox exactly (so it touches the left and bottom edges for
+ * alignment), with 56 springs.
  */
-function restOutline() {
+function superellipse() {
   const { width, height, roundness, wobble } = SHAPE;
   const dense = Array.from({ length: 2000 }, (_, i) => {
     const t = (2 * Math.PI * i) / 2000;
@@ -66,34 +93,37 @@ function restOutline() {
   const ys = dense.map((p) => p[1]);
   const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
   const fitted = dense.map(([x, y]) => [((x - x0) / (x1 - x0)) * width, ((y - y0) / (y1 - y0)) * height]);
-
-  const lengths = [0];
-  for (let i = 1; i <= fitted.length; i += 1) {
-    const [a, b] = [fitted[i - 1], at(fitted, i)];
-    lengths.push(lengths[i - 1] + Math.hypot(b[0] - a[0], b[1] - a[1]));
-  }
-  const total = lengths[lengths.length - 1];
-  let j = 0;
-  return Array.from({ length: POINTS }, (_, i) => {
-    const target = (total * i) / POINTS;
-    while (lengths[j + 1] < target) j += 1;
-    return fitted[j];
-  });
+  return resample(fitted, 56);
 }
 
-const REST = restOutline();
-
 /**
- * Unit vector pointing into the shape at each rest point (perpendicular to
- * the outline). The outline runs clockwise on screen (y down), so rotating
- * the tangent by +90° points inwards.
+ * A width × height rounded rectangle with corner radius `radius`, clockwise
+ * on screen like the superellipse, with a spring every ~12 px.
  */
-const INWARD = REST.map((_, i) => {
-  const [a, b] = [at(REST, i - 1), at(REST, i + 1)];
-  const [tx, ty] = [b[0] - a[0], b[1] - a[1]];
-  const len = Math.hypot(tx, ty);
-  return [-ty / len, tx / len];
-});
+function roundedRectPoints(width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  const dense = [];
+  const line = (x0, y0, x1, y1) => {
+    const n = Math.max(1, Math.round(Math.hypot(x1 - x0, y1 - y0)));
+    for (let i = 0; i < n; i += 1) dense.push([x0 + ((x1 - x0) * i) / n, y0 + ((y1 - y0) * i) / n]);
+  };
+  const arc = (cx, cy, from) => {
+    for (let i = 0; i < 24; i += 1) {
+      const a = from + (Math.PI / 2) * (i / 24);
+      dense.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+  };
+  line(r, 0, width - r, 0);
+  arc(width - r, r, -Math.PI / 2);
+  line(width, r, width, height - r);
+  arc(width - r, height - r, 0);
+  line(width - r, height, r, height);
+  arc(r, height - r, Math.PI / 2);
+  line(0, height - r, 0, r);
+  arc(r, r, Math.PI);
+  const perimeter = 2 * (width + height) - (8 - 2 * Math.PI) * r;
+  return resample(dense, Math.max(24, Math.round(perimeter / 12)));
+}
 
 /** Smooth closed path through the points (Catmull-Rom as cubic Béziers). */
 function toPath(points) {
@@ -109,18 +139,41 @@ function toPath(points) {
   return `${d}Z`;
 }
 
-export const REST_PATH = toPath(REST);
+/**
+ * Everything the jelly needs about one rest shape: its viewBox size, the
+ * rest points, the unit vector pointing into the shape at each (the
+ * outline runs clockwise on screen, y down, so rotating the tangent by +90°
+ * points inwards), the rest path and the feel.
+ */
+function outline(width, height, rest, feel) {
+  const inward = rest.map((_, i) => {
+    const [a, b] = [at(rest, i - 1), at(rest, i + 1)];
+    const [tx, ty] = [b[0] - a[0], b[1] - a[1]];
+    const len = Math.hypot(tx, ty);
+    return [-ty / len, tx / len];
+  });
+  return { width, height, rest, inward, path: toPath(rest), feel };
+}
+
+/** The Upcoming Events outline (fixed; stretched to its box). */
+export const EVENTS_OUTLINE = outline(SHAPE.width, SHAPE.height, superellipse(), JELLY);
+
+/** The flat bar's outline for a box of width × height px. */
+export const roundedRect = (width, height) =>
+  outline(width, height, roundedRectPoints(width, height, FLAT_CORNER), JELLY_FLAT);
 
 /** Below this (in units / units per frame) a point counts as settled. */
 const SETTLED = 0.02;
 
 /**
- * Runs the jelly on `path`. Pointer and touch input are read on `area`;
- * `box` is the blob's box, used to map screen pixels to viewBox units. The
+ * Runs the jelly for `shape` (an outline from above) on `path`. Pointer and
+ * touch input are read on `area`; `box` is the blob's box, used to map
+ * screen pixels to viewBox units. The
  * animation frame loop only runs while the pointer is near the edge or the
  * outline is still wobbling back — idle, it stops. Returns a cleanup.
  */
-export function attachJelly({ path, box, area }) {
+export function attachJelly({ path, box, area, shape }) {
+  const { rest: REST, inward: INWARD, path: REST_PATH, feel } = shape;
   const offset = REST.map(() => [0, 0]); // displacement from rest
   const velocity = REST.map(() => [0, 0]);
   let pointer = null; // [x, y] in viewBox units, or null
@@ -128,12 +181,11 @@ export function attachJelly({ path, box, area }) {
   let last = 0;
 
   const toView = (clientX, clientY) => {
-    // Per axis: the SVG is stretched to its box (preserveAspectRatio="none"),
-    // which is not always 11:10 (see DancerBlob's `flat`).
+    // Per axis: the SVG is stretched to its box (preserveAspectRatio="none").
     const rect = box.getBoundingClientRect();
     return [
-      ((clientX - rect.left) * SHAPE.width) / rect.width,
-      ((clientY - rect.top) * SHAPE.height) / rect.height,
+      ((clientX - rect.left) * shape.width) / rect.width,
+      ((clientY - rect.top) * shape.height) / rect.height,
     ];
   };
 
@@ -141,7 +193,7 @@ export function attachJelly({ path, box, area }) {
     // Frame-rate independent: `f` is the elapsed time in 60 fps frames.
     const f = last ? Math.min(3, (now - last) / (1000 / 60)) : 1;
     last = now;
-    const keep = JELLY.damping ** f;
+    const keep = feel.damping ** f;
     const before = offset.map(([x, y]) => [x, y]);
     let active = false;
 
@@ -152,8 +204,8 @@ export function attachJelly({ path, box, area }) {
       let ty = 0;
       if (pointer) {
         const dist = Math.hypot(REST[i][0] - pointer[0], REST[i][1] - pointer[1]);
-        if (dist < JELLY.radius) {
-          const strength = JELLY.push * (1 - dist / JELLY.radius) ** 2;
+        if (dist < feel.radius) {
+          const strength = feel.push * (1 - dist / feel.radius) ** 2;
           tx = INWARD[i][0] * strength;
           ty = INWARD[i][1] * strength;
           active = true;
@@ -165,16 +217,16 @@ export function attachJelly({ path, box, area }) {
       for (let k = 0; k < 2; k += 1) {
         const target = k === 0 ? tx : ty;
         const accel =
-          JELLY.stiffness * (target - before[i][k]) +
-          JELLY.coupling * (prev[k] + next[k] - 2 * before[i][k]);
+          feel.stiffness * (target - before[i][k]) +
+          feel.coupling * (prev[k] + next[k] - 2 * before[i][k]);
         velocity[i][k] = (velocity[i][k] + accel * f) * keep;
         offset[i][k] = before[i][k] + velocity[i][k] * f;
       }
 
       const size = Math.hypot(offset[i][0], offset[i][1]);
-      if (size > JELLY.maxDent) {
-        offset[i][0] *= JELLY.maxDent / size;
-        offset[i][1] *= JELLY.maxDent / size;
+      if (size > feel.maxDent) {
+        offset[i][0] *= feel.maxDent / size;
+        offset[i][1] *= feel.maxDent / size;
       }
       if (
         size > SETTLED ||
@@ -246,13 +298,13 @@ export function attachJelly({ path, box, area }) {
   };
 }
 
-/** Hook form of attachJelly, active while `enabled`. */
-export function useJelly({ pathRef, boxRef, areaRef, enabled }) {
+/** Hook form of attachJelly, active while `enabled` and `shape` is set. */
+export function useJelly({ pathRef, boxRef, areaRef, shape, enabled }) {
   useEffect(() => {
     const path = pathRef.current;
     const box = boxRef.current;
     const area = areaRef.current;
-    if (!enabled || !path || !box || !area) return undefined;
-    return attachJelly({ path, box, area });
-  }, [pathRef, boxRef, areaRef, enabled]);
+    if (!enabled || !shape || !path || !box || !area) return undefined;
+    return attachJelly({ path, box, area, shape });
+  }, [pathRef, boxRef, areaRef, shape, enabled]);
 }
