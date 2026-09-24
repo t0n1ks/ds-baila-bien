@@ -136,7 +136,8 @@ export default function TrialForm() {
           <DancerBlob
             wordmark={t.hero.wordmark}
             media="(max-width: 767.98px)"
-            className="relative mx-auto mt-10 w-[min(100%,17rem)] md:hidden"
+            flat
+            className="relative mx-auto mt-8 w-[min(100%,21rem)] md:hidden"
           />
         </div>
 

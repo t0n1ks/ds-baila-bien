@@ -128,9 +128,13 @@ export function attachJelly({ path, box, area }) {
   let last = 0;
 
   const toView = (clientX, clientY) => {
+    // Per axis: the SVG is stretched to its box (preserveAspectRatio="none"),
+    // which is not always 11:10 (see DancerBlob's `flat`).
     const rect = box.getBoundingClientRect();
-    const scale = SHAPE.width / rect.width;
-    return [(clientX - rect.left) * scale, (clientY - rect.top) * scale];
+    return [
+      ((clientX - rect.left) * SHAPE.width) / rect.width,
+      ((clientY - rect.top) * SHAPE.height) / rect.height,
+    ];
   };
 
   const step = (now) => {

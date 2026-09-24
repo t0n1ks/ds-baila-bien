@@ -32,7 +32,7 @@ export default function UpcomingEvent() {
         </Reveal>
 
         {/* Phones: the card alone, as before. md+: flyer left, decorative
-            dancer visual on the right (pushed to the far right on desktop). */}
+            dancer visual on the right, at the page's right edge. */}
         <div className="mt-10 grid gap-10 md:grid-cols-2 md:gap-x-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-x-20">
           <Reveal delay={90} className="w-full min-[480px]:w-[72%] sm:w-[60%] md:w-full">
             <MediaFrame

@@ -166,11 +166,12 @@
     --teaser-height: 8rem;
   }
 
-  /* Desktop: the block is as wide as the blob will be (11:10 on the height
-     left under the text) and pushed to the right edge of its cell. If the
-     text wraps taller, the blob just comes out a bit smaller and stays
-     centred under it. */
-  @media (min-width: theme('screens.lg')) {
+  /* Tablet and desktop (the column only exists from md): the block is as
+     wide as the blob will be (11:10 on the height left under the text) and
+     pushed to the right edge of its cell. If the text wraps taller — e.g. on
+     a narrow portrait tablet — the blob just comes out a bit smaller and
+     stays centred under it. */
+  @media (min-width: theme('screens.md')) {
     .event-block {
       margin-left: auto;
       width: min(100cqw, calc((100cqh - var(--teaser-height)) * 1.1));
