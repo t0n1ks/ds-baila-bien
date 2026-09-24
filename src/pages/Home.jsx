@@ -3,6 +3,7 @@ import Classes from '../components/Classes.jsx';
 import Gallery from '../components/Gallery.jsx';
 import Hero from '../components/Hero.jsx';
 import InstagramBlock from '../components/InstagramBlock.jsx';
+import Levels from '../components/Levels.jsx';
 import Marquee from '../components/Marquee.jsx';
 import Prices from '../components/Prices.jsx';
 import TrialForm from '../components/TrialForm.jsx';
@@ -15,6 +16,7 @@ export default function Home() {
       <Marquee />
       <About />
       <Classes />
+      <Levels />
       <Prices />
       <UpcomingEvent />
       <Gallery />

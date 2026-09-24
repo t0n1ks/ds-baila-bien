@@ -96,8 +96,8 @@
       "Jeden Dienstag",
       "Kein Partner nötig",
       "Keine Vorkenntnisse",
-      "Bachata",
-      "Community"
+      "Mambo Workshops",
+      "Latin Party"
     ],
     "about": {
       "heading": "Über uns",
@@ -105,7 +105,7 @@
       "stats": [
         {
           "value": "3",
-          "label": "Niveaus — von Anfänger bis Fortgeschritten"
+          "label": "Level — von Beginner bis Improver"
         },
         {
           "value": "Di",
@@ -133,55 +133,71 @@
         },
         {
           "time": "19:00–20:10",
-          "label": "Anfänger / Grundlagen"
+          "label": "Beginner / Foundation"
         },
         {
           "time": "20:20–21:30",
-          "label": "Fortgeschrittene"
+          "label": "Improver"
         },
         {
           "time": "21:30–22:00",
           "label": "Práctica & Mingle"
         }
-      ],
-      "levelLegend": [
-        "Niveau 1 — für Anfänger",
-        "Niveau 2 — Grundlagen",
-        "Niveau 3 — für Fortgeschrittene"
+      ]
+    },
+    "levels": {
+      "heading": "Niveaus",
+      "items": [
+        {
+          "name": "Level 1",
+          "tag": "Beginner",
+          "text": "Der Einstieg in Salsa On1 – ganz ohne Vorkenntnisse und ohne Partner. Du lernst den Grundschritt, Timing zur Musik und die ersten Drehungen und Figuren im Paar, Schritt für Schritt und in entspannter Atmosphäre."
+        },
+        {
+          "name": "Level 2",
+          "tag": "Foundation",
+          "text": "Für alle, die den Grundschritt sicher beherrschen. Wir festigen Technik und Führen & Folgen, erweitern das Repertoire um neue Figuren und Kombinationen und arbeiten an einem sauberen, musikalischen Tanzstil."
+        },
+        {
+          "name": "Level 3",
+          "tag": "Improver",
+          "text": "Für erfahrene Tänzerinnen und Tänzer. Anspruchsvollere Kombinationen, Drehtechnik, Shines und Styling – mit Fokus auf Musikalität, Verbindung zum Partner und freies Tanzen auf der Social-Fläche."
+        }
       ]
     },
     "prices": {
       "heading": "Preise",
       "note": "Monatskurs · keine Verträge",
       "footnote": "*Studierendenpreis für unter 28 mit gültigem Ausweis.",
-      "levelColumn": "Niveau",
+      "levelColumn": "Level",
       "priceColumn": "Preis",
       "reducedColumn": "Ermäßigt*",
       "rows": [
         {
-          "level": "Niveau 1",
+          "level": "Level 1",
           "price": "35 €",
           "reduced": "30 €"
         },
         {
-          "level": "Niveau 2",
+          "level": "Level 2",
           "price": "40 €",
           "reduced": "35 €"
         },
         {
-          "level": "Niveau 3",
+          "level": "Level 3",
           "price": "45 €",
           "reduced": "40 €"
         },
         {
-          "level": "Niveau 2 & 3",
+          "level": "Level 2 & 3",
           "price": "60 €",
           "reduced": "55 €"
         }
       ],
       "notesHeading": "Wichtige Hinweise:",
       "notes": [
-        "Die Kurse laufen monatlich; verpasste Stunden ändern nichts am Preis.",
+        "Die Kurse laufen monatlich.",
+        "Verpasste Stunden ändern nichts am Preis.",
         "Für verpasste Termine gibt es keine Nachholstunden."
       ]
     },
@@ -250,7 +266,7 @@
         "name": "Name",
         "email": "E-Mail",
         "phone": "Telefon",
-        "level": "Niveau",
+        "level": "Level",
         "date": "Wunschtermin",
         "message": "Nachricht"
       },
@@ -258,9 +274,9 @@
       "levelPlaceholder": "Bitte wählen",
       "datePlaceholder": "Bitte wählen",
       "levelOptions": [
-        "Anfänger",
-        "Grundlagen",
-        "Fortgeschrittene"
+        "Beginner",
+        "Foundation",
+        "Improver"
       ],
       "consent": {
         "before": "Ich habe die",
@@ -412,8 +428,8 @@
       "Every Tuesday",
       "No partner needed",
       "No experience required",
-      "Bachata",
-      "Community"
+      "Mambo Workshops",
+      "Latin Party"
     ],
     "about": {
       "heading": "About us",
@@ -459,11 +475,26 @@
           "time": "21:30–22:00",
           "label": "Práctica & Mingle"
         }
-      ],
-      "levelLegend": [
-        "Level 1 — Beginner",
-        "Level 2 — Foundation",
-        "Level 3 — Improver"
+      ]
+    },
+    "levels": {
+      "heading": "Levels",
+      "items": [
+        {
+          "name": "Level 1",
+          "tag": "Beginner",
+          "text": "Your first steps in Salsa On1 – no experience and no partner needed. You learn the basic step, timing to the music and your first turns and partner figures, one step at a time in a relaxed atmosphere."
+        },
+        {
+          "name": "Level 2",
+          "tag": "Foundation",
+          "text": "For dancers who are comfortable with the basic step. We strengthen technique and lead & follow, add new figures and combinations to your repertoire and work towards a clean, musical dance style."
+        },
+        {
+          "name": "Level 3",
+          "tag": "Improver",
+          "text": "For experienced dancers. More demanding combinations, spin technique, shines and styling – with a focus on musicality, partner connection and dancing freely on the social floor."
+        }
       ]
     },
     "prices": {
@@ -497,7 +528,8 @@
       ],
       "notesHeading": "Important Notes:",
       "notes": [
-        "Courses are monthly; missed classes do not affect pricing.",
+        "Courses are monthly.",
+        "Missed classes do not affect pricing.",
         "No make-up classes for missed sessions."
       ]
     },

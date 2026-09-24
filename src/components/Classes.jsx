@@ -43,15 +43,6 @@ export default function Classes() {
               </li>
             ))}
           </ol>
-
-          <ul className="mt-6 flex flex-col gap-2 text-sm text-muted">
-            {t.classes.levelLegend.map((entry) => (
-              <li key={entry} className="flex items-center gap-2">
-                <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {entry}
-              </li>
-            ))}
-          </ul>
         </Reveal>
       </div>
     </section>

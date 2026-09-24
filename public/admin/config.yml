@@ -205,7 +205,19 @@ collections:
                     fields:
                       - { name: time, label: Zeit, widget: string }
                       - { name: label, label: Programm, widget: string }
-                  - { name: levelLegend, label: Level-Legende, widget: list, field: { name: entry, label: Eintrag, widget: string } }
+
+              - name: levels
+                label: Niveaus
+                widget: object
+                fields:
+                  - { name: heading, label: Überschrift, widget: string }
+                  - name: items
+                    label: Niveaus
+                    widget: list
+                    fields:
+                      - { name: name, label: 'Name (z. B. Level 1)', widget: string }
+                      - { name: tag, label: 'Kurzname (z. B. Beginner)', widget: string }
+                      - { name: text, label: Beschreibung, widget: text }
 
               - name: prices
                 label: Preise
@@ -446,7 +458,19 @@ collections:
                     fields:
                       - { name: time, label: Time, widget: string }
                       - { name: label, label: Programme, widget: string }
-                  - { name: levelLegend, label: Level legend, widget: list, field: { name: entry, label: Entry, widget: string } }
+
+              - name: levels
+                label: Levels
+                widget: object
+                fields:
+                  - { name: heading, label: Heading, widget: string }
+                  - name: items
+                    label: Levels
+                    widget: list
+                    fields:
+                      - { name: name, label: 'Name (e.g. Level 1)', widget: string }
+                      - { name: tag, label: 'Short name (e.g. Beginner)', widget: string }
+                      - { name: text, label: Description, widget: text }
 
               - name: prices
                 label: Prices
