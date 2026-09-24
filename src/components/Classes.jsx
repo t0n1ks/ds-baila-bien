@@ -4,8 +4,9 @@ import Reveal from './Reveal.jsx';
 export default function Classes() {
   const { t, settings } = useLanguage();
 
+  // Opens the tinted band that Levels closes: the two read as one group.
   return (
-    <section id="kurse" className="scroll-mt-24 border-y border-line bg-surface-2 py-20 sm:py-28">
+    <section id="kurse" className="scroll-mt-24 border-t border-line bg-surface-2 pb-10 pt-20 sm:pb-14 sm:pt-28">
       <div className="shell">
         <Reveal className="grid gap-8 md:grid-cols-[minmax(0,26rem)_1fr] md:gap-16">
           <div>
