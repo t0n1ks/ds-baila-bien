@@ -26,15 +26,13 @@ export const FORM_ENDPOINT = '[[FORM_ENDPOINT]]';
 export const WEB3FORMS_KEY = '[[FORM_KEY]]';
 
 /* ------------------------------------------------------------------ *
- * Contact placeholder
+ * Contact
  * ------------------------------------------------------------------ *
- * Impressum / Datenschutz carry the owner's real data now (content.json);
- * only the Datenschutz mail-processor token is still open there. While
- * this stays a placeholder, the trial form shows the ⚠️ pending notice.
+ * The public contact address, and where trial-form submissions go once
+ * the form is connected. The footer shows `settings.contactEmail` from
+ * content.json (editable in the CMS) — keep the two in step.
  */
-export const PLACEHOLDERS = {
-  CORPORATE_EMAIL: '[[CORPORATE_EMAIL]]',
-};
+export const CORPORATE_EMAIL = 'bailabien.mz.de@gmail.com';
 
 /** True while any [[PLACEHOLDER]] is still unfilled — drives the ⚠️ notices. */
 export const hasPendingDetails = (value) => /\[\[[^\]]+\]\]/.test(String(value ?? ''));

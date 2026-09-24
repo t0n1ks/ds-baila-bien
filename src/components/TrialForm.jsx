@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FORM_ENDPOINT, FORM_MODE, WEB3FORMS_KEY, hasPendingDetails, PLACEHOLDERS } from '../config.js';
+import { FORM_ENDPOINT, FORM_MODE, WEB3FORMS_KEY, hasPendingDetails } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import DancerBlob from './DancerBlob.jsx';
 import PendingNotice from './PendingNotice.jsx';
@@ -118,7 +118,10 @@ export default function TrialForm() {
     errors[field] ? { 'aria-invalid': true, 'aria-describedby': `${field}-error` } : {};
 
   const hint = ` (${t.form.optional})`;
-  const pending = hasPendingDetails(PLACEHOLDERS.CORPORATE_EMAIL);
+  // Temporary ⚠️ notice: shown while the form only stubs its delivery or the
+  // privacy policy still has an open [[…]] (the mail processor).
+  const pending =
+    FORM_MODE === 'stub' || t.legal.datenschutz.sections.some((section) => hasPendingDetails(section.body));
 
   return (
     <section id="anmelden" className="shell scroll-mt-24 py-20 sm:py-28">

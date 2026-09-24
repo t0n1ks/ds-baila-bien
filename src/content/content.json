@@ -3,7 +3,7 @@
     "brandName": "Baila Bien Mainz",
     "logoLight": "/images/logo-light-header.png",
     "logoDark": "/images/logo-dark-header.png",
-    "contactEmail": "[[CORPORATE_EMAIL]]",
+    "contactEmail": "bailabien.mz.de@gmail.com",
     "instagramUrl": "https://www.instagram.com/baila_bien.mz",
     "instagramHandle": "@baila_bien.mz",
     "instagramPosts": [
@@ -287,7 +287,7 @@
       "sending": "Wird gesendet …",
       "success": "Danke! Wir melden uns bei dir.",
       "successAgain": "Noch eine Anmeldung senden",
-      "error": "Das hat nicht geklappt. Bitte versuch es erneut oder schreib uns direkt an [[CORPORATE_EMAIL]].",
+      "error": "Das hat nicht geklappt. Bitte versuch es erneut oder schreib uns direkt an bailabien.mz.de@gmail.com.",
       "errors": {
         "name": "Bitte gib deinen Namen an.",
         "email": "Bitte gib eine gültige E-Mail-Adresse an.",
@@ -331,10 +331,6 @@
           {
             "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
             "body": "Anna Melnyk, Anschrift wie oben."
-          },
-          {
-            "heading": "EU-Streitschlichtung",
-            "body": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum."
           },
           {
             "heading": "Verbraucherstreitbeilegung / Universalschlichtungsstelle",
@@ -627,7 +623,7 @@
       "sending": "Sending …",
       "success": "Thanks! We'll get back to you.",
       "successAgain": "Send another request",
-      "error": "That didn't go through. Please try again or email us at [[CORPORATE_EMAIL]].",
+      "error": "That didn't go through. Please try again or email us at bailabien.mz.de@gmail.com.",
       "errors": {
         "name": "Please enter your name.",
         "email": "Please enter a valid email address.",
@@ -671,10 +667,6 @@
           {
             "heading": "Responsible for the content pursuant to § 18 (2) MStV",
             "body": "Anna Melnyk, address as above."
-          },
-          {
-            "heading": "EU dispute resolution",
-            "body": "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. Our email address can be found above in this legal notice."
           },
           {
             "heading": "Consumer dispute resolution / universal arbitration board",
