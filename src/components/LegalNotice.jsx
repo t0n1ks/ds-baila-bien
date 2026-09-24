@@ -1,26 +1,49 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import PendingNotice from './PendingNotice.jsx';
 
-const SPLIT_RE = /(\[\[[^\]]+\]\])/g;
-// Separate, non-global copy: a /g regex keeps lastIndex between .test() calls.
+// [[PLACEHOLDER]] tokens, web addresses and email addresses, in that order.
+// A trailing full stop or comma belongs to the sentence, not the address.
+const SPLIT_RE = /(\[\[[^\]]+\]\]|https?:\/\/[^\s]*[^\s.,;:)]|[^\s@(]+@[^\s@]+\.[^\s.,;:)]+)/g;
+// Separate, non-global copies: a /g regex keeps lastIndex between .test() calls.
 const IS_PLACEHOLDER = /^\[\[[^\]]+\]\]$/;
+const IS_URL = /^https?:\/\//;
+const IS_EMAIL = /^[^\s@]+@[^\s@]+$/;
 
-/** Renders [[PLACEHOLDER]] tokens as visibly unfinished, never as plain text. */
-function withPlaceholders(text) {
-  return text.split(SPLIT_RE).map((part, i) =>
-    IS_PLACEHOLDER.test(part) ? (
-      <mark
-        key={i}
-        className="rounded bg-accent/20 px-1 py-0.5 font-display text-[0.92em] font-semibold text-ink"
-      >
-        {part}
-      </mark>
-    ) : (
-      part
-    ),
-  );
+const LINK = 'break-words text-accent-text underline decoration-1 underline-offset-2';
+
+/**
+ * Renders [[PLACEHOLDER]] tokens as visibly unfinished, never as plain text,
+ * and makes web and email addresses clickable.
+ */
+function renderBody(text) {
+  return text.split(SPLIT_RE).map((part, i) => {
+    if (IS_PLACEHOLDER.test(part)) {
+      return (
+        <mark
+          key={i}
+          className="rounded bg-accent/20 px-1 py-0.5 font-display text-[0.92em] font-semibold text-ink"
+        >
+          ⚠️ {part}
+        </mark>
+      );
+    }
+    if (IS_URL.test(part)) {
+      return (
+        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className={LINK}>
+          {part}
+        </a>
+      );
+    }
+    if (IS_EMAIL.test(part)) {
+      return (
+        <a key={i} href={`mailto:${part}`} className={LINK}>
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
 }
 
 /** Shared frame for Impressum and Datenschutzerklärung. */
@@ -44,14 +67,13 @@ export default function LegalNotice({ doc }) {
       </Link>
 
       <h1 className="mt-8 font-display text-section font-bold text-ink">{doc.title}</h1>
-      <PendingNotice className="mt-8" />
       <p className="mt-4 text-sm text-muted">{t.legalUi.bindingNote}</p>
 
       <div className="prose-legal mt-10">
         {doc.sections.map((section) => (
           <section key={section.heading}>
             <h2>{section.heading}</h2>
-            <p className="whitespace-pre-line">{withPlaceholders(section.body)}</p>
+            <p className="whitespace-pre-line">{renderBody(section.body)}</p>
           </section>
         ))}
       </div>

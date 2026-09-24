@@ -26,21 +26,14 @@ export const FORM_ENDPOINT = '[[FORM_ENDPOINT]]';
 export const WEB3FORMS_KEY = '[[FORM_KEY]]';
 
 /* ------------------------------------------------------------------ *
- * Legal / contact placeholders (§ 5 DDG, DSGVO)
- * ------------------------------------------------------------------ */
+ * Contact placeholder
+ * ------------------------------------------------------------------ *
+ * Impressum / Datenschutz carry the owner's real data now (content.json);
+ * only the Datenschutz mail-processor token is still open there. While
+ * this stays a placeholder, the trial form shows the ⚠️ pending notice.
+ */
 export const PLACEHOLDERS = {
   CORPORATE_EMAIL: '[[CORPORATE_EMAIL]]',
-  LEGAL_NAME: '[[LEGAL_NAME]]',
-  LEGAL_FORM: '[[LEGAL_FORM]]',
-  VERTRETUNGSBERECHTIGTE_PERSON: '[[VERTRETUNGSBERECHTIGTE_PERSON]]',
-  STREET: '[[STREET]]',
-  ZIP_CITY: '[[ZIP_CITY]]',
-  PLZ: '[[PLZ]]',
-  PHONE: '[[PHONE]]',
-  IMPRESSUM_EMAIL: '[[IMPRESSUM_EMAIL]]',
-  VAT_ID: '[[VAT_ID]]',
-  HRB: '[[HRB]]',
-  AMTSGERICHT: '[[AMTSGERICHT]]',
 };
 
 /** True while any [[PLACEHOLDER]] is still unfilled — drives the ⚠️ notices. */

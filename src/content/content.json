@@ -318,19 +318,27 @@
         "sections": [
           {
             "heading": "Angaben gemäß § 5 DDG",
-            "body": "[[LEGAL_NAME]] (z. B. Baila Bien Mainz – [[LEGAL_FORM]])\n[[STREET]]\n[[ZIP_CITY]]\nDeutschland\n\nVertreten durch: [[VERTRETUNGSBERECHTIGTE_PERSON]]"
+            "body": "Anna Melnyk\nMainzer Str. 106a\n55239 Gau-Odernheim\nDeutschland"
           },
           {
             "heading": "Kontakt",
-            "body": "Telefon: [[PHONE]]\nE-Mail: [[IMPRESSUM_EMAIL]]"
+            "body": "Telefon: +49 170 9526964\nE-Mail: bailabien.mz.de@gmail.com"
           },
           {
-            "heading": "Umsatzsteuer und Register",
-            "body": "[optional, wenn vorhanden]\nUmsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [[VAT_ID]]\nRegistereintrag: Handelsregister [[HRB]], Amtsgericht [[AMTSGERICHT]]\n\n[optional, falls Kleinunternehmer]\nGemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen."
+            "heading": "Umsatzsteuer",
+            "body": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen."
           },
           {
             "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
-            "body": "[[VERTRETUNGSBERECHTIGTE_PERSON]], Anschrift wie oben."
+            "body": "Anna Melnyk, Anschrift wie oben."
+          },
+          {
+            "heading": "EU-Streitschlichtung",
+            "body": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum."
+          },
+          {
+            "heading": "Verbraucherstreitbeilegung / Universalschlichtungsstelle",
+            "body": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
           }
         ]
       },
@@ -339,15 +347,15 @@
         "sections": [
           {
             "heading": "1. Verantwortlicher",
-            "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n[[LEGAL_NAME]], [[STREET]], [[ZIP_CITY]], E-Mail: [[IMPRESSUM_EMAIL]]."
+            "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\nAnna Melnyk, Mainzer Str. 106a, 55239 Gau-Odernheim, E-Mail: bailabien.mz.de@gmail.com."
           },
           {
             "heading": "2. Hosting",
-            "body": "Diese Website wird bei [[HOSTER: GitHub Pages / Vercel Inc.]] gehostet. Beim Aufruf werden technisch notwendige Daten (u. a. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource) in Server-Logs verarbeitet. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren, stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO).\n\nHinweis: Der Anbieter kann Daten in die USA übermitteln; Grundlage sind die Standardvertragsklauseln bzw. eine Zertifizierung nach dem EU-US Data Privacy Framework. [Für den Produktivbetrieb EU-Hosting oder DPF-zertifizierten Anbieter prüfen und hier konkret benennen.]"
+            "body": "Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., USA. Beim Aufruf werden technisch notwendige Daten (u. a. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource) in Server-Logs verarbeitet. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren, stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO).\n\nHinweis: Dabei können Daten in die USA übermittelt werden; Grundlage sind die EU-Standardvertragsklauseln bzw. eine Zertifizierung nach dem EU-US Data Privacy Framework."
           },
           {
             "heading": "3. Kontakt- und Anmeldeformular",
-            "body": "Wenn du dich über das Formular zu einer Probestunde anmeldest, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail, ggf. Telefon, Level, Wunschtermin, Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie die Anbahnung/Erfüllung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO). Zur Zustellung nutzen wir [[FORM/MAIL-DIENSTLEISTER, z. B. Brevo (Sendinblue), Frankreich]] als Auftragsverarbeiter auf Grundlage eines Auftragsverarbeitungsvertrags (Art. 28 DSGVO). Wir speichern die Daten nur so lange, wie es zur Bearbeitung erforderlich ist, und löschen sie anschließend, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen."
+            "body": "Wenn du dich über das Formular zu einer Probestunde anmeldest, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail, ggf. Telefon, Level, Wunschtermin, Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie die Anbahnung/Erfüllung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO). Zur Zustellung nutzen wir [[MAIL-DIENSTLEISTER – TODO: eintragen, sobald das Formular angebunden ist]] als Auftragsverarbeiter auf Grundlage eines Auftragsverarbeitungsvertrags (Art. 28 DSGVO). Wir speichern die Daten nur so lange, wie es zur Bearbeitung erforderlich ist, und löschen sie anschließend, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen."
           },
           {
             "heading": "4. Schriftarten",
@@ -359,7 +367,7 @@
           },
           {
             "heading": "6. Deine Rechte",
-            "body": "Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu an [[IMPRESSUM_EMAIL]]."
+            "body": "Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu an bailabien.mz.de@gmail.com."
           },
           {
             "heading": "7. Beschwerderecht",
@@ -650,19 +658,27 @@
         "sections": [
           {
             "heading": "Information pursuant to § 5 DDG",
-            "body": "[[LEGAL_NAME]] (e.g. Baila Bien Mainz – [[LEGAL_FORM]])\n[[STREET]]\n[[ZIP_CITY]]\nGermany\n\nRepresented by: [[VERTRETUNGSBERECHTIGTE_PERSON]]"
+            "body": "Anna Melnyk\nMainzer Str. 106a\n55239 Gau-Odernheim\nGermany"
           },
           {
             "heading": "Contact",
-            "body": "Phone: [[PHONE]]\nEmail: [[IMPRESSUM_EMAIL]]"
+            "body": "Phone: +49 170 9526964\nEmail: bailabien.mz.de@gmail.com"
           },
           {
-            "heading": "VAT and commercial register",
-            "body": "[optional, if applicable]\nVAT identification number pursuant to § 27a UStG: [[VAT_ID]]\nRegister entry: commercial register [[HRB]], local court [[AMTSGERICHT]]\n\n[optional, if small-business scheme applies]\nPursuant to § 19 UStG no VAT is charged or shown."
+            "heading": "VAT",
+            "body": "Pursuant to § 19 UStG (small business scheme), no VAT is charged or shown."
           },
           {
             "heading": "Responsible for the content pursuant to § 18 (2) MStV",
-            "body": "[[VERTRETUNGSBERECHTIGTE_PERSON]], address as above."
+            "body": "Anna Melnyk, address as above."
+          },
+          {
+            "heading": "EU dispute resolution",
+            "body": "The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. Our email address can be found above in this legal notice."
+          },
+          {
+            "heading": "Consumer dispute resolution / universal arbitration board",
+            "body": "We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board."
           }
         ]
       },
@@ -671,15 +687,15 @@
         "sections": [
           {
             "heading": "1. Controller",
-            "body": "The controller for the data processing on this website is:\n[[LEGAL_NAME]], [[STREET]], [[ZIP_CITY]], email: [[IMPRESSUM_EMAIL]]."
+            "body": "The controller for the data processing on this website is:\nAnna Melnyk, Mainzer Str. 106a, 55239 Gau-Odernheim, Germany, email: bailabien.mz.de@gmail.com."
           },
           {
             "heading": "2. Hosting",
-            "body": "This website is hosted by [[HOSTER: GitHub Pages / Vercel Inc.]]. When the site is accessed, technically necessary data (including IP address, date and time, requested resource) is processed in server logs. The legal basis is our legitimate interest in secure, stable operation (Art. 6 (1) (f) GDPR).\n\nPlease note: the provider may transfer data to the USA; this is based on the standard contractual clauses or on a certification under the EU-US Data Privacy Framework. [Before going live, review EU hosting or a DPF-certified provider and name it explicitly here.]"
+            "body": "This website is hosted on GitHub Pages, a service of GitHub, Inc., USA. When the site is accessed, technically necessary data (including IP address, date and time, requested resource) is processed in server logs. The legal basis is our legitimate interest in secure, stable operation (Art. 6 (1) (f) GDPR).\n\nPlease note: data may be transferred to the USA in the process; this is based on the EU standard contractual clauses or on a certification under the EU-US Data Privacy Framework."
           },
           {
             "heading": "3. Contact and sign-up form",
-            "body": "When you sign up for a trial class through the form, we process the data you provide (name, email, phone if given, level, preferred date, message) in order to handle your request. The legal basis is your consent (Art. 6 (1) (a) GDPR) as well as steps taken prior to entering into a contract and the performance of that contract (Art. 6 (1) (b) GDPR). For delivery we use [[FORM/MAIL-DIENSTLEISTER, z. B. Brevo (Sendinblue), Frankreich]] as a processor on the basis of a data processing agreement (Art. 28 GDPR). We store the data only for as long as is necessary to handle your request and delete it afterwards, unless statutory retention obligations apply. You can withdraw your consent at any time with effect for the future."
+            "body": "When you sign up for a trial class through the form, we process the data you provide (name, email, phone if given, level, preferred date, message) in order to handle your request. The legal basis is your consent (Art. 6 (1) (a) GDPR) as well as steps taken prior to entering into a contract and the performance of that contract (Art. 6 (1) (b) GDPR). For delivery we use [[MAIL PROCESSOR – TODO: fill in once the form is connected]] as a processor on the basis of a data processing agreement (Art. 28 GDPR). We store the data only for as long as is necessary to handle your request and delete it afterwards, unless statutory retention obligations apply. You can withdraw your consent at any time with effect for the future."
           },
           {
             "heading": "4. Fonts",
@@ -691,7 +707,7 @@
           },
           {
             "heading": "6. Your rights",
-            "body": "You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and objection (Art. 21 GDPR). To exercise them, contact [[IMPRESSUM_EMAIL]]."
+            "body": "You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and objection (Art. 21 GDPR). To exercise them, contact bailabien.mz.de@gmail.com."
           },
           {
             "heading": "7. Right to lodge a complaint",
