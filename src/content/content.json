@@ -150,19 +150,48 @@
       "heading": "Niveaus",
       "items": [
         {
-          "name": "Level 1",
-          "tag": "Beginner",
-          "text": "Der Einstieg in Salsa On1 – ganz ohne Vorkenntnisse und ohne Partner. Du lernst den Grundschritt, Timing zur Musik und die ersten Drehungen und Figuren im Paar, Schritt für Schritt und in entspannter Atmosphäre."
+          "title": "Level 1 — Beginner",
+          "intro": "Perfekt für Teilnehmer mit wenig oder keiner Salsa-Erfahrung.",
+          "focus": "",
+          "listHeading": "Du lernst:",
+          "items": [
+            "Basic Salsa Steps",
+            "Timing und Rhythmus",
+            "Grundlegende Drehungen",
+            "Partner Connection",
+            "Leading und Following"
+          ],
+          "note": "Du brauchst weder einen Tanzpartner noch Vorkenntnisse. Während des Kurses werden die Partner regelmäßig gewechselt."
         },
         {
-          "name": "Level 2",
-          "tag": "Foundation",
-          "text": "Für alle, die den Grundschritt sicher beherrschen. Wir festigen Technik und Führen & Folgen, erweitern das Repertoire um neue Figuren und Kombinationen und arbeiten an einem sauberen, musikalischen Tanzstil."
+          "title": "Level 2 — Foundation",
+          "intro": "Für Teilnehmer, die bereits die Grundschritte, einfache Drehungen und den Cross Body Lead kennen.",
+          "focus": "In diesem Level geht es darum, eine solide Basis aufzubauen und einzelne Figuren flüssig miteinander zu verbinden.",
+          "listHeading": "Du arbeitest an:",
+          "items": [
+            "Cross Body Lead Variationen",
+            "Inside und Outside Turns",
+            "Grundlegender Spin-Technik",
+            "Footwork und Koordination",
+            "Besserem Leading und Following",
+            "Fließenden Übergängen zwischen den Figuren"
+          ],
+          "note": ""
         },
         {
-          "name": "Level 3",
-          "tag": "Improver",
-          "text": "Für erfahrene Tänzerinnen und Tänzer. Anspruchsvollere Kombinationen, Drehtechnik, Shines und Styling – mit Fokus auf Musikalität, Verbindung zum Partner und freies Tanzen auf der Social-Fläche."
+          "title": "Level 3 — Improver",
+          "intro": "Für Tänzer, die sich mit den Grundlagen sicher fühlen und ihr Social Dancing verbessern möchten.",
+          "focus": "Der Fokus liegt auf Technik, Partner Connection und anspruchsvolleren Kombinationen.",
+          "listHeading": "Du arbeitest an:",
+          "items": [
+            "Komplexeren Turn Patterns",
+            "Leading- und Following-Technik",
+            "Partner Connection und Kommunikation",
+            "Spins und Balance",
+            "Timing und Musicality",
+            "Fließendem und kontrolliertem Social Dancing"
+          ],
+          "note": ""
         }
       ]
     },
@@ -487,19 +516,48 @@
       "heading": "Levels",
       "items": [
         {
-          "name": "Level 1",
-          "tag": "Beginner",
-          "text": "Your first steps in Salsa On1 – no experience and no partner needed. You learn the basic step, timing to the music and your first turns and partner figures, one step at a time in a relaxed atmosphere."
+          "title": "Level 1 — Beginner",
+          "intro": "Perfect for students with little or no salsa experience.",
+          "focus": "",
+          "listHeading": "You will learn:",
+          "items": [
+            "Basic Salsa Steps",
+            "Timing and Rhythm",
+            "Basic Turns",
+            "Partner Connection",
+            "Leading and Following"
+          ],
+          "note": "No partner or previous experience is required. Students rotate partners during the class."
         },
         {
-          "name": "Level 2",
-          "tag": "Foundation",
-          "text": "For dancers who are comfortable with the basic step. We strengthen technique and lead & follow, add new figures and combinations to your repertoire and work towards a clean, musical dance style."
+          "title": "Level 2 — Foundation",
+          "intro": "For students who already know the basic steps, basic turns, and Cross Body Lead.",
+          "focus": "This level focuses on building a strong foundation and connecting moves into smooth combinations.",
+          "listHeading": "You will work on:",
+          "items": [
+            "Cross Body Lead variations",
+            "Inside and Outside Turns",
+            "Basic Spin Technique",
+            "Footwork and Coordination",
+            "Better Leading and Following",
+            "Smooth Transitions between moves"
+          ],
+          "note": ""
         },
         {
-          "name": "Level 3",
-          "tag": "Improver",
-          "text": "For experienced dancers. More demanding combinations, spin technique, shines and styling – with a focus on musicality, partner connection and dancing freely on the social floor."
+          "title": "Level 3 — Improver",
+          "intro": "For dancers who are comfortable with the fundamentals and want to improve their social dancing.",
+          "focus": "The focus is on technique, partner connection, and more advanced combinations.",
+          "listHeading": "You will work on:",
+          "items": [
+            "More Complex Turn Patterns",
+            "Leading and Following Technique",
+            "Partner Connection and Communication",
+            "Spins and Balance",
+            "Timing and Musicality",
+            "Smooth and Controlled Social Dancing"
+          ],
+          "note": ""
         }
       ]
     },

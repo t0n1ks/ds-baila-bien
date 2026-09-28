@@ -6,6 +6,7 @@
  *  2. every key in content.json must be declared in the Sveltia schema,
  *     because the CMS strips whatever it does not know about on save.
  *  3. the gallery lists must line up index by index across locales.
+ *  4. the levels must line up too: same count, titles, bullets per level.
  */
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -68,6 +69,26 @@ if (deItems.length !== enItems.length) {
 deItems.forEach((item, i) => {
   if (enItems[i] && enItems[i].src !== item.src) {
     problems.push(`gallery[${i}] src differs: "${item.src}" vs "${enItems[i].src}"`);
+  }
+});
+
+// 4. levels alignment: same cards, same number of bullets per card
+const deLevels = content.de.levels.items;
+const enLevels = content.en.levels.items;
+if (deLevels.length !== enLevels.length) {
+  problems.push(`levels length differs: de=${deLevels.length} en=${enLevels.length}`);
+}
+deLevels.forEach((level, i) => {
+  const other = enLevels[i];
+  if (!other) return;
+  if (level.title !== other.title) {
+    problems.push(`levels[${i}] title differs (names stay English): "${level.title}" vs "${other.title}"`);
+  }
+  if ((level.items || []).length !== (other.items || []).length) {
+    problems.push(`levels[${i}] bullet count differs: de=${(level.items || []).length} en=${(other.items || []).length}`);
+  }
+  if (Boolean(level.focus) !== Boolean(other.focus) || Boolean(level.note) !== Boolean(other.note)) {
+    problems.push(`levels[${i}] optional focus/note filled in one locale only`);
   }
 });
 

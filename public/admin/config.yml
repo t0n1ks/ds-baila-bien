@@ -215,9 +215,12 @@ collections:
                     label: Niveaus
                     widget: list
                     fields:
-                      - { name: name, label: 'Name (z. B. Level 1)', widget: string }
-                      - { name: tag, label: 'Kurzname (z. B. Beginner)', widget: string }
-                      - { name: text, label: Beschreibung, widget: text }
+                      - { name: title, label: Titel, widget: string, hint: 'z. B. „Level 1 — Beginner“ – der Teil nach dem Gedankenstrich erscheint orange' }
+                      - { name: intro, label: Einleitung, widget: text }
+                      - { name: focus, label: Schwerpunkt (2. Absatz), widget: text, required: false, hint: 'Optional – leer lassen zum Ausblenden' }
+                      - { name: listHeading, label: 'Überschrift der Liste', widget: string, hint: 'z. B. „Du lernst:“' }
+                      - { name: items, label: Stichpunkte, widget: list, field: { name: item, label: Stichpunkt, widget: string }, hint: 'Stichpunkte – zum Sortieren ziehen' }
+                      - { name: note, label: Schlussbemerkung, widget: text, required: false, hint: 'Optional – leer lassen zum Ausblenden' }
 
               - name: prices
                 label: Preise
@@ -468,9 +471,12 @@ collections:
                     label: Levels
                     widget: list
                     fields:
-                      - { name: name, label: 'Name (e.g. Level 1)', widget: string }
-                      - { name: tag, label: 'Short name (e.g. Beginner)', widget: string }
-                      - { name: text, label: Description, widget: text }
+                      - { name: title, label: Title, widget: string, hint: 'e.g. "Level 1 — Beginner" – the part after the dash is shown in orange' }
+                      - { name: intro, label: Intro, widget: text }
+                      - { name: focus, label: Focus (2nd paragraph), widget: text, required: false, hint: 'Optional – leave empty to hide' }
+                      - { name: listHeading, label: List heading, widget: string, hint: 'e.g. "You will learn:"' }
+                      - { name: items, label: Bullet points, widget: list, field: { name: item, label: Bullet point, widget: string }, hint: 'Bullet points – drag to reorder' }
+                      - { name: note, label: Closing note, widget: text, required: false, hint: 'Optional – leave empty to hide' }
 
               - name: prices
                 label: Prices
