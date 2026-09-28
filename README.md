@@ -55,8 +55,8 @@ drift apart.
 Everything written as `[[PLACEHOLDER]]` is deliberately unset and rendered with a
 visible ⚠️ marker. Still open:
 
-- `src/config.js`: `[[FORM_ENDPOINT]]` / `[[FORM_KEY]]` — form delivery (see
-  *The trial form* below)
+- `src/config.js`: `[[FORM_ENDPOINT]]` — becomes `/api/trial` after the
+  Vercel move (see *The trial form* below)
 - Datenschutz §3 in `src/content/de.json` / `en.json`: `[[MAIL-DIENSTLEISTER …]]` /
   `[[MAIL PROCESSOR …]]` — the form's mail processor. While it is open, the
   trial form shows the ⚠️ "Angaben ausstehend" notice.
@@ -69,10 +69,22 @@ reviewed by a lawyer before launch.
 ## The trial form
 
 `FORM_MODE = 'stub'` in `src/config.js`: the form validates and shows the
-success state, but nothing is sent anywhere. To switch on real delivery, change
-`FORM_MODE`/`FORM_ENDPOINT` in that one file — see the comments there for the
-Web3Forms (test) and Vercel + Brevo (production) variants. Whichever provider
-goes live needs a DPA and must be named in Datenschutz §3.
+success state, but nothing is sent anywhere.
+
+Real delivery comes after the move to Vercel, and there is exactly one route:
+
+```
+browser → POST /api/trial (Vercel serverless function) → Brevo API → our inbox
+```
+
+- The **Brevo API key goes only into Vercel Environment Variables** (Project →
+  Settings → Environment Variables) and is read server-side inside
+  `/api/trial`. Never put it in `src/`, in `src/config.js`, or in a `VITE_*`
+  variable — everything there ends up in the public JavaScript bundle.
+- Then set `FORM_MODE = 'endpoint'` and `FORM_ENDPOINT = '/api/trial'` in
+  `src/config.js`. The browser only sends the form values, never a key.
+- Before launch: sign Brevo's DPA (Auftragsverarbeitungsvertrag) and name Brevo
+  in Datenschutz §3, replacing the `[[MAIL-DIENSTLEISTER …]]` placeholder.
 
 ## Privacy decisions baked in
 
@@ -102,5 +114,5 @@ One-time setup: repo → *Settings* → *Pages* → *Source: GitHub Actions*.
 The router is `HashRouter` because Pages has no server rewrites, and
 `vite.config.js` sets `base: '/ds-baila-bien/'`. On a later move to Vercel:
 set `base` to `'/'`, swap `HashRouter` for `BrowserRouter` (`vercel.json` with
-the SPA rewrites is already in the repo), and point `FORM_ENDPOINT` at
-`/api/trial`.
+the SPA rewrites is already in the repo), then set up the form route described
+in *The trial form*.

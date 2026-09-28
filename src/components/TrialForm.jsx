@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FORM_ENDPOINT, FORM_MODE, WEB3FORMS_KEY, hasPendingDetails } from '../config.js';
+import { FORM_ENDPOINT, FORM_MODE, hasPendingDetails } from '../config.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import DancerBlob from './DancerBlob.jsx';
 import PendingNotice from './PendingNotice.jsx';
@@ -30,12 +30,11 @@ async function deliver(values) {
     return;
   }
 
+  // Our own serverless function (/api/trial); it holds the mail-service key.
   const response = await fetch(FORM_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(
-      FORM_ENDPOINT.includes('web3forms') ? { access_key: WEB3FORMS_KEY, ...values } : values,
-    ),
+    body: JSON.stringify(values),
   });
   if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 }

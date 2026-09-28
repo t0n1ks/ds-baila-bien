@@ -7,23 +7,24 @@
 /* ------------------------------------------------------------------ *
  * Form delivery
  * ------------------------------------------------------------------ *
- * MVP: no real delivery. The form validates, shows loading/success and
- * logs the payload. Nothing leaves the browser.
+ * Now (GitHub Pages): FORM_MODE = 'stub'. The form validates, shows
+ * loading/success and logs the payload. Nothing leaves the browser.
  *
- * Phase 1 (test): set FORM_MODE = 'endpoint' and FORM_ENDPOINT to a
- *   form-to-email service, e.g. Web3Forms:
- *     FORM_ENDPOINT = 'https://api.web3forms.com/submit'
- *     WEB3FORMS_KEY = '<real key>'
- *   TODO prod: sign a DPA (Auftragsverarbeitungsvertrag) with that
- *   provider and name it in the Datenschutz "Kontaktformular" section.
- *
- * Phase 2 (production, after the move to Vercel): FORM_MODE = 'endpoint'
- *   and FORM_ENDPOINT = '/api/trial' (serverless -> Brevo). The access
- *   key is dropped; secrets live in Vercel env vars only.
+ * After the move to Vercel — the only supported route:
+ *   browser → POST /api/trial (our own Vercel serverless function)
+ *           → Brevo transactional e-mail API → CORPORATE_EMAIL
+ *   - The Brevo API key lives ONLY in Vercel → Project → Settings →
+ *     Environment Variables and is read server-side (process.env) inside
+ *     /api/trial. Never put it in this file, anywhere in src/, or in a
+ *     VITE_* variable — all of that ships in the public bundle.
+ *   - Then set FORM_MODE = 'endpoint' and FORM_ENDPOINT = '/api/trial'.
+ *     The browser only ever sends the form values, no key.
+ *   - Before launch: sign Brevo's DPA (Auftragsverarbeitungsvertrag) and
+ *     name Brevo in Datenschutz §3 (replaces the [[MAIL-DIENSTLEISTER]]
+ *     placeholder, which also clears the ⚠️ notice on the form).
  */
 export const FORM_MODE = 'stub'; // 'stub' | 'endpoint'
-export const FORM_ENDPOINT = '[[FORM_ENDPOINT]]';
-export const WEB3FORMS_KEY = '[[FORM_KEY]]';
+export const FORM_ENDPOINT = '[[FORM_ENDPOINT]]'; // → '/api/trial' after the Vercel move
 
 /* ------------------------------------------------------------------ *
  * Contact
