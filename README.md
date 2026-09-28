@@ -53,14 +53,15 @@ drift apart.
 ## Still to fill in
 
 Everything written as `[[PLACEHOLDER]]` is deliberately unset and rendered with a
-visible ⚠️ marker. Collected in `src/config.js` and in `src/content/de.json` / `en.json`:
+visible ⚠️ marker. Still open:
 
-- `[[CORPORATE_EMAIL]]` — inbox for trial-class requests
-- `[[PLZ]]` — postcode of the ROXY venue
-- Impressum per §5 DDG: `[[LEGAL_NAME]]`, `[[LEGAL_FORM]]`, `[[STREET]]`,
-  `[[ZIP_CITY]]`, `[[PHONE]]`, `[[IMPRESSUM_EMAIL]]`,
-  `[[VERTRETUNGSBERECHTIGTE_PERSON]]`, plus `[[VAT_ID]]` / `[[HRB]]` /
-  `[[AMTSGERICHT]]` if applicable
+- `src/config.js`: `[[FORM_ENDPOINT]]` / `[[FORM_KEY]]` — form delivery (see
+  *The trial form* below)
+- Datenschutz §3 in `src/content/de.json` / `en.json`: `[[MAIL-DIENSTLEISTER …]]` /
+  `[[MAIL PROCESSOR …]]` — the form's mail processor. While it is open, the
+  trial form shows the ⚠️ "Angaben ausstehend" notice.
+
+(Contact e-mail, venue address and the Impressum details are filled in.)
 
 The Impressum and Datenschutzerklärung are working templates and must be
 reviewed by a lawyer before launch.

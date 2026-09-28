@@ -25,3 +25,12 @@ dist-ssr
 
 # Claude Code local settings
 .claude/
+
+# Secrets and local environment — never commit (keys go into Vercel env vars)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+.vercel
