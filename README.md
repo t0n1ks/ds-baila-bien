@@ -5,14 +5,26 @@ to GitHub Pages: **https://t0n1ks.github.io/ds-baila-bien/**
 
 ## Editing the content (no code)
 
-All text and images live in **`src/content/content.json`**. Nothing is
-hardcoded in the components.
+All text and images live in **`src/content/`**, one file per admin section.
+Nothing is hardcoded in the components.
+
+| File | Admin section | Holds |
+|---|---|---|
+| `gallery.json` | Galerie | gallery media (once) + caption `{ de, en }` per item |
+| `events.json` | Events | upcoming-event flyer (once) + caption `{ de, en }` |
+| `instagram.json` | Instagram | profile link/handle + post cards (once) + caption `{ de, en }` |
+| `de.json` | Deutsch | every other German text, legal pages included |
+| `en.json` | English | the same structure in English |
+| `site.json` | Einstellungen | brand name, logos, contact e-mail, maps link, default theme |
+
+`src/content/assemble.js` combines them into the per-language view the
+components read.
 
 **Option A — GitHub web UI (always works).**
-Open [`src/content/content.json`](https://github.com/t0n1ks/ds-baila-bien/blob/main/src/content/content.json)
+Open the file under [`src/content/`](https://github.com/t0n1ks/ds-baila-bien/tree/main/src/content)
 → pencil icon → edit → *Commit changes*. Photos and videos go into
 `public/images/uploads/` (*Add file → Upload files*), then reference them from
-the `gallery.items` list as `images/uploads/<filename>`.
+`gallery.json` as `/images/uploads/<filename>`.
 
 **Option B — the admin UI at `/admin/`.**
 Open https://t0n1ks.github.io/ds-baila-bien/admin/ and choose
@@ -26,21 +38,22 @@ Worker, create a GitHub OAuth App, and add `base_url: <worker url>` under
 Either way: saving commits to `main`, GitHub Actions rebuilds, and the change is
 live in 1–2 minutes.
 
-> If you add a new key to `content.json`, also declare it in
+> If you add a new key to a content file, also declare it in
 > `public/admin/config.yml` — the CMS strips keys it does not know about.
-> `npm run check:content` verifies exactly that, plus DE/EN key parity and
-> that the two gallery lists still line up.
+> `npm run check:content` verifies exactly that, plus DE/EN key and list-length
+> parity, identical Deutsch/English field lists, and paired media captions.
+> `npm run check:media` lists uploads nothing references (read-only).
 
-The `de` and `en` blocks hold all translated copy, including the Impressum and
+`de.json` and `en.json` hold all translated copy, including the Impressum and
 the Datenschutzerklärung. **The German version is the legally binding one** —
-the English pages are a courtesy translation and say so at the top. Values that
-are the same in both languages (brand name, links, Instagram post URLs) live in
-`settings`, so they cannot drift apart.
+the English pages are a courtesy translation and say so at the top. Media and
+values that are the same in both languages are stored once, so they cannot
+drift apart.
 
 ## Still to fill in
 
 Everything written as `[[PLACEHOLDER]]` is deliberately unset and rendered with a
-visible ⚠️ marker. Collected in `src/config.js` and in `content.json`:
+visible ⚠️ marker. Collected in `src/config.js` and in `src/content/de.json` / `en.json`:
 
 - `[[CORPORATE_EMAIL]]` — inbox for trial-class requests
 - `[[PLZ]]` — postcode of the ROXY venue

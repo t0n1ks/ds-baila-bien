@@ -30,7 +30,7 @@ export const WEB3FORMS_KEY = '[[FORM_KEY]]';
  * ------------------------------------------------------------------ *
  * The public contact address, and where trial-form submissions go once
  * the form is connected. The footer shows `settings.contactEmail` from
- * content.json (editable in the CMS) — keep the two in step.
+ * src/content/site.json (editable in the CMS) — keep the two in step.
  */
 export const CORPORATE_EMAIL = 'bailabien.mz.de@gmail.com';
 
@@ -38,7 +38,7 @@ export const CORPORATE_EMAIL = 'bailabien.mz.de@gmail.com';
 export const hasPendingDetails = (value) => /\[\[[^\]]+\]\]/.test(String(value ?? ''));
 
 /**
- * Prefix a path from content.json with the Vite base (Pages subpath safe).
+ * Prefix a path from the content files with the Vite base (Pages subpath safe).
  * "/images/uploads/1.jpg" and "images/uploads/1.jpg" both become
  * "/ds-baila-bien/images/uploads/1.jpg"; full URLs pass through untouched.
  */

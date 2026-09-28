@@ -1,12 +1,12 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { STORAGE_KEYS } from '../config.js';
-import content from '../content/content.json';
+import { files } from '../content/index.js';
 
 const ThemeContext = createContext(null);
 
 const MODES = ['light', 'dark', 'system'];
-const fallbackMode = MODES.includes(content.settings.defaultTheme)
-  ? content.settings.defaultTheme
+const fallbackMode = MODES.includes(files.site.defaultTheme)
+  ? files.site.defaultTheme
   : 'system';
 
 function readStored() {

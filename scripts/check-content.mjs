@@ -1,21 +1,26 @@
 /**
  * Guard rails for the content layer. Run with `npm run check:content`.
  *
- *  1. de and en must expose exactly the same key structure — a missing key is
- *     how a section ends up stuck in the wrong language.
- *  2. every key in content.json must be declared in the Sveltia schema,
- *     because the CMS strips whatever it does not know about on save.
- *  3. the gallery lists must line up index by index across locales.
- *  4. the levels must line up too: same count, titles, bullets per level.
+ *  1. de.json and en.json must expose exactly the same key structure and the
+ *     same number of entries in every list (levels, bullets, rows, …) — a
+ *     missing key is how a section ends up stuck in the wrong language.
+ *  2. the Deutsch and English CMS entries must declare identical field lists,
+ *     so a text sits in the same spot in both.
+ *  3. every key in every content file must be declared in its CMS entry,
+ *     because Sveltia strips whatever it does not know about on save.
+ *  4. media files (gallery, events, instagram): each { de, en } text pair is
+ *     either filled in both languages or empty in both.
+ *  5. level titles stay identical (English) in both languages.
  */
 import { readFileSync } from 'node:fs';
+import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { load as loadYaml } from 'js-yaml';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const content = JSON.parse(readFileSync(resolve(root, 'src/content/content.json'), 'utf8'));
 const schema = loadYaml(readFileSync(resolve(root, 'public/admin/config.yml'), 'utf8'));
+const entries = schema.singletons.filter((entry) => entry.file);
 
 const problems = [];
 
@@ -46,49 +51,81 @@ function schemaPaths(fields, prefix = '') {
   });
 }
 
-// 1. locale parity
-const de = paths(content.de).sort();
-const en = paths(content.en).sort();
-de.filter((p) => !en.includes(p)).forEach((p) => problems.push(`missing in en: ${p}`));
-en.filter((p) => !de.includes(p)).forEach((p) => problems.push(`missing in de: ${p}`));
-
-// 2. schema coverage
-const declared = new Set(schemaPaths(schema.collections[0].files[0].fields));
-paths(content).forEach((path) => {
-  // list-of-scalars shows up as "x[]" in the schema and "x" in the data
-  if (declared.has(path) || declared.has(`${path}[]`)) return;
-  problems.push(`not declared in config.yml (CMS would strip it): ${path}`);
-});
-
-// 3. gallery alignment
-const deItems = content.de.gallery.items;
-const enItems = content.en.gallery.items;
-if (deItems.length !== enItems.length) {
-  problems.push(`gallery length differs: de=${deItems.length} en=${enItems.length}`);
+/** Every list in `value` with its length, keyed by concrete path (a.b[2].c). */
+function listLengths(value, prefix = '', out = new Map()) {
+  if (Array.isArray(value)) {
+    out.set(prefix, value.length);
+    value.forEach((item, i) => listLengths(item, `${prefix}[${i}]`, out));
+  } else if (value && typeof value === 'object') {
+    Object.entries(value).forEach(([key, child]) => listLengths(child, prefix ? `${prefix}.${key}` : key, out));
+  }
+  return out;
 }
-deItems.forEach((item, i) => {
-  if (enItems[i] && enItems[i].src !== item.src) {
-    problems.push(`gallery[${i}] src differs: "${item.src}" vs "${enItems[i].src}"`);
+
+/** Every { de, en } pair in `value`, with its concrete path. */
+function localizedPairs(value, prefix = '', out = []) {
+  if (Array.isArray(value)) {
+    value.forEach((item, i) => localizedPairs(item, `${prefix}[${i}]`, out));
+  } else if (value && typeof value === 'object') {
+    const keys = Object.keys(value).sort().join(',');
+    if (keys === 'de,en') out.push([prefix, value]);
+    else Object.entries(value).forEach(([key, child]) => localizedPairs(child, prefix ? `${prefix}.${key}` : key, out));
+  }
+  return out;
+}
+
+const files = Object.fromEntries(
+  entries.map((entry) => [entry.name, JSON.parse(readFileSync(resolve(root, entry.file), 'utf8'))]),
+);
+const { de, en } = files;
+
+// 1. locale parity: structure and list lengths
+const dePaths = paths(de).sort();
+const enPaths = paths(en).sort();
+dePaths.filter((p) => !enPaths.includes(p)).forEach((p) => problems.push(`missing in en.json: ${p}`));
+enPaths.filter((p) => !dePaths.includes(p)).forEach((p) => problems.push(`missing in de.json: ${p}`));
+const deLists = listLengths(de);
+const enLists = listLengths(en);
+deLists.forEach((length, path) => {
+  if (enLists.has(path) && enLists.get(path) !== length) {
+    problems.push(`list length differs at ${path}: de=${length} en=${enLists.get(path)}`);
   }
 });
 
-// 4. levels alignment: same cards, same number of bullets per card
-const deLevels = content.de.levels.items;
-const enLevels = content.en.levels.items;
-if (deLevels.length !== enLevels.length) {
-  problems.push(`levels length differs: de=${deLevels.length} en=${enLevels.length}`);
+// 2. identical CMS field lists for Deutsch and English
+const deEntry = entries.find((entry) => entry.name === 'de');
+const enEntry = entries.find((entry) => entry.name === 'en');
+if (!isDeepStrictEqual(deEntry.fields, enEntry.fields)) {
+  problems.push('config.yml: the Deutsch and English entries must declare identical fields');
 }
-deLevels.forEach((level, i) => {
-  const other = enLevels[i];
-  if (!other) return;
-  if (level.title !== other.title) {
+
+// 3. schema coverage, per file
+entries.forEach((entry) => {
+  const declared = new Set(schemaPaths(entry.fields));
+  paths(files[entry.name]).forEach((path) => {
+    // list-of-scalars shows up as "x[]" in the schema and "x" in the data
+    if (declared.has(path) || declared.has(`${path}[]`)) return;
+    problems.push(`${entry.file}: not declared in config.yml (CMS would strip it): ${path}`);
+  });
+});
+
+// 4. media texts: both languages filled, or both empty
+['gallery', 'events', 'instagram'].forEach((name) => {
+  localizedPairs(files[name]).forEach(([path, pair]) => {
+    if (Boolean(String(pair.de ?? '').trim()) !== Boolean(String(pair.en ?? '').trim())) {
+      problems.push(`${name}.json ${path}: filled in one language only (de="${pair.de}", en="${pair.en}")`);
+    }
+  });
+});
+
+// 5. level titles
+de.levels.items.forEach((level, i) => {
+  const other = en.levels.items[i];
+  if (other && level.title !== other.title) {
     problems.push(`levels[${i}] title differs (names stay English): "${level.title}" vs "${other.title}"`);
   }
-  if ((level.items || []).length !== (other.items || []).length) {
-    problems.push(`levels[${i}] bullet count differs: de=${(level.items || []).length} en=${(other.items || []).length}`);
-  }
-  if (Boolean(level.focus) !== Boolean(other.focus) || Boolean(level.note) !== Boolean(other.note)) {
-    problems.push(`levels[${i}] optional focus/note filled in one locale only`);
+  if (other && (Boolean(level.focus) !== Boolean(other.focus) || Boolean(level.note) !== Boolean(other.note))) {
+    problems.push(`levels[${i}] optional focus/note filled in one language only`);
   }
 });
 
@@ -97,4 +134,7 @@ if (problems.length) {
   problems.forEach((p) => console.error(`  - ${p}`));
   process.exit(1);
 }
-console.log('content check passed: locales in sync, schema covers every key');
+console.log(
+  `content check passed: ${entries.length} files, de/en in sync (structure + list lengths), ` +
+    'identical CMS fields for Deutsch/English, schema covers every key, media texts paired',
+);

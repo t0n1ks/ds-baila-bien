@@ -4,9 +4,10 @@
  *
  * READ-ONLY: this script never deletes or modifies anything.
  *
- * A file counts as used when any text file in src/, index.html or public/
- * (outside the uploads folder itself) mentions "images/uploads/<name>" —
- * with or without a leading slash or the Pages base, URL-encoded or not.
+ * A file counts as used when any text file in src/ (the content JSON in
+ * src/content/ included), index.html or public/ (outside the uploads folder
+ * itself) mentions "images/uploads/<name>" — with or without a leading slash
+ * or the Pages base, URL-encoded or not.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

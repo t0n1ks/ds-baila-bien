@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { STORAGE_KEYS } from '../config.js';
-import content from '../content/content.json';
+import content from '../content/index.js';
 
 const LanguageContext = createContext(null);
 
@@ -51,8 +51,8 @@ export function LanguageProvider({ children }) {
       t: content[lang],
       /** The German copy, used as the fallback when a translation is missing. */
       fallback: content[DEFAULT_LANG],
-      /** Language-independent content: brand, links, Instagram posts. */
-      settings: content.settings,
+      /** Shared settings and media (brand, links, Instagram, event), captions in the active language. */
+      settings: content.settings[lang],
     }),
     [lang, toggle],
   );

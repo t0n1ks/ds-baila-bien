@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "title": "Baila Bien Mainz — Salsa & Latin Dance",
+    "description": "Salsa On1 in Mainz. Keine Vorkenntnisse, kein Partner nötig. Jeden Dienstag."
+  },
+  "nav": {
+    "items": [
+      {
+        "id": "kurse",
+        "label": "Kurse"
+      },
+      {
+        "id": "preise",
+        "label": "Preise"
+      },
+      {
+        "id": "events",
+        "label": "Events"
+      },
+      {
+        "id": "galerie",
+        "label": "Galerie"
+      },
+      {
+        "id": "anmelden",
+        "label": "Probestunde"
+      }
+    ],
+    "logoLabel": "Baila Bien – Startseite",
+    "backToTop": "Nach oben",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "themeLabel": "Farbschema wechseln",
+    "langLabel": "Sprache wechseln",
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "hero": {
+    "wordmark": [
+      "Baila",
+      "Bien"
+    ],
+    "title": "Salsa On1 in Mainz",
+    "subtitle": [
+      "Keine Vorkenntnisse.",
+      "Kein Partner nötig.",
+      "Jeden Dienstag."
+    ],
+    "cta": "Zur Probestunde anmelden",
+    "secondaryCta": "Kurse & Zeiten ansehen"
+  },
+  "marquee": [
+    "Salsa",
+    "Jeden Dienstag",
+    "Kein Partner nötig",
+    "Keine Vorkenntnisse",
+    "Mambo",
+    "Workshops",
+    "Latin Party"
+  ],
+  "about": {
+    "heading": "Über uns",
+    "text": "Bei Baila Bien teilen wir unsere Liebe zum lateinamerikanischen Tanz. In lockerer, herzlicher Atmosphäre lernst du Salsa von Grund auf – ganz ohne Vorkenntnisse und ohne festen Tanzpartner. Komm vorbei, tanz mit uns und werde Teil unserer Community.",
+    "stats": [
+      {
+        "value": "3",
+        "label": "Level — von Beginner bis Improver"
+      },
+      {
+        "value": "Di",
+        "label": "Jeden Dienstag"
+      },
+      {
+        "value": "0",
+        "label": "Verträge, keine Mindestlaufzeit"
+      }
+    ]
+  },
+  "classes": {
+    "heading": "Kurse",
+    "intro": "Ein Abend, drei Level, dazwischen Social Dance – ein durchgehender Flow.",
+    "drinkNote": "Hol dir jederzeit gern einen Drink an der Bar 🍹",
+    "location": "ROXY · Holzhofstraße 7 · 55116 Mainz",
+    "locationNote": "Adresse des Veranstaltungsortes, nicht des Anbieters.",
+    "mapsLabel": "In Google Maps öffnen",
+    "day": "Jeden Dienstag",
+    "timeColumn": "Zeit",
+    "rows": [
+      {
+        "time": "18:50–19:00",
+        "label": "Welcome & Warm-up"
+      },
+      {
+        "time": "19:00–20:10",
+        "label": "Beginner / Foundation"
+      },
+      {
+        "time": "20:20–21:30",
+        "label": "Improver"
+      },
+      {
+        "time": "21:30–22:00",
+        "label": "Práctica & Mingle"
+      }
+    ]
+  },
+  "levels": {
+    "heading": "Niveaus",
+    "items": [
+      {
+        "title": "Level 1 — Beginner",
+        "intro": "Perfekt für Teilnehmer mit wenig oder keiner Salsa-Erfahrung.",
+        "focus": "",
+        "listHeading": "Du lernst:",
+        "items": [
+          "Basic Salsa Steps",
+          "Timing und Rhythmus",
+          "Grundlegende Drehungen",
+          "Partner Connection",
+          "Leading und Following"
+        ],
+        "note": "Du brauchst weder einen Tanzpartner noch Vorkenntnisse. Während des Kurses werden die Partner regelmäßig gewechselt."
+      },
+      {
+        "title": "Level 2 — Foundation",
+        "intro": "Für Teilnehmer, die bereits die Grundschritte, einfache Drehungen und den Cross Body Lead kennen.",
+        "focus": "In diesem Level geht es darum, eine solide Basis aufzubauen und einzelne Figuren flüssig miteinander zu verbinden.",
+        "listHeading": "Du arbeitest an:",
+        "items": [
+          "Cross Body Lead Variationen",
+          "Inside und Outside Turns",
+          "Grundlegender Spin-Technik",
+          "Footwork und Koordination",
+          "Besserem Leading und Following",
+          "Fließenden Übergängen zwischen den Figuren"
+        ],
+        "note": ""
+      },
+      {
+        "title": "Level 3 — Improver",
+        "intro": "Für Tänzer, die sich mit den Grundlagen sicher fühlen und ihr Social Dancing verbessern möchten.",
+        "focus": "Der Fokus liegt auf Technik, Partner Connection und anspruchsvolleren Kombinationen.",
+        "listHeading": "Du arbeitest an:",
+        "items": [
+          "Komplexeren Turn Patterns",
+          "Leading- und Following-Technik",
+          "Partner Connection und Kommunikation",
+          "Spins und Balance",
+          "Timing und Musicality",
+          "Fließendem und kontrolliertem Social Dancing"
+        ],
+        "note": ""
+      }
+    ]
+  },
+  "prices": {
+    "heading": "Preise",
+    "note": "Monatskurs · keine Verträge",
+    "footnote": "*Studierendenpreis für unter 28 mit gültigem Ausweis.",
+    "levelColumn": "Level",
+    "priceColumn": "Preis",
+    "reducedColumn": "Ermäßigt*",
+    "rows": [
+      {
+        "level": "Level 1",
+        "price": "35 €",
+        "reduced": "30 €"
+      },
+      {
+        "level": "Level 2",
+        "price": "40 €",
+        "reduced": "35 €"
+      },
+      {
+        "level": "Level 3",
+        "price": "45 €",
+        "reduced": "40 €"
+      },
+      {
+        "level": "Level 2 & 3",
+        "price": "60 €",
+        "reduced": "55 €"
+      }
+    ],
+    "notesHeading": "Wichtige Hinweise:",
+    "notes": [
+      "Die Kurse laufen monatlich.",
+      "Verpasste Stunden ändern nichts am Preis.",
+      "Für verpasste Termine gibt es keine Nachholstunden."
+    ]
+  },
+  "events": {
+    "heading": "Kommende Events",
+    "linkLabel": "Mehr erfahren",
+    "teaser": {
+      "title": "Verpass kein Event.",
+      "text": "Alle kommenden Termine findest du im Flyer."
+    }
+  },
+  "gallery": {
+    "heading": "Impressionen",
+    "intro": "Dienstagabende.",
+    "placeholder": "Foto folgt",
+    "prev": "Vorheriges Bild",
+    "next": "Nächstes Bild",
+    "slideLabel": "Bild"
+  },
+  "instagram": {
+    "heading": "Wir sind auf Instagram",
+    "intro": "Aktuelle Termine, Videos und Eindrücke findest du in unserem Feed.",
+    "viewOnInstagram": "Auf Instagram ansehen",
+    "placeholder": "Beitrag folgt",
+    "profileLink": "Profil auf Instagram öffnen",
+    "prev": "Vorheriger Beitrag",
+    "next": "Nächster Beitrag",
+    "slideLabel": "Beitrag"
+  },
+  "form": {
+    "heading": "Zur Probestunde anmelden",
+    "intro": "Schreib uns kurz, wann du vorbeikommen möchtest. Wir melden uns mit allen Details.",
+    "fields": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "level": "Level",
+      "date": "Wunschtermin",
+      "message": "Nachricht"
+    },
+    "optional": "optional",
+    "levelPlaceholder": "Bitte wählen",
+    "datePlaceholder": "Bitte wählen",
+    "levelOptions": [
+      "Beginner",
+      "Foundation",
+      "Improver"
+    ],
+    "consent": {
+      "before": "Ich habe die",
+      "linkText": "Datenschutzerklärung",
+      "after": "gelesen und willige in die Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage ein."
+    },
+    "submit": "Anmelden",
+    "sending": "Wird gesendet …",
+    "success": "Danke! Wir melden uns bei dir.",
+    "successAgain": "Noch eine Anmeldung senden",
+    "error": "Das hat nicht geklappt. Bitte versuch es erneut oder schreib uns direkt an bailabien.mz.de@gmail.com.",
+    "errors": {
+      "name": "Bitte gib deinen Namen an.",
+      "email": "Bitte gib eine gültige E-Mail-Adresse an.",
+      "consent": "Ohne deine Einwilligung können wir die Anfrage nicht bearbeiten."
+    }
+  },
+  "footer": {
+    "tagline": "Salsa & Latin Dance in Mainz. Jeden Dienstag.",
+    "contactHeading": "Kontakt",
+    "followHeading": "Folgen",
+    "legalHeading": "Rechtliches",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "rights": "Alle Rechte vorbehalten.",
+    "animationCredit": "Animation: Abdul Latif (LottieFiles, Lottie Simple License)"
+  },
+  "legalUi": {
+    "back": "Zurück zur Startseite",
+    "pendingTitle": "Angaben ausstehend",
+    "pendingText": "Diese Seite enthält noch Platzhalter. Vor dem Produktivbetrieb müssen alle mit [[…]] markierten Angaben ergänzt und die Texte rechtlich geprüft werden.",
+    "pendingToggle": "Hinweis zu ausstehenden Angaben anzeigen",
+    "pendingClose": "Hinweis schließen",
+    "bindingNote": "Maßgeblich ist diese deutsche Fassung."
+  },
+  "legal": {
+    "impressum": {
+      "title": "Impressum",
+      "sections": [
+        {
+          "heading": "Angaben gemäß § 5 DDG",
+          "body": "Anna Melnyk\nMainzer Str. 106a\n55239 Gau-Odernheim\nDeutschland"
+        },
+        {
+          "heading": "Kontakt",
+          "body": "Telefon: +49 170 9526964\nE-Mail: bailabien.mz.de@gmail.com"
+        },
+        {
+          "heading": "Umsatzsteuer",
+          "body": "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen."
+        },
+        {
+          "heading": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+          "body": "Anna Melnyk, Anschrift wie oben."
+        },
+        {
+          "heading": "Verbraucherstreitbeilegung / Universalschlichtungsstelle",
+          "body": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        }
+      ]
+    },
+    "datenschutz": {
+      "title": "Datenschutzerklärung",
+      "sections": [
+        {
+          "heading": "1. Verantwortlicher",
+          "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\nAnna Melnyk, Mainzer Str. 106a, 55239 Gau-Odernheim, E-Mail: bailabien.mz.de@gmail.com."
+        },
+        {
+          "heading": "2. Hosting",
+          "body": "Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., USA. Beim Aufruf werden technisch notwendige Daten (u. a. IP-Adresse, Datum/Uhrzeit, angeforderte Ressource) in Server-Logs verarbeitet. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren, stabilen Betrieb (Art. 6 Abs. 1 lit. f DSGVO).\n\nHinweis: Dabei können Daten in die USA übermittelt werden; Grundlage sind die EU-Standardvertragsklauseln bzw. eine Zertifizierung nach dem EU-US Data Privacy Framework."
+        },
+        {
+          "heading": "3. Kontakt- und Anmeldeformular",
+          "body": "Wenn du dich über das Formular zu einer Probestunde anmeldest, verarbeiten wir die von dir angegebenen Daten (Name, E-Mail, ggf. Telefon, Level, Wunschtermin, Nachricht), um deine Anfrage zu bearbeiten. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sowie die Anbahnung/Erfüllung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO). Zur Zustellung nutzen wir [[MAIL-DIENSTLEISTER – TODO: eintragen, sobald das Formular angebunden ist]] als Auftragsverarbeiter auf Grundlage eines Auftragsverarbeitungsvertrags (Art. 28 DSGVO). Wir speichern die Daten nur so lange, wie es zur Bearbeitung erforderlich ist, und löschen sie anschließend, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Die Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen."
+        },
+        {
+          "heading": "4. Schriftarten",
+          "body": "Schriftarten werden lokal von unserem Server ausgeliefert (kein Google Fonts CDN). Es findet dabei keine Übermittlung an Dritte statt."
+        },
+        {
+          "heading": "5. Cookies / Tracking",
+          "body": "Diese Website setzt keine nicht notwendigen Cookies und verwendet keine Analyse- oder Tracking-Dienste. Deine Einstellungen zu Sprache und Farbschema werden ausschließlich lokal in deinem Browser (localStorage) gespeichert und nicht an uns übertragen.\n\nWir binden keine Instagram-Inhalte ein. Die Vorschaubilder und Videos im Instagram-Bereich liegen auf unserem eigenen Server; die Karten verlinken lediglich auf Instagram. Beim Aufruf dieser Seite werden deshalb keine Daten an Meta übertragen. Erst wenn du einen dieser Links anklickst und Instagram öffnest, gelten die Datenschutzbestimmungen von Meta Platforms Ireland Ltd."
+        },
+        {
+          "heading": "6. Deine Rechte",
+          "body": "Du hast das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Wende dich dazu an bailabien.mz.de@gmail.com."
+        },
+        {
+          "heading": "7. Beschwerderecht",
+          "body": "Du hast das Recht, dich bei einer Aufsichtsbehörde zu beschweren. Zuständig ist: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."
+        },
+        {
+          "heading": "8. SSL/TLS-Verschlüsselung",
+          "body": "Diese Seite nutzt aus Sicherheitsgründen eine TLS-Verschlüsselung."
+        }
+      ]
+    }
+  }
+}

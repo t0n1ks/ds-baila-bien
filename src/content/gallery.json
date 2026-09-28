@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "type": "image",
+      "src": "/images/uploads/g1-2.webp",
+      "caption": {
+        "de": "Salsa Night",
+        "en": "Salsa Night"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/images/uploads/g2-1.webp",
+      "caption": {
+        "de": "Beginner Kurs",
+        "en": "Beginner class"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/images/uploads/g3-1.webp",
+      "caption": {
+        "de": "Práctica",
+        "en": "Práctica"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/images/uploads/g4-1.webp",
+      "caption": {
+        "de": "Improver Level",
+        "en": "Improver level"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/images/uploads/g5-1.webp",
+      "caption": {
+        "de": "Social Dancing",
+        "en": "Social dancing"
+      }
+    },
+    {
+      "type": "image",
+      "src": "/images/uploads/g6-1.webp",
+      "caption": {
+        "de": "Unsere Community",
+        "en": "Our community"
+      }
+    }
+  ]
+}

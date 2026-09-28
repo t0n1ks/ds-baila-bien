@@ -26,7 +26,7 @@ function Arrow({ direction, label, onClick }) {
  * the same arrows/dots to pointer and keyboard users. Embla ships in our own
  * bundle (npm), so no third-party request is involved.
  *
- * @param labels  { prev, next, slideLabel } — all bilingual, from content.json
+ * @param labels  { prev, next, slideLabel } — all bilingual, from de.json / en.json
  * @param slideClass  per-section slide widths (Embla drives layout via flex-basis)
  * @param onActiveChange  fired with the selected index, so a section can react
  *   to it — the Instagram cards use it to play only the visible video.

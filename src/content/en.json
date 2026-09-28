@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "title": "Baila Bien Mainz — Salsa & Latin Dance",
+    "description": "Salsa On1 in Mainz. No experience, no partner needed. Every Tuesday."
+  },
+  "nav": {
+    "items": [
+      {
+        "id": "kurse",
+        "label": "Classes"
+      },
+      {
+        "id": "preise",
+        "label": "Prices"
+      },
+      {
+        "id": "events",
+        "label": "Events"
+      },
+      {
+        "id": "galerie",
+        "label": "Gallery"
+      },
+      {
+        "id": "anmelden",
+        "label": "Trial class"
+      }
+    ],
+    "logoLabel": "Baila Bien – Home",
+    "backToTop": "Back to top",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "themeLabel": "Switch colour scheme",
+    "langLabel": "Switch language",
+    "skipToContent": "Skip to content"
+  },
+  "hero": {
+    "wordmark": [
+      "Baila",
+      "Bien"
+    ],
+    "title": "Salsa On1 in Mainz",
+    "subtitle": [
+      "No experience needed.",
+      "No partner needed.",
+      "Every Tuesday."
+    ],
+    "cta": "Book a trial class",
+    "secondaryCta": "See classes & times"
+  },
+  "marquee": [
+    "Salsa",
+    "Every Tuesday",
+    "No partner needed",
+    "No experience required",
+    "Mambo",
+    "Workshops",
+    "Latin Party"
+  ],
+  "about": {
+    "heading": "About us",
+    "text": "At Baila Bien we share our love of Latin dance. Learn salsa from scratch in a relaxed, welcoming atmosphere – no experience and no dance partner required. Come by, dance with us and become part of our community.",
+    "stats": [
+      {
+        "value": "3",
+        "label": "Levels — from Beginner to Improver"
+      },
+      {
+        "value": "Tue",
+        "label": "Every Tuesday"
+      },
+      {
+        "value": "0",
+        "label": "Contracts, no minimum term"
+      }
+    ]
+  },
+  "classes": {
+    "heading": "Classes",
+    "intro": "One evening, three levels, social dance in between — one continuous flow.",
+    "drinkNote": "Feel free to grab a drink at the bar anytime 🍹",
+    "location": "ROXY · Holzhofstraße 7 · 55116 Mainz",
+    "locationNote": "Address of the venue, not of the provider.",
+    "mapsLabel": "Open in Google Maps",
+    "day": "Every Tuesday",
+    "timeColumn": "Time",
+    "rows": [
+      {
+        "time": "18:50–19:00",
+        "label": "Welcome & Warm-up"
+      },
+      {
+        "time": "19:00–20:10",
+        "label": "Beginner / Foundation"
+      },
+      {
+        "time": "20:20–21:30",
+        "label": "Improver"
+      },
+      {
+        "time": "21:30–22:00",
+        "label": "Práctica & Mingle"
+      }
+    ]
+  },
+  "levels": {
+    "heading": "Levels",
+    "items": [
+      {
+        "title": "Level 1 — Beginner",
+        "intro": "Perfect for students with little or no salsa experience.",
+        "focus": "",
+        "listHeading": "You will learn:",
+        "items": [
+          "Basic Salsa Steps",
+          "Timing and Rhythm",
+          "Basic Turns",
+          "Partner Connection",
+          "Leading and Following"
+        ],
+        "note": "No partner or previous experience is required. Students rotate partners during the class."
+      },
+      {
+        "title": "Level 2 — Foundation",
+        "intro": "For students who already know the basic steps, basic turns, and Cross Body Lead.",
+        "focus": "This level focuses on building a strong foundation and connecting moves into smooth combinations.",
+        "listHeading": "You will work on:",
+        "items": [
+          "Cross Body Lead variations",
+          "Inside and Outside Turns",
+          "Basic Spin Technique",
+          "Footwork and Coordination",
+          "Better Leading and Following",
+          "Smooth Transitions between moves"
+        ],
+        "note": ""
+      },
+      {
+        "title": "Level 3 — Improver",
+        "intro": "For dancers who are comfortable with the fundamentals and want to improve their social dancing.",
+        "focus": "The focus is on technique, partner connection, and more advanced combinations.",
+        "listHeading": "You will work on:",
+        "items": [
+          "More Complex Turn Patterns",
+          "Leading and Following Technique",
+          "Partner Connection and Communication",
+          "Spins and Balance",
+          "Timing and Musicality",
+          "Smooth and Controlled Social Dancing"
+        ],
+        "note": ""
+      }
+    ]
+  },
+  "prices": {
+    "heading": "Prices",
+    "note": "Monthly course · no contracts",
+    "footnote": "*Student price for under-28 with valid ID.",
+    "levelColumn": "Level",
+    "priceColumn": "Price",
+    "reducedColumn": "Reduced*",
+    "rows": [
+      {
+        "level": "Level 1",
+        "price": "35 €",
+        "reduced": "30 €"
+      },
+      {
+        "level": "Level 2",
+        "price": "40 €",
+        "reduced": "35 €"
+      },
+      {
+        "level": "Level 3",
+        "price": "45 €",
+        "reduced": "40 €"
+      },
+      {
+        "level": "Level 2 & 3",
+        "price": "60 €",
+        "reduced": "55 €"
+      }
+    ],
+    "notesHeading": "Important Notes:",
+    "notes": [
+      "Courses are monthly.",
+      "Missed classes do not affect pricing.",
+      "No make-up classes for missed sessions."
+    ]
+  },
+  "events": {
+    "heading": "Upcoming Events",
+    "linkLabel": "Learn more",
+    "teaser": {
+      "title": "Don't miss an event.",
+      "text": "All upcoming dates are in the flyer."
+    }
+  },
+  "gallery": {
+    "heading": "Gallery",
+    "intro": "Tuesday nights.",
+    "placeholder": "Photo coming soon",
+    "prev": "Previous image",
+    "next": "Next image",
+    "slideLabel": "Image"
+  },
+  "instagram": {
+    "heading": "We're on Instagram",
+    "intro": "Upcoming dates, videos and impressions live in our feed.",
+    "viewOnInstagram": "View on Instagram",
+    "placeholder": "Post coming soon",
+    "profileLink": "Open profile on Instagram",
+    "prev": "Previous post",
+    "next": "Next post",
+    "slideLabel": "Post"
+  },
+  "form": {
+    "heading": "Book a trial class",
+    "intro": "Tell us when you'd like to drop by and we'll come back to you with the details.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "level": "Level",
+      "date": "Preferred date",
+      "message": "Message"
+    },
+    "optional": "optional",
+    "levelPlaceholder": "Please choose",
+    "datePlaceholder": "Please choose",
+    "levelOptions": [
+      "Beginner",
+      "Foundation",
+      "Improver"
+    ],
+    "consent": {
+      "before": "I have read the",
+      "linkText": "privacy policy",
+      "after": "and consent to the processing of my data to handle my request."
+    },
+    "submit": "Send",
+    "sending": "Sending …",
+    "success": "Thanks! We'll get back to you.",
+    "successAgain": "Send another request",
+    "error": "That didn't go through. Please try again or email us at bailabien.mz.de@gmail.com.",
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "Please enter a valid email address.",
+      "consent": "We can't process your request without your consent."
+    }
+  },
+  "footer": {
+    "tagline": "Salsa & Latin dance in Mainz. Every Tuesday.",
+    "contactHeading": "Contact",
+    "followHeading": "Follow",
+    "legalHeading": "Legal",
+    "impressum": "Legal notice",
+    "datenschutz": "Privacy",
+    "rights": "All rights reserved.",
+    "animationCredit": "Animation: Abdul Latif (LottieFiles, Lottie Simple License)"
+  },
+  "legalUi": {
+    "back": "Back to home",
+    "pendingTitle": "Details pending",
+    "pendingText": "This page still contains placeholders. Before going live, every value marked [[…]] must be filled in and the texts reviewed by a lawyer.",
+    "pendingToggle": "Show note about pending details",
+    "pendingClose": "Close note",
+    "bindingNote": "The legally binding version of this notice is the German one."
+  },
+  "legal": {
+    "impressum": {
+      "title": "Legal notice (Impressum)",
+      "sections": [
+        {
+          "heading": "Information pursuant to § 5 DDG",
+          "body": "Anna Melnyk\nMainzer Str. 106a\n55239 Gau-Odernheim\nGermany"
+        },
+        {
+          "heading": "Contact",
+          "body": "Phone: +49 170 9526964\nEmail: bailabien.mz.de@gmail.com"
+        },
+        {
+          "heading": "VAT",
+          "body": "Pursuant to § 19 UStG (small business scheme), no VAT is charged or shown."
+        },
+        {
+          "heading": "Responsible for the content pursuant to § 18 (2) MStV",
+          "body": "Anna Melnyk, address as above."
+        },
+        {
+          "heading": "Consumer dispute resolution / universal arbitration board",
+          "body": "We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board."
+        }
+      ]
+    },
+    "datenschutz": {
+      "title": "Privacy policy",
+      "sections": [
+        {
+          "heading": "1. Controller",
+          "body": "The controller for the data processing on this website is:\nAnna Melnyk, Mainzer Str. 106a, 55239 Gau-Odernheim, Germany, email: bailabien.mz.de@gmail.com."
+        },
+        {
+          "heading": "2. Hosting",
+          "body": "This website is hosted on GitHub Pages, a service of GitHub, Inc., USA. When the site is accessed, technically necessary data (including IP address, date and time, requested resource) is processed in server logs. The legal basis is our legitimate interest in secure, stable operation (Art. 6 (1) (f) GDPR).\n\nPlease note: data may be transferred to the USA in the process; this is based on the EU standard contractual clauses or on a certification under the EU-US Data Privacy Framework."
+        },
+        {
+          "heading": "3. Contact and sign-up form",
+          "body": "When you sign up for a trial class through the form, we process the data you provide (name, email, phone if given, level, preferred date, message) in order to handle your request. The legal basis is your consent (Art. 6 (1) (a) GDPR) as well as steps taken prior to entering into a contract and the performance of that contract (Art. 6 (1) (b) GDPR). For delivery we use [[MAIL PROCESSOR – TODO: fill in once the form is connected]] as a processor on the basis of a data processing agreement (Art. 28 GDPR). We store the data only for as long as is necessary to handle your request and delete it afterwards, unless statutory retention obligations apply. You can withdraw your consent at any time with effect for the future."
+        },
+        {
+          "heading": "4. Fonts",
+          "body": "Fonts are served locally from our own server (no Google Fonts CDN). No data is transmitted to third parties in the process."
+        },
+        {
+          "heading": "5. Cookies / tracking",
+          "body": "This website sets no non-essential cookies and uses no analytics or tracking services. Your language and colour scheme preferences are stored solely in your browser (localStorage) and are not transmitted to us.\n\nWe do not embed any Instagram content. The preview images and videos in the Instagram section are served from our own server; the cards merely link to Instagram. Opening this page therefore transfers no data to Meta. Only once you follow one of those links and open Instagram do the privacy terms of Meta Platforms Ireland Ltd. apply."
+        },
+        {
+          "heading": "6. Your rights",
+          "body": "You have the right of access (Art. 15), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and objection (Art. 21 GDPR). To exercise them, contact bailabien.mz.de@gmail.com."
+        },
+        {
+          "heading": "7. Right to lodge a complaint",
+          "body": "You have the right to lodge a complaint with a supervisory authority. The competent authority is: Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz."
+        },
+        {
+          "heading": "8. SSL/TLS encryption",
+          "body": "For security reasons this site uses TLS encryption."
+        }
+      ]
+    }
+  }
+}
